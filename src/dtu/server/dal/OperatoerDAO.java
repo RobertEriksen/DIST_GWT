@@ -35,17 +35,17 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			connection = 
 					DriverManager.getConnection( URL, USERNAME, PASSWORD );
 			
-			// create query that add a person to kartotek
+			// create query that add an operator to kartotek
 			createOperatorStmt = 
 					connection.prepareStatement( "INSERT INTO operatoer " + 
 							"( navn, ini, cpr, pass) " + 
 							"VALUES ( ?, ?, ?, ?)" );
 
-			// create query that updates a person
+			// create query that updates an operator
 			updateOperatorStmt = connection.prepareStatement( 
 					"UPDATE operatoer SET navn = ?, ini = ?, cpr = ?, pass = ? WHERE id = ?" );
 
-			// create query that get all persons in kartotek
+			// create query that get all operators in kartotek
 			getOperatorsStmt = connection.prepareStatement( 
 					"SELECT * FROM operatoer"); 
 
@@ -53,7 +53,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			getSizeStmt = connection.prepareStatement( 
 					"SELECT COUNT(*) FROM operatoer");
 
-			// create query that deletes a person in kartotek
+			// create query that deletes a operator in kartotek
 			deleteOperatorStmt = connection.prepareStatement( 
 					"DELETE FROM operatoer WHERE id =  ?");
 
@@ -70,7 +70,6 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 	public void deleteOperator(int id) throws DALException {
 		try {
 			deleteOperatorStmt.setInt(1, id);
-
 			deleteOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException(" \"deleteOperator\" fejlede");

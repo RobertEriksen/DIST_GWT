@@ -16,7 +16,7 @@ public class WelcomeView extends Composite {
 
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
-		w.add(new Label("Velkommen til personkartotek"));
+		w.add(new Label("Velkommen til operatør kartotek!"));
 		
 		clientImpl.service.getSize(new AsyncCallback<Integer>() {
 
@@ -27,8 +27,7 @@ public class WelcomeView extends Composite {
 
 			@Override
 			public void onSuccess(Integer result) {
-				// TODO Auto-generated method stub
-				w.add(new Label("Antal personer i kartotek = " + result));
+				w.add(new Label("Antal operatører i kartoteket: " + result));
 				
 			}
 			

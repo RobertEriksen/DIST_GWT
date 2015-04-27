@@ -2,7 +2,7 @@ create database kartotek;
 
 use kartotek;
 
-drop table if exists person;
+drop table if exists operatoer;
 
 create table operatoer
 (
@@ -21,7 +21,6 @@ insert into operatoerer (navn, ini, cpr, pass) values
 	
 	
 select * from operator;
-
 
 # queries to be used in program
 

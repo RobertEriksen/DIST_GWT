@@ -40,19 +40,19 @@ public class MainView  {
 	
 	
 	// Call back handlers
-	public void addPerson() {
+	public void addOperator() {
 		contentView.openAddView();
 	}
 	
-	public void showPersons() {
+	public void showOperators() {
 		contentView.openBrowseView();
 	}
 	
-	public void editPersons() {
+	public void editOperators() {
 		contentView.openEditView();
 	}
 	
-	public void deletePersons() {
+	public void deleteOperators() {
 		contentView.openDeleteView();
 	}
 	

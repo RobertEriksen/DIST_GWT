@@ -40,7 +40,7 @@ public class EditView extends Composite {
 	// V.2
 	KartotekServiceClientImpl clientImpl;
 
-	// person list
+	// operator list
 	List<OperatoerDTO> operatoerer;
 
 	// previous cancel anchor

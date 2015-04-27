@@ -15,21 +15,21 @@ public class MenuView extends Composite {
 	public MenuView(final MainView main) {
 		initWidget(this.vPanel);
 		
-		Anchor showPersons = new Anchor("Vis personer");
-		vPanel.add(showPersons);
+		Anchor showOperators = new Anchor("Vis personer");
+		vPanel.add(showOperators);
 		// call back the controller
-		showPersons.addClickHandler(new ClickHandler(){
+		showOperators.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showPersons();
+				main.showOperators();
 			}
 		});
 	
-		// use unicode escape sequence \u00F8 for 'ø'
+		// use unicode escape sequence \u00F8 for 'ï¿½'
 		Anchor add = new Anchor("Tilf\u00F8j person");
 		vPanel.add(add);
 		add.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addPerson();
+				main.addOperator();
 			}
 		});
 		
@@ -37,14 +37,14 @@ public class MenuView extends Composite {
 		vPanel.add(edit);
 		edit.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.editPersons();
+				main.editOperators();
 			}
 		});
 		
 		Anchor delete = new Anchor("Slet person");
 		delete.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.deletePersons();
+				main.deleteOperators();
 			}
 		});
 		vPanel.add(delete);
