@@ -15,6 +15,7 @@ public class MenuView extends Composite {
 	public MenuView(final MainView main) {
 		initWidget(this.vPanel);
 		
+		
 		Anchor showOperators = new Anchor("Vis personer");
 		vPanel.add(showOperators);
 		// call back the controller

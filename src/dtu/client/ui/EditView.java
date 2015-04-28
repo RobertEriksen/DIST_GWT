@@ -11,6 +11,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -53,6 +54,8 @@ public class EditView extends Composite {
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);
 
+		editPanel.add(new Label("Ret operatør(er)"));
+		
 		t = new FlexTable();
 
 		// adjust column widths

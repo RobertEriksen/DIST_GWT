@@ -43,10 +43,11 @@ public class AddView extends Composite {
 	public AddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
-
 		// total height of widget. Components are distributed evenly
 		addPanel.setHeight("300px");	
 		initWidget(this.addPanel);
+		
+		addPanel.add(new Label("Tilføj operatør"));
 
 		HorizontalPanel namePanel = new HorizontalPanel();
 		HorizontalPanel iniPanel = new HorizontalPanel();
@@ -185,7 +186,7 @@ public class AddView extends Composite {
 
 		});
 
-
+		
 		addPanel.add(namePanel);
 		addPanel.add(iniPanel);
 		addPanel.add(cprPanel);

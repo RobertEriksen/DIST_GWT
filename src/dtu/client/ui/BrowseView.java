@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dtu.client.service.KartotekServiceClientImpl;
@@ -18,7 +19,9 @@ public class BrowseView extends Composite {
 
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
-
+		
+		browsePanel.add(new Label("Vis operatører"));
+		
 		final FlexTable t = new FlexTable();
 		t.getFlexCellFormatter().setWidth(0, 0, "50px");
 		t.getFlexCellFormatter().setWidth(0, 1, "170px");
