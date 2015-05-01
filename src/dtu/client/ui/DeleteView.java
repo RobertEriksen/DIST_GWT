@@ -94,6 +94,7 @@ public class DeleteView extends Composite {
 
 			// get delete anchor ref for cancel operation
 			final Anchor delete =  (Anchor) event.getSource();
+//			delete.setStyleName("delete-red");
 
 			Anchor ok = new Anchor("ok");
 			ok.addClickHandler(new ClickHandler() {
@@ -107,7 +108,8 @@ public class DeleteView extends Composite {
 
 						@Override
 						public void onSuccess(Void result) {
-
+							// remove row in flextable
+							t.removeRow(eventRowIndex);
 						}
 
 						@Override
@@ -116,14 +118,13 @@ public class DeleteView extends Composite {
 						}
 
 					});
-				
-					// remove row in flextable
-					t.removeRow(eventRowIndex);
+					
 				}
 			});
 
 			Anchor cancel = new Anchor("cancel");
 			previousCancel = cancel;
+//			previousCancel.setStyleName("delete-red");
 			cancel.addClickHandler(new ClickHandler() {
 
 				@Override
