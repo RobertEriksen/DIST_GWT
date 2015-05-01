@@ -142,7 +142,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 	}
 
 	@Override
-	public void updateOperator(OperatoerDTO p, int index) throws Exception {
+	public void updateOperator(OperatoerDTO p) throws Exception {
 		try {
 			updateOperatorStmt.setString(1, p.getOprNavn());
 			updateOperatorStmt.setString(2, p.getIni());

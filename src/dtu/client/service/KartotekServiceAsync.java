@@ -10,7 +10,7 @@ public interface KartotekServiceAsync {
 
 	void createOperator(OperatoerDTO p, AsyncCallback<Void> callback);
 
-	void updateOperator(OperatoerDTO p, int id, AsyncCallback<Void> callback);
+	void updateOperator(OperatoerDTO p, AsyncCallback<Void> callback);
 
 	void getOperators(AsyncCallback<List<OperatoerDTO>> callback);
 

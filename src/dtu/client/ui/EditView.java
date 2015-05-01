@@ -169,7 +169,7 @@ public class EditView extends Composite {
 
 
 					// V.2
-					clientImpl.service.updateOperator(operatoerDTO, operatoerDTO.getOprId(), new AsyncCallback<Void>() {
+					clientImpl.service.updateOperator(operatoerDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

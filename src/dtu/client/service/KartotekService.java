@@ -17,7 +17,7 @@ public interface KartotekService extends RemoteService {
 	// in the onFailure call back method
 	void createOperator(OperatoerDTO op) throws Exception;
 	void deleteOperator(int id) throws Exception;
-	void updateOperator(OperatoerDTO op, int id) throws Exception;
+	void updateOperator(OperatoerDTO op) throws Exception;
 	List<OperatoerDTO> getOperators() throws Exception;
 	int getSize() throws Exception;
 }
