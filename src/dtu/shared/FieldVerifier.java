@@ -51,22 +51,22 @@ public class FieldVerifier {
 		}
 		if (name.length() == 0)
 			return false;
-		// max 20 karakterer
-		return name.length() <= 20;
+		// min. 2 og max. 20 karakterer
+		return (name.length() >= 2 && name.length() <= 20);
 	}
 	
 	public static boolean isValidInitials(String ini) {
 		if (ini == null) return false;
 		if (ini.length() == 0) return false;
-		// max 3 characters
-		return ini.length() <= 3;
+		// min. 2 og max. 3 characters
+		return (ini.length() == 2 || ini.length() == 3);
 	}
 	
 	public static boolean isValidCpr(String cpr) {
 		if (cpr == null) return false;
 		if (cpr.length() == 0) return false;
 		// must be 11 chars (CDIO oplæg siger 10? Ingen bindestreg?)
-		return cpr.length() == 11;
+		return (cpr.length() == 10);
 	}
 	
 	public static boolean isValidPass(String pass) {
@@ -74,6 +74,6 @@ public class FieldVerifier {
 		if (pass.length() == 0) return false;
 		// min. 7 & max. 8 characters
 //		return pass.length() >= 7 && pass.length() <= 8;
-		return pass.length() == 7 || pass.length() == 8;
+		return (pass.length() == 7 || pass.length() == 8);
 	}
 }
