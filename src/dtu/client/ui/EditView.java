@@ -54,7 +54,9 @@ public class EditView extends Composite {
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);
 
-		editPanel.add(new Label("Ret operatør(er)"));
+		Label pageTitleLbl = new Label("Ret operatør(er)");
+		pageTitleLbl.setStyleName("FlexTable-Header");
+		editPanel.add(pageTitleLbl);
 		
 		t = new FlexTable();
 
@@ -95,7 +97,6 @@ public class EditView extends Composite {
 					t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
 					Anchor edit = new Anchor("edit");
 					t.setWidget(rowIndex+1, 5, edit);
-
 					edit.addClickHandler(new EditHandler());
 				}
 			}
@@ -157,18 +158,10 @@ public class EditView extends Composite {
 				@Override
 				public void onClick(ClickEvent event) {
 
-
-					// here you will normally fetch the primary key of the row 
-					// and use it for location the object to be edited
-
 					// fill DTO with id and new values 
-//					OperatoerDTO operatoerDTO = new OperatoerDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), t.getText(eventRowIndex, 1), t.getText(eventRowIndex, 2),
-//							t.getText(eventRowIndex, 3), t.getText(eventRowIndex, 4));
 					OperatoerDTO operatoerDTO = new OperatoerDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
 							cprTxt.getText(), passTxt.getText());
 
-
-					// V.2
 					clientImpl.service.updateOperator(operatoerDTO, new AsyncCallback<Void>() {
 
 						@Override
@@ -186,15 +179,12 @@ public class EditView extends Composite {
 						}
 
 					});
-
 					// restore edit link
 					t.setWidget(eventRowIndex, 5, edit);
 					t.clearCell(eventRowIndex, 6);
 
 					previousCancel = null;
-
 				}
-
 			});
 
 			Anchor cancel = new Anchor("cancel");

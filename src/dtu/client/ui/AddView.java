@@ -47,43 +47,50 @@ public class AddView extends Composite {
 		addPanel.setHeight("300px");	
 		initWidget(this.addPanel);
 		
-		addPanel.add(new Label("Tilføj operatør"));
+		Label pageTitleLbl = new Label("Tilføj operatør");
+		pageTitleLbl.setStyleName("FlexTable-Header");
+		addPanel.add(pageTitleLbl);
 
 		HorizontalPanel namePanel = new HorizontalPanel();
 		HorizontalPanel iniPanel = new HorizontalPanel();
 		HorizontalPanel cprPanel = new HorizontalPanel();
 		HorizontalPanel passPanel = new HorizontalPanel();
 
-		nameLbl = new Label("Navn:");
-		nameLbl.setWidth("70px");
+		nameLbl = new Label("Navn(min. 2 og max. 20 karakterer):");
+		nameLbl.setWidth("230px");
 		nameTxt = new TextBox();
 		nameTxt.setHeight("1em");
 		namePanel.add(nameLbl);
 		namePanel.add(nameTxt);
 
-		iniLbl = new Label("Initialer:");
-		iniLbl.setWidth("70px");
+		iniLbl = new Label("Initialer(min. 2 og max. 3 karakterer):");
+		iniLbl.setWidth("230px");
 		iniTxt = new TextBox();
 		//		iniTxt.setWidth("5em");
 		iniTxt.setHeight("1em");
 		iniPanel.add(iniLbl);
 		iniPanel.add(iniTxt);
 
-		cprLbl = new Label("CPR:");
-		cprLbl.setWidth("70px");
+		cprLbl = new Label("CPR(10 karakterer):");
+		cprLbl.setWidth("150px");
 		cprTxt = new TextBox();
 		//		cprTxt.setWidth("5em");
 		cprTxt.setHeight("1em");
 		cprPanel.add(cprLbl);
 		cprPanel.add(cprTxt);
 
-		passLbl = new Label("Password:");
-		passLbl.setWidth("70px");
+		passLbl = new Label("Password(min. 7 og max. 8 karakterer):");
+		passLbl.setWidth("230px");
 		passTxt = new TextBox();
 		//		passTxt.setWidth("5em");
 		passTxt.setHeight("1em");
 		passPanel.add(passLbl);
 		passPanel.add(passTxt);
+		
+		nameTxt.setStyleName("gwt-TextBox-invalidEntry");
+		iniTxt.setStyleName("gwt-TextBox-invalidEntry");
+		cprTxt.setStyleName("gwt-TextBox-invalidEntry");
+		passTxt.setStyleName("gwt-TextBox-invalidEntry");
 
 		// use unicode escape sequence \u00F8 for '�'
 		save = new Button("Tilf\u00F8j");
@@ -94,7 +101,6 @@ public class AddView extends Composite {
 			@Override
 			public void onClick(ClickEvent event) {
 
-				// V.2
 				// create new OperatoerDTO
 				OperatoerDTO newOperatoer = new OperatoerDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText());
 

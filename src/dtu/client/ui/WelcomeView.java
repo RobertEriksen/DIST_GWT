@@ -16,7 +16,7 @@ public class WelcomeView extends Composite {
 
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
-		w.add(new Label("Velkommen til operatør kartotek!"));
+		w.add(new Label("Velkommen til operatør kartotek af CDIO gruppe 16!"));
 		
 		clientImpl.service.getSize(new AsyncCallback<Integer>() {
 

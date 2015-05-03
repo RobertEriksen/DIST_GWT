@@ -20,7 +20,9 @@ public class BrowseView extends Composite {
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
 		
-		browsePanel.add(new Label("Vis operatører"));
+		Label pageTitleLbl = new Label("Vis operatører");
+		pageTitleLbl.setStyleName("FlexTable-Header");
+		browsePanel.add(pageTitleLbl);
 		
 		final FlexTable t = new FlexTable();
 		t.getFlexCellFormatter().setWidth(0, 0, "50px");
