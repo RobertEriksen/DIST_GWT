@@ -25,11 +25,17 @@ public class BrowseView extends Composite {
 		browsePanel.add(pageTitleLbl);
 		
 		final FlexTable t = new FlexTable();
-		t.getFlexCellFormatter().setWidth(0, 0, "50px");
-		t.getFlexCellFormatter().setWidth(0, 1, "170px");
-		t.getFlexCellFormatter().setWidth(0, 2, "15px");
-		t.getFlexCellFormatter().setWidth(0, 3, "100px");
-		t.getFlexCellFormatter().setWidth(0, 4, "70px");
+//		t.getFlexCellFormatter().setWidth(0, 0, "50px");
+//		t.getFlexCellFormatter().setWidth(0, 1, "170px");
+//		t.getFlexCellFormatter().setWidth(0, 2, "15px");
+//		t.getFlexCellFormatter().setWidth(0, 3, "100px");
+//		t.getFlexCellFormatter().setWidth(0, 4, "70px");
+		
+		t.getFlexCellFormatter().setWidth(0, 0, "4em");
+		t.getFlexCellFormatter().setWidth(0, 1, "20em");
+		t.getFlexCellFormatter().setWidth(0, 2, "3em");
+		t.getFlexCellFormatter().setWidth(0, 3, "10em");
+		t.getFlexCellFormatter().setWidth(0, 4, "8em");
 
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");

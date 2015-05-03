@@ -56,36 +56,47 @@ public class AddView extends Composite {
 		HorizontalPanel cprPanel = new HorizontalPanel();
 		HorizontalPanel passPanel = new HorizontalPanel();
 
-		nameLbl = new Label("Navn(min. 2 og max. 20 karakterer):");
-		nameLbl.setWidth("230px");
+		nameLbl = new Label("Navn:");
+		nameLbl.setWidth("7em");
 		nameTxt = new TextBox();
 		nameTxt.setHeight("1em");
+		Label nameRulesLbl = new Label("(min. 2 og max. 20 karakterer)");
+		nameRulesLbl.addStyleName("rulesLabel");
 		namePanel.add(nameLbl);
 		namePanel.add(nameTxt);
+		namePanel.add(nameRulesLbl);
 
-		iniLbl = new Label("Initialer(min. 2 og max. 3 karakterer):");
-		iniLbl.setWidth("230px");
+		iniLbl = new Label("Initialer:");
+		iniLbl.setWidth("7em");
 		iniTxt = new TextBox();
 		//		iniTxt.setWidth("5em");
 		iniTxt.setHeight("1em");
+		Label iniRulesLbl = new Label("(min. 2 og max. 3 karakterer)");
+		iniRulesLbl.addStyleName("rulesLabel");
 		iniPanel.add(iniLbl);
 		iniPanel.add(iniTxt);
+		iniPanel.add(iniRulesLbl);
 
-		cprLbl = new Label("CPR(10 karakterer):");
-		cprLbl.setWidth("150px");
+		cprLbl = new Label("CPR:");
+		cprLbl.setWidth("7em");
 		cprTxt = new TextBox();
 		//		cprTxt.setWidth("5em");
 		cprTxt.setHeight("1em");
+		Label cprRulesLbl = new Label("(10 karakterer)");
+		cprRulesLbl.addStyleName("rulesLabel");
 		cprPanel.add(cprLbl);
 		cprPanel.add(cprTxt);
+		cprPanel.add(cprRulesLbl);
 
-		passLbl = new Label("Password(min. 7 og max. 8 karakterer):");
-		passLbl.setWidth("230px");
+		passLbl = new Label("Password:");
+		passLbl.setWidth("7em");
 		passTxt = new TextBox();
-		//		passTxt.setWidth("5em");
 		passTxt.setHeight("1em");
+		Label passRulesLbl = new Label("(min. 7 og max. 8 karakterer)");
+		passRulesLbl.addStyleName("rulesLabel");
 		passPanel.add(passLbl);
 		passPanel.add(passTxt);
+		passPanel.add(passRulesLbl);
 		
 		nameTxt.setStyleName("gwt-TextBox-invalidEntry");
 		iniTxt.setStyleName("gwt-TextBox-invalidEntry");

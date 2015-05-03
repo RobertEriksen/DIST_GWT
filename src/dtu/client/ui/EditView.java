@@ -38,7 +38,6 @@ public class EditView extends Composite {
 
 	int eventRowIndex;
 
-	// V.2
 	KartotekServiceClientImpl clientImpl;
 
 	// operator list
@@ -48,7 +47,6 @@ public class EditView extends Composite {
 	Anchor previousCancel = null;
 
 	public EditView(KartotekServiceClientImpl clientImpl) {
-		// v.2
 		this.clientImpl = clientImpl;
 
 		editPanel = new VerticalPanel();
@@ -61,11 +59,12 @@ public class EditView extends Composite {
 		t = new FlexTable();
 
 		// adjust column widths
-		t.getFlexCellFormatter().setWidth(0, 0, "50px");
-		t.getFlexCellFormatter().setWidth(0, 1, "170px");
-		t.getFlexCellFormatter().setWidth(0, 2, "15px");
-		t.getFlexCellFormatter().setWidth(0, 3, "100px");
-		t.getFlexCellFormatter().setWidth(0, 4, "70px");
+		t.getFlexCellFormatter().setWidth(0, 0, "40px");
+		t.getFlexCellFormatter().setWidth(0, 1, "200px");
+		t.getFlexCellFormatter().setWidth(0, 2, "50px");
+		t.getFlexCellFormatter().setWidth(0, 3, "140px");
+		t.getFlexCellFormatter().setWidth(0, 4, "100px");
+		
 
 		// style table
 		t.addStyleName("FlexTable");
@@ -108,13 +107,13 @@ public class EditView extends Composite {
 
 		// text boxes
 		nameTxt = new TextBox();
-		nameTxt.setWidth("150px");
+		nameTxt.setWidth("190px");
 		iniTxt = new TextBox();
-		iniTxt.setWidth("20px");
+		iniTxt.setWidth("40px");
 		cprTxt = new TextBox();
-		cprTxt.setWidth("90px");
+		cprTxt.setWidth("130px");
 		passTxt = new TextBox();
-		passTxt.setWidth("70px");
+		passTxt.setWidth("90px");
 	}
 
 	private class EditHandler implements ClickHandler {
