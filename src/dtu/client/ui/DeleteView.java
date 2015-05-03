@@ -19,20 +19,22 @@ public class DeleteView extends Composite {
 	VerticalPanel deletePanel;
 	FlexTable t;
 
-	// V.2
 	KartotekServiceClientImpl clientImpl;
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
 
+	int eventRowIndex;
+
 	public DeleteView(KartotekServiceClientImpl clientImpl) {
-		// v.2
 		this.clientImpl = clientImpl;
 		deletePanel = new VerticalPanel();
 		initWidget(this.deletePanel);
-
-		deletePanel.add(new Label("Slet operatør(er)"));
 		
+		Label pageTitleLbl = new Label("Slet operatør(er)");
+		pageTitleLbl.setStyleName("FlexTable-Header");
+		deletePanel.add(pageTitleLbl);
+
 		t = new FlexTable();
 		t.getFlexCellFormatter().setWidth(0, 0, "50px");
 		t.getFlexCellFormatter().setWidth(0, 1, "170px");
@@ -51,8 +53,7 @@ public class DeleteView extends Composite {
 		t.setText(0, 3, "CPR");
 		t.setText(0, 4, "Password");
 
-		
-		// V.2
+
 		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
 
 			@Override
@@ -90,26 +91,25 @@ public class DeleteView extends Composite {
 
 
 			// get rowindex where event happened
-			final int eventRowIndex = t.getCellForEvent(event).getRowIndex();
+			eventRowIndex = t.getCellForEvent(event).getRowIndex();
 
 			// get delete anchor ref for cancel operation
 			final Anchor delete =  (Anchor) event.getSource();
-//			delete.setStyleName("delete-red");
+			//			delete.setStyleName("delete-red");
 
 			Anchor ok = new Anchor("ok");
 			ok.addClickHandler(new ClickHandler() {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					
-					// V.2
+
 					// delete object with id in back end					
 					clientImpl.service.deleteOperator(Integer.parseInt(t.getText(eventRowIndex, 0)), new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {
-							// remove row in flextable
 							t.removeRow(eventRowIndex);
+//							eventRowIndex-=1;
 						}
 
 						@Override
@@ -118,13 +118,13 @@ public class DeleteView extends Composite {
 						}
 
 					});
-					
+					previousCancel = null;
 				}
 			});
 
 			Anchor cancel = new Anchor("cancel");
 			previousCancel = cancel;
-//			previousCancel.setStyleName("delete-red");
+			//			previousCancel.setStyleName("delete-red");
 			cancel.addClickHandler(new ClickHandler() {
 
 				@Override
