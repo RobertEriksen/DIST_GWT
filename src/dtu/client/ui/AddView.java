@@ -69,7 +69,6 @@ public class AddView extends Composite {
 		iniLbl = new Label("Initialer:");
 		iniLbl.setWidth("7em");
 		iniTxt = new TextBox();
-		//		iniTxt.setWidth("5em");
 		iniTxt.setHeight("1em");
 		Label iniRulesLbl = new Label("(min. 2 og max. 3 karakterer)");
 		iniRulesLbl.addStyleName("rulesLabel");
@@ -80,7 +79,6 @@ public class AddView extends Composite {
 		cprLbl = new Label("CPR:");
 		cprLbl.setWidth("7em");
 		cprTxt = new TextBox();
-		//		cprTxt.setWidth("5em");
 		cprTxt.setHeight("1em");
 		Label cprRulesLbl = new Label("(10 karakterer)");
 		cprRulesLbl.addStyleName("rulesLabel");

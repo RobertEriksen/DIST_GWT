@@ -1,84 +1,158 @@
-/** Add css rules here for your application. */
-
-/* overall page layout */
-
-html {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-	horizontal-alignment: center;
-	background-color: rgb(160, 160, 160);
+html, body {
+  text-align: center;
+  background-color:#2A2A2A !important;
 }
 
-header {
-	background-color: black;
-	height: 60px;
-	color: white;
-	text-align: center;
-	padding: 5px;
+p {
+  text-align: left;
 }
 
-nav {
-	line-height: 20px;
-	background-color: #eeeeee;
-	min-height: 400px; 
-	width: 100px;
-	float: left;
-	padding: 5px;
+body {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+*
+{
+  margin: 0 auto 0 auto;
+  text-align:left;
 }
 
-section {
-	width: 650px;
-	float: left;
-	padding: 10px;
+p {
+  text-align: left;
 }
 
-footer {
-	background-color: black;
-	color: white;
-	clear: both;
-	text-align: center;
-	padding: 5px;
+#page
+{
+  margin: 0 auto 0 auto; 
+  margin-top:25px;
+  display: block; 
+  height:auto;
+  position: relative; 
+  overflow: hidden; 
+  background: url(background.png) repeat-y;
+  width: 738px;
+}
+
+#header
+{
+background-image:url(header.png);
+background-repeat:no-repeat;
+height:111px;
+width:738px;
+}
+
+#header h1
+{
+position:relative;
+left:30px;
+top:25px;
+color:#F6F6F6;
+text-align:left;
+font-size:40px;
+font-weight:bold;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+#header h2
+{
+position:relative;
+left:33px;
+top:21px;
+color:#2C2C2C;
+text-align:left;
+font-size:17px;
+font-weight:bold;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+
+#nav
+{
+background-image:url(bar.png);
+background-repeat:no-repeat;
+height:40px;
+width:750px;
+line-height:40px;
+padding-left:20px;
+padding-right:20px;
+}
+
+#nav a
+{
+font-size:14px;
+font-weight:bold;
+color:#FBFDFB;
+margin-left:27px;
+margin-right:27px;
+}
+
+#nav a:hover
+{
+color:#999999;
+}
+
+
+.section
+{
+width:680px;
+padding-left:30px;
+padding-right:30px;
+font-size:13px;
+color:#030712;
+line-height:30px;
+letter-spacing:-1px;
+}
+
+#footer {
+width: 738px;
+height:53px;
+background: url(footer.png) no-repeat;
+text-align:center;
+font-size:9px;
+color:#2A2A2A;
+padding-top:25px;
 }
 
 /* flextable styles */
 .FlexTable {
-	border-top: thin solid #444444;
-	border-left: thin solid #444444;
-	border-right: thin solid #111111;
-	border-bottom: thin solid #111111;
-	table-layout: fixed;
-	text-align: center;
-	width: 650px;
-	text-align: center;
+  border-top: thin solid #444444;
+  border-left: thin solid #444444;
+  border-right: thin solid #111111;
+  border-bottom: thin solid #111111;
+  table-layout: fixed;
+  text-align: center;
+  width: 650px;
+  text-align: center;
 }
 
 .FlexTable-Header {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /** Example rules used by the template application (remove for your app) */
 /* used for all GWT text boxes */
 .gwt-TextBox {
-	font-size: 10pt;
+  font-size: 10pt;
 }
 
 /* dependant style for text boxes */
 .gwt-TextBox-invalidEntry {
-	border-color: red;
+  border-color: red;
 }
 
 /* used for all GWT labels */
 .gwt-Label {
-	font-size: 10pt;
+  font-size: 10pt;
 }
 
 /* used for all GWT Buttons */
 .gwt-Button {
-	font-size: 10pt;
+  font-size: 10pt;
 }
 
 .rulesLabel {
-	padding-left: 20px;
+  padding-left: 20px;
 }
-
