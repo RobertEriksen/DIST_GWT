@@ -11,11 +11,13 @@ public interface KartotekServiceAsync {
 	void createOperator(OperatoerDTO p, AsyncCallback<Void> callback);
 
 	void updateOperator(OperatoerDTO p, AsyncCallback<Void> callback);
+	
+	void login(int id, String password, AsyncCallback<Boolean> callback);
 
 	void getOperators(AsyncCallback<List<OperatoerDTO>> callback);
 
 	void deleteOperator(int id, AsyncCallback<Void> callback);
 
 	void getSize(AsyncCallback<Integer> callback);
-
+	
 }

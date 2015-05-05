@@ -27,6 +27,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 	private PreparedStatement getOperatorsStmt = null;
 	private PreparedStatement getSizeStmt = null;
 	private PreparedStatement deleteOperatorStmt = null;
+	private PreparedStatement loginStmt = null;
 
 	public OperatoerDAO() throws DALException {
 		try 
@@ -57,6 +58,9 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 //					"DELETE FROM operatoer WHERE id =  ?");
 			deleteOperatorStmt = connection.prepareStatement( 
 					"UPDATE operatoer SET active = 0 WHERE id = ?");
+			
+			loginStmt = connection.prepareStatement( 
+					"SELECT * FROM operatoer WHERE id = ? AND pass = ?");
 
 
 		} 
@@ -169,6 +173,38 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 		catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		} 
+	}
+
+
+	@Override
+	public boolean login(int id, String password) throws Exception {
+		ResultSet resultSet = null;
+		loginStmt.setInt(1, id);
+		loginStmt.setString(2, password);
+		try 
+		{
+			resultSet = loginStmt.executeQuery(); 
+
+			if (resultSet.first()) return true;
+			
+		} 
+		catch ( SQLException sqlException )
+		{
+			throw new DALException(" \"Login\" fejlede");
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return false;
 	} 
 
 }

@@ -18,6 +18,7 @@ public interface KartotekService extends RemoteService {
 	void createOperator(OperatoerDTO op) throws Exception;
 	void deleteOperator(int id) throws Exception;
 	void updateOperator(OperatoerDTO op) throws Exception;
+	boolean login(int id, String password) throws Exception;
 	List<OperatoerDTO> getOperators() throws Exception;
 	int getSize() throws Exception;
 }

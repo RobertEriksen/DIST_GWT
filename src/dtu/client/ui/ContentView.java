@@ -23,8 +23,6 @@ public class ContentView extends Composite {
 		initWidget(this.contentPanel);
 	}	
 
-
-
 	// Sub views
 	public void openWelcomeView() {
 		contentPanel.clear();
@@ -56,6 +54,4 @@ public class ContentView extends Composite {
 		EditView editView = new EditView(clientImpl);
 		contentPanel.add(editView);
 	}
-
-
 }
