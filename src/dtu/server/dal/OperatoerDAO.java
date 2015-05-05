@@ -37,12 +37,12 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			// create query that add an operator to kartotek
 			createOperatorStmt = 
 					connection.prepareStatement( "INSERT INTO operatoer " + 
-							"( navn, ini, cpr, pass) " + 
-							"VALUES ( ?, ?, ?, ?)" );
+							"(navn, ini, cpr, pass, active, level) " + 
+							"VALUES ( ?, ?, ?, ?, ?, ?)" );
 
 			// create query that updates an operator
 			updateOperatorStmt = connection.prepareStatement( 
-					"UPDATE operatoer SET navn = ?, ini = ?, cpr = ?, pass = ? WHERE id = ?" );
+					"UPDATE operatoer SET navn = ?, ini = ?, cpr = ?, pass = ?, active = ?, level = ? WHERE id = ?" );
 
 			// create query that get all operators in kartotek
 			getOperatorsStmt = connection.prepareStatement( 
@@ -53,8 +53,10 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 					"SELECT COUNT(*) FROM operatoer");
 
 			// create query that deletes a operator in kartotek
+//			deleteOperatorStmt = connection.prepareStatement( 
+//					"DELETE FROM operatoer WHERE id =  ?");
 			deleteOperatorStmt = connection.prepareStatement( 
-					"DELETE FROM operatoer WHERE id =  ?");
+					"UPDATE operatoer SET active = 0 WHERE id = ?");
 
 
 		} 
@@ -92,7 +94,9 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 						resultSet.getString("navn"),
 						resultSet.getString("ini"),
 						resultSet.getString("cpr"),
-						resultSet.getString("pass")));
+						resultSet.getString("pass"),
+						resultSet.getInt("active"),
+						resultSet.getInt("level")));
 			} 
 		} 
 		catch ( SQLException sqlException )
@@ -133,6 +137,8 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			createOperatorStmt.setString(2, p.getIni());
 			createOperatorStmt.setString(3, p.getCpr());
 			createOperatorStmt.setString(4, p.getPassword());
+			createOperatorStmt.setString(5, p.getActive());
+			createOperatorStmt.setString(6, p.getLevel());
 
 			createOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
@@ -147,7 +153,9 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			updateOperatorStmt.setString(2, p.getIni());
 			updateOperatorStmt.setString(3, p.getCpr());
 			updateOperatorStmt.setString(4, p.getPassword());
-			updateOperatorStmt.setInt(5, p.getOprId());
+			updateOperatorStmt.setString(5, p.getActive());
+			updateOperatorStmt.setString(6, p.getLevel());
+			updateOperatorStmt.setInt(7, p.getOprId());
 			updateOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException(" \"updateOperator\" fejlede: " + e.getMessage());

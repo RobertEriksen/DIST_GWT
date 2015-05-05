@@ -25,22 +25,32 @@ public class OperatoerDTO implements Serializable {
 	/** Operatør password min. 7 max. 8 karakterer */
 	String password;
 	
+	/** Operatør aktiv (1) eller inaktiv (0) */
+	int active;
+	
+	/** Operatør niveau - 1 = operatør, 2 = superbruger */
+	int level;
+	
 	public OperatoerDTO() {
 	}
 	
-	public OperatoerDTO(String oprNavn, String ini, String cpr, String password) {
+	public OperatoerDTO(String oprNavn, String ini, String cpr, String password, int active, int level) {
 		this.oprNavn = oprNavn;
 		this.ini = ini;
 		this.cpr = cpr;
 		this.password = password;
+		this.active = active;
+		this.level = level;
 	}
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password) {
+	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int active, int level) {
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
 		this.ini = ini;
 		this.cpr = cpr;
 		this.password = password;
+		this.active = active;
+		this.level = level;
 	}
 
 	public int getOprId() {
@@ -81,6 +91,22 @@ public class OperatoerDTO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getActive() {
+		return String.valueOf(active);
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+	
+	public String getLevel() {
+		return String.valueOf(level);
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 }

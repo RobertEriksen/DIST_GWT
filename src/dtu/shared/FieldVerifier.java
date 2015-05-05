@@ -73,7 +73,20 @@ public class FieldVerifier {
 		if (pass == null) return false;
 		if (pass.length() == 0) return false;
 		// min. 7 & max. 8 characters
-//		return pass.length() >= 7 && pass.length() <= 8;
 		return (pass.length() == 7 || pass.length() == 8);
+	}
+	
+	public static boolean isValidActive(String active) {
+		if (active == null) return false;
+		if (active.length() != 1) return false;
+		// 1 = active, 0 = inactive
+		return (Integer.valueOf(active) == 1 || Integer.valueOf(active) == 0);
+	}
+	
+	public static boolean isValidLevel(String level) {
+		if (level == null) return false;
+		if (level.length() != 1) return false;
+		// 1 = operatør, 2 = superbruger
+		return (Integer.valueOf(level) == 1 || Integer.valueOf(level) == 2);
 	}
 }

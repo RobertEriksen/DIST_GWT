@@ -29,12 +29,16 @@ public class EditView extends Composite {
 	TextBox iniTxt;
 	TextBox cprTxt;
 	TextBox passTxt;
+	TextBox activeTxt;
+	TextBox levelTxt;
 
 	// valid fields - initially a field is valid
 	boolean nameValid = true;
 	boolean iniValid = true;
 	boolean cprValid = true;
 	boolean passValid = true;
+	boolean activeValid = true;
+	boolean levelValid = true;
 
 	int eventRowIndex;
 
@@ -60,12 +64,13 @@ public class EditView extends Composite {
 
 		// adjust column widths
 		t.getFlexCellFormatter().setWidth(0, 0, "40px");
-		t.getFlexCellFormatter().setWidth(0, 1, "200px");
+		t.getFlexCellFormatter().setWidth(0, 1, "150px");
 		t.getFlexCellFormatter().setWidth(0, 2, "50px");
-		t.getFlexCellFormatter().setWidth(0, 3, "140px");
-		t.getFlexCellFormatter().setWidth(0, 4, "100px");
+		t.getFlexCellFormatter().setWidth(0, 3, "110px");
+		t.getFlexCellFormatter().setWidth(0, 4, "80px");
+		t.getFlexCellFormatter().setWidth(0, 5, "40px");
+		t.getFlexCellFormatter().setWidth(0, 6, "30px");
 		
-
 		// style table
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
@@ -76,6 +81,8 @@ public class EditView extends Composite {
 		t.setText(0, 2, "Initialer");
 		t.setText(0, 3, "CPR");
 		t.setText(0, 4, "Password");
+		t.setText(0, 5, "Aktiv");
+		t.setText(0, 6, "Niveau");
 
 		// V.2
 		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
@@ -94,8 +101,10 @@ public class EditView extends Composite {
 					t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
 					t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
 					t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
+					t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
+					t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
 					Anchor edit = new Anchor("edit");
-					t.setWidget(rowIndex+1, 5, edit);
+					t.setWidget(rowIndex+1, 7, edit);
 					edit.addClickHandler(new EditHandler());
 				}
 			}
@@ -107,13 +116,17 @@ public class EditView extends Composite {
 
 		// text boxes
 		nameTxt = new TextBox();
-		nameTxt.setWidth("190px");
+		nameTxt.setWidth("140px");
 		iniTxt = new TextBox();
 		iniTxt.setWidth("40px");
 		cprTxt = new TextBox();
-		cprTxt.setWidth("130px");
+		cprTxt.setWidth("100px");
 		passTxt = new TextBox();
-		passTxt.setWidth("90px");
+		passTxt.setWidth("70px");
+		activeTxt = new TextBox();
+		activeTxt.setWidth("20px");
+		levelTxt = new TextBox();
+		levelTxt.setWidth("20px");
 	}
 
 	private class EditHandler implements ClickHandler {
@@ -131,12 +144,16 @@ public class EditView extends Composite {
 			iniTxt.setText(t.getText(eventRowIndex, 2));
 			cprTxt.setText(t.getText(eventRowIndex, 3));
 			passTxt.setText(t.getText(eventRowIndex, 4));
+			activeTxt.setText(t.getText(eventRowIndex, 5));
+			levelTxt.setText(t.getText(eventRowIndex, 6));
 
 			// show text boxes for editing
 			t.setWidget(eventRowIndex, 1, nameTxt);
 			t.setWidget(eventRowIndex, 2, iniTxt);
 			t.setWidget(eventRowIndex, 3, cprTxt);
 			t.setWidget(eventRowIndex, 4, passTxt);
+			t.setWidget(eventRowIndex, 5, activeTxt);
+			t.setWidget(eventRowIndex, 6, levelTxt);
 
 			// start editing here
 			nameTxt.setFocus(true);
@@ -149,6 +166,8 @@ public class EditView extends Composite {
 			final String ini = iniTxt.getText();
 			final String cpr = cprTxt.getText();
 			final String pass = passTxt.getText();
+			final String active = activeTxt.getText();
+			final String level = levelTxt.getText();
 
 
 			final Anchor ok = new Anchor("ok");
@@ -159,7 +178,7 @@ public class EditView extends Composite {
 
 					// fill DTO with id and new values 
 					OperatoerDTO operatoerDTO = new OperatoerDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
-							cprTxt.getText(), passTxt.getText());
+							cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 					clientImpl.service.updateOperator(operatoerDTO, new AsyncCallback<Void>() {
 
@@ -170,6 +189,8 @@ public class EditView extends Composite {
 							t.setText(eventRowIndex, 2, iniTxt.getText());
 							t.setText(eventRowIndex, 3, cprTxt.getText());
 							t.setText(eventRowIndex, 4, passTxt.getText());
+							t.setText(eventRowIndex, 5, activeTxt.getText());
+							t.setText(eventRowIndex, 6, levelTxt.getText());
 						}
 
 						@Override
@@ -179,8 +200,8 @@ public class EditView extends Composite {
 
 					});
 					// restore edit link
-					t.setWidget(eventRowIndex, 5, edit);
-					t.clearCell(eventRowIndex, 6);
+					t.setWidget(eventRowIndex, 7, edit);
+					t.clearCell(eventRowIndex, 8);
 
 					previousCancel = null;
 				}
@@ -207,14 +228,22 @@ public class EditView extends Composite {
 					passTxt.setText(pass);
 					passTxt.fireEvent(new KeyUpEvent() {}); // validation
 					
+					activeTxt.setText(pass);
+					activeTxt.fireEvent(new KeyUpEvent() {}); // validation
+					
+					levelTxt.setText(pass);
+					levelTxt.fireEvent(new KeyUpEvent() {}); // validation
+					
 					t.setText(eventRowIndex, 1, name);
 					t.setText(eventRowIndex, 2, ini);
 					t.setText(eventRowIndex, 3, cpr);
 					t.setText(eventRowIndex, 4, pass);
+					t.setText(eventRowIndex, 5, active);
+					t.setText(eventRowIndex, 6, level);
 					
 					// restore edit link
-					t.setWidget(eventRowIndex, 5, edit);
-					t.clearCell(eventRowIndex, 6);
+					t.setWidget(eventRowIndex, 7, edit);
+					t.clearCell(eventRowIndex, 8);
 					
 					previousCancel = null;
 				}
@@ -236,10 +265,10 @@ public class EditView extends Composite {
 					}
 
 					// enable/disable ok depending on form status 
-					if (nameValid&&iniValid&&cprValid&&passValid)
-						t.setWidget(eventRowIndex, 5, ok);
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
 					else
-						t.setText(eventRowIndex, 5, "ok");				
+						t.setText(eventRowIndex, 7, "ok");				
 				}
 
 			});
@@ -258,10 +287,10 @@ public class EditView extends Composite {
 					}
 
 					// enable/disable ok depending on form status 
-					if (nameValid&&iniValid&&cprValid&&passValid)
-						t.setWidget(eventRowIndex, 5, ok);
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
 					else
-						t.setText(eventRowIndex, 5, "ok");
+						t.setText(eventRowIndex, 7, "ok");
 				}
 
 			});
@@ -280,10 +309,10 @@ public class EditView extends Composite {
 					}
 
 					// enable/disable ok depending on form status 
-					if (nameValid&&iniValid&&cprValid&&passValid)
-						t.setWidget(eventRowIndex, 5, ok);
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
 					else
-						t.setText(eventRowIndex, 5, "ok");
+						t.setText(eventRowIndex, 7, "ok");
 				}
 
 			});
@@ -302,17 +331,61 @@ public class EditView extends Composite {
 					}
 
 					// enable/disable ok depending on form status 
-					if (nameValid&&iniValid&&cprValid&&passValid)
-						t.setWidget(eventRowIndex, 5, ok);
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
 					else
-						t.setText(eventRowIndex, 5, "ok");
+						t.setText(eventRowIndex, 7, "ok");
+				}
+
+			});
+			
+			activeTxt.addKeyUpHandler(new KeyUpHandler(){
+
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if (!FieldVerifier.isValidActive(activeTxt.getText())) {
+						activeTxt.setStyleName("gwt-TextBox-invalidEntry");
+						activeValid = false;
+					}
+					else {
+						activeTxt.removeStyleName("gwt-TextBox-invalidEntry");
+						activeValid = true;
+					}
+
+					// enable/disable ok depending on form status 
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
+					else
+						t.setText(eventRowIndex, 7, "ok");
+				}
+
+			});
+			
+			levelTxt.addKeyUpHandler(new KeyUpHandler(){
+
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if (!FieldVerifier.isValidLevel(levelTxt.getText())) {
+						levelTxt.setStyleName("gwt-TextBox-invalidEntry");
+						levelValid = false;
+					}
+					else {
+						levelTxt.removeStyleName("gwt-TextBox-invalidEntry");
+						levelValid = true;
+					}
+
+					// enable/disable ok depending on form status 
+					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
+						t.setWidget(eventRowIndex, 7, ok);
+					else
+						t.setText(eventRowIndex, 7, "ok");
 				}
 
 			});
 
 			// showing ok and cancel widgets
-			t.setWidget(eventRowIndex, 5 , ok);
-			t.setWidget(eventRowIndex, 6 , cancel);		
+			t.setWidget(eventRowIndex, 7, ok);
+			t.setWidget(eventRowIndex, 8, cancel);		
 		}
 	}
 }

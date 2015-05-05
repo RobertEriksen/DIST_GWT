@@ -26,11 +26,15 @@ public class AddView extends Composite {
 	Label iniLbl;
 	Label cprLbl;
 	Label passLbl;
+	Label activeLbl;
+	Label levelLbl;
 	
 	TextBox nameTxt;
 	TextBox iniTxt;
 	TextBox cprTxt;
 	TextBox passTxt;
+	TextBox activeTxt;
+	TextBox levelTxt;
 	
 	Button save = new Button("Tilf\u00F8j");
 
@@ -39,6 +43,8 @@ public class AddView extends Composite {
 	boolean iniValid = false;
 	boolean cprValid = false;
 	boolean passValid = false;
+	boolean activeValid = false;
+	boolean levelValid = false;
 
 	public AddView(final KartotekServiceClientImpl clientImpl) {
 
@@ -55,6 +61,8 @@ public class AddView extends Composite {
 		HorizontalPanel iniPanel = new HorizontalPanel();
 		HorizontalPanel cprPanel = new HorizontalPanel();
 		HorizontalPanel passPanel = new HorizontalPanel();
+		HorizontalPanel activePanel = new HorizontalPanel();
+		HorizontalPanel levelPanel = new HorizontalPanel();
 
 		nameLbl = new Label("Navn:");
 		nameLbl.setWidth("7em");
@@ -96,10 +104,32 @@ public class AddView extends Composite {
 		passPanel.add(passTxt);
 		passPanel.add(passRulesLbl);
 		
+		activeLbl = new Label("Aktiv:");
+		activeLbl.setWidth("7em");
+		activeTxt = new TextBox();
+		activeTxt.setHeight("1em");
+		Label activeRulesLbl = new Label("(1 = aktiv, 0 = inaktiv)");
+		activeRulesLbl.addStyleName("rulesLabel");
+		activePanel.add(activeLbl);
+		activePanel.add(activeTxt);
+		activePanel.add(activeRulesLbl);
+		
+		levelLbl = new Label("Navn:");
+		levelLbl.setWidth("7em");
+		levelTxt = new TextBox();
+		levelTxt.setHeight("1em");
+		Label levelRulesLbl = new Label("(1 = operatør, 2 = superbruger)");
+		levelRulesLbl.addStyleName("rulesLabel");
+		levelPanel.add(levelLbl);
+		levelPanel.add(levelTxt);
+		levelPanel.add(levelRulesLbl);
+		
 		nameTxt.setStyleName("gwt-TextBox-invalidEntry");
 		iniTxt.setStyleName("gwt-TextBox-invalidEntry");
 		cprTxt.setStyleName("gwt-TextBox-invalidEntry");
 		passTxt.setStyleName("gwt-TextBox-invalidEntry");
+		activeTxt.setStyleName("gwt-TextBox-invalidEntry");
+		levelTxt.setStyleName("gwt-TextBox-invalidEntry");
 
 		// use unicode escape sequence \u00F8 for '�'
 		save = new Button("Tilf\u00F8j");
@@ -111,7 +141,7 @@ public class AddView extends Composite {
 			public void onClick(ClickEvent event) {
 
 				// create new OperatoerDTO
-				OperatoerDTO newOperatoer = new OperatoerDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText());
+				OperatoerDTO newOperatoer = new OperatoerDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 				// save on server
 				clientImpl.service.createOperator(newOperatoer, new AsyncCallback<Void>() {
@@ -201,20 +231,54 @@ public class AddView extends Composite {
 
 		});
 
+		activeTxt.addKeyUpHandler(new KeyUpHandler(){
+
+			@Override
+			public void onKeyUp(KeyUpEvent event) {
+				if (!FieldVerifier.isValidActive(activeTxt.getText())) {
+					activeTxt.setStyleName("gwt-TextBox-invalidEntry");
+					activeValid = false;
+				}
+				else {
+					activeTxt.removeStyleName("gwt-TextBox-invalidEntry");
+					activeValid = true;
+				}
+				checkFormValid();
+			}
+
+		});
+		
+		levelTxt.addKeyUpHandler(new KeyUpHandler(){
+
+			@Override
+			public void onKeyUp(KeyUpEvent event) {
+				if (!FieldVerifier.isValidLevel(levelTxt.getText())) {
+					levelTxt.setStyleName("gwt-TextBox-invalidEntry");
+					levelValid = false;
+				}
+				else {
+					levelTxt.removeStyleName("gwt-TextBox-invalidEntry");
+					levelValid = true;
+				}
+				checkFormValid();
+			}
+
+		});
 		
 		addPanel.add(namePanel);
 		addPanel.add(iniPanel);
 		addPanel.add(cprPanel);
 		addPanel.add(passPanel);
+		addPanel.add(activePanel);
+		addPanel.add(levelPanel);
 		addPanel.add(save);
 	}
 
 	private void checkFormValid() {
-		if (nameValid&&iniValid&&cprValid&&passValid)
+		if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);
-
 	}
 
 }
