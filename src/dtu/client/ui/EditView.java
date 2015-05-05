@@ -108,7 +108,6 @@ public class EditView extends Composite {
 					edit.addClickHandler(new EditHandler());
 				}
 			}
-
 		});
 
 

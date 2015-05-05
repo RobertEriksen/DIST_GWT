@@ -37,20 +37,15 @@ public class DeleteView extends Composite {
 
 		t = new FlexTable();
 		t.getFlexCellFormatter().setWidth(0, 0, "40px");
-		t.getFlexCellFormatter().setWidth(0, 1, "200px");
+		t.getFlexCellFormatter().setWidth(0, 1, "150px");
 		t.getFlexCellFormatter().setWidth(0, 2, "50px");
-		t.getFlexCellFormatter().setWidth(0, 3, "140px");
-		t.getFlexCellFormatter().setWidth(0, 4, "100px");
+		t.getFlexCellFormatter().setWidth(0, 3, "110px");
+		t.getFlexCellFormatter().setWidth(0, 4, "80px");
+		t.getFlexCellFormatter().setWidth(0, 5, "40px");
+		t.getFlexCellFormatter().setWidth(0, 6, "30px");
 		
-//		t.getFlexCellFormatter().setWidth(0, 0, "50px");
-//		t.getFlexCellFormatter().setWidth(0, 1, "170px");
-//		t.getFlexCellFormatter().setWidth(0, 2, "15px");
-//		t.getFlexCellFormatter().setWidth(0, 3, "100px");
-//		t.getFlexCellFormatter().setWidth(0, 4, "70px");
-
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
-
 
 		// set headers in flextable
 		t.setText(0, 0, "ID");
@@ -58,6 +53,8 @@ public class DeleteView extends Composite {
 		t.setText(0, 2, "Initialer");
 		t.setText(0, 3, "CPR");
 		t.setText(0, 4, "Password");
+		t.setText(0, 5, "Aktiv");
+		t.setText(0, 6, "Niveau");
 
 
 		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
@@ -76,13 +73,13 @@ public class DeleteView extends Composite {
 					t.setText(i+1, 2, result.get(i).getIni());
 					t.setText(i+1, 3, result.get(i).getCpr());
 					t.setText(i+1, 4, result.get(i).getPassword());
+					t.setText(i+1, 5, result.get(i).getActive());
+					t.setText(i+1, 6, result.get(i).getLevel());
 					Anchor delete = new Anchor("delete");
-					t.setWidget(i+1, 5, delete);
+					t.setWidget(i+1, 7, delete);
 					delete.addClickHandler(new DeleteHandler());
 				}
-
 			}
-
 		});
 
 		deletePanel.add(t);
@@ -122,7 +119,6 @@ public class DeleteView extends Composite {
 						public void onFailure(Throwable caught) {
 							Window.alert("Server fejl!" + caught.getMessage());
 						}
-
 					});
 					previousCancel = null;
 				}
@@ -135,15 +131,15 @@ public class DeleteView extends Composite {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					t.setWidget(eventRowIndex, 5, delete);
-					t.clearCell(eventRowIndex, 6);
+					t.setWidget(eventRowIndex, 7, delete);
+					t.clearCell(eventRowIndex, 8);
 				}
 
 			});
 
 			// showing ok and cancel widgets
-			t.setWidget(eventRowIndex, 5, ok);
-			t.setWidget(eventRowIndex, 6, cancel);
+			t.setWidget(eventRowIndex, 7, ok);
+			t.setWidget(eventRowIndex, 8, cancel);
 		}
 	}
 }
