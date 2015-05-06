@@ -9,8 +9,10 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -49,6 +51,9 @@ public class EditView extends Composite {
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
+	
+	Button showInactiveOps;
+	boolean showInactive = false;
 
 	public EditView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
@@ -56,9 +61,14 @@ public class EditView extends Composite {
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);
 
-		Label pageTitleLbl = new Label("Ret operatør(er)");
+		HorizontalPanel topPanel = new HorizontalPanel();
+		showInactiveOps = new Button("Vis inaktive operatører");
+		Label pageTitleLbl = new Label("Ret operatører");
 		pageTitleLbl.setStyleName("FlexTable-Header");
-		editPanel.add(pageTitleLbl);
+		pageTitleLbl.setWidth("450px");
+		topPanel.add(pageTitleLbl);
+		topPanel.add(showInactiveOps);
+		editPanel.add(topPanel);
 		
 		t = new FlexTable();
 
@@ -126,6 +136,25 @@ public class EditView extends Composite {
 		activeTxt.setWidth("20px");
 		levelTxt = new TextBox();
 		levelTxt.setWidth("20px");
+		
+		
+		showInactiveOps.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				for (int i = 1; i < t.getRowCount(); i++) t.removeRow(i); // clear FlexTable (except for first header row)
+				if (!showInactive) {
+					showInactiveOps.setText("Skjul inaktive operatører");
+					showInactive = true;
+					getOperators();
+				}
+				else {
+					showInactiveOps.setText("Vis inaktive operatører");
+					showInactive = false;
+					getOperators();
+				}
+			}
+		});
 	}
 
 	private class EditHandler implements ClickHandler {
