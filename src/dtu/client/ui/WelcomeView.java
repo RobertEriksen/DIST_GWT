@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import dtu.client.controller.MainView;
 import dtu.client.service.KartotekServiceClientImpl;
 
 
@@ -20,7 +21,7 @@ public class WelcomeView extends Composite {
 	TextBox operatoerIdTxt;
 	TextBox passwordTxt;
 	
-	public WelcomeView(final KartotekServiceClientImpl clientImpl) {
+	public WelcomeView(final KartotekServiceClientImpl clientImpl, final MainView mainView) {
 		this.clientImpl = clientImpl;
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
@@ -65,7 +66,10 @@ public class WelcomeView extends Composite {
 
 					@Override
 					public void onSuccess(Boolean result) {
-						if (result) Window.alert("Du er nu logget ind!");
+						if (result) {
+							Window.alert("Du er nu logget ind!");
+							mainView.showMenuView();
+						}
 						else  Window.alert("Ugyldigt login, prøv igen!");
 					}
 

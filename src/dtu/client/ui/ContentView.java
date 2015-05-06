@@ -3,6 +3,7 @@ package dtu.client.ui;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import dtu.client.controller.MainView;
 import dtu.client.service.KartotekServiceClientImpl;
 
 
@@ -24,9 +25,9 @@ public class ContentView extends Composite {
 	}	
 
 	// Sub views
-	public void openWelcomeView() {
+	public void openWelcomeView(MainView mainView) {
 		contentPanel.clear();
-		WelcomeView welcomeView = new WelcomeView(clientImpl);
+		WelcomeView welcomeView = new WelcomeView(clientImpl, mainView);
 		contentPanel.add(welcomeView);
 	}
 
