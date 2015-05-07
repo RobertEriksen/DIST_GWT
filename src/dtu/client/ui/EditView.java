@@ -68,6 +68,7 @@ public class EditView extends Composite {
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
 		topPanel.add(showInactiveOps);
+		topPanel.addStyleName("spacing-vertical");
 		editPanel.add(topPanel);
 
 		t = new FlexTable();

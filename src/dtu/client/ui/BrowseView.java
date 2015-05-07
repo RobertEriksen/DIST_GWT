@@ -35,6 +35,7 @@ public class BrowseView extends Composite {
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
 		topPanel.add(showInactiveOps);
+		topPanel.addStyleName("spacing-vertical");
 		browsePanel.add(topPanel);
 
 		t = new FlexTable();

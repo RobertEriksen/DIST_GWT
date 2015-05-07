@@ -55,6 +55,7 @@ public class AddView extends Composite {
 		
 		Label pageTitleLbl = new Label("Tilføj operatør");
 		pageTitleLbl.setStyleName("FlexTable-Header");
+		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
 		HorizontalPanel namePanel = new HorizontalPanel();
