@@ -51,7 +51,7 @@ public class EditView extends Composite {
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
-	
+
 	Button showInactiveOps;
 	boolean showInactive = false;
 
@@ -69,7 +69,7 @@ public class EditView extends Composite {
 		topPanel.add(pageTitleLbl);
 		topPanel.add(showInactiveOps);
 		editPanel.add(topPanel);
-		
+
 		t = new FlexTable();
 
 		// adjust column widths
@@ -80,7 +80,7 @@ public class EditView extends Composite {
 		t.getFlexCellFormatter().setWidth(0, 4, "80px");
 		t.getFlexCellFormatter().setWidth(0, 5, "40px");
 		t.getFlexCellFormatter().setWidth(0, 6, "30px");
-		
+
 		// style table
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
@@ -94,31 +94,7 @@ public class EditView extends Composite {
 		t.setText(0, 5, "Aktiv");
 		t.setText(0, 6, "Niveau");
 
-		// V.2
-		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Server fejl!" + caught.getMessage());
-			}
-
-			@Override
-			public void onSuccess(List<OperatoerDTO> result) {
-				// populate table and add delete anchor to each row
-				for (int rowIndex=0; rowIndex < result.size(); rowIndex++) {
-					t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getOprId());
-					t.setText(rowIndex+1, 1, result.get(rowIndex).getOprNavn());
-					t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
-					t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
-					t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
-					t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
-					t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
-					Anchor edit = new Anchor("edit");
-					t.setWidget(rowIndex+1, 7, edit);
-					edit.addClickHandler(new EditHandler());
-				}
-			}
-		});
+		getOperators();
 
 
 		editPanel.add(t);
@@ -136,12 +112,15 @@ public class EditView extends Composite {
 		activeTxt.setWidth("20px");
 		levelTxt = new TextBox();
 		levelTxt.setWidth("20px");
-		
-		
+
+
 		showInactiveOps.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
+				// if previous edit open - force cancel operation�
+				if (previousCancel != null)
+					previousCancel.fireEvent(new ClickEvent(){});
 				for (int i = 1; i < t.getRowCount(); i++) t.removeRow(i); // clear FlexTable (except for first header row)
 				if (!showInactive) {
 					showInactiveOps.setText("Skjul inaktive operatører");
@@ -152,6 +131,49 @@ public class EditView extends Composite {
 					showInactiveOps.setText("Vis inaktive operatører");
 					showInactive = false;
 					getOperators();
+				}
+			}
+		});
+	}
+
+	private void getOperators() {
+		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Server fejl! " + caught.getMessage());
+			}
+			
+			@Override
+			public void onSuccess(List<OperatoerDTO> result) {
+				// populate table and add delete anchor to each row
+				for (int rowIndex=0; rowIndex < result.size(); rowIndex++) {
+					if (!showInactive) {
+						if (Integer.valueOf(result.get(rowIndex).getActive()) == 1) {
+							t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getOprId());
+							t.setText(rowIndex+1, 1, result.get(rowIndex).getOprNavn());
+							t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
+							t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
+							t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
+							t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
+							t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
+							Anchor edit = new Anchor("edit");
+							t.setWidget(rowIndex+1, 7, edit);
+							edit.addClickHandler(new EditHandler());
+						}
+					}
+					else {
+						t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getOprId());
+						t.setText(rowIndex+1, 1, result.get(rowIndex).getOprNavn());
+						t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
+						t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
+						t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
+						t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
+						t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
+						Anchor edit = new Anchor("edit");
+						t.setWidget(rowIndex+1, 7, edit);
+						edit.addClickHandler(new EditHandler());
+					}
 				}
 			}
 		});
@@ -243,36 +265,36 @@ public class EditView extends Composite {
 				public void onClick(ClickEvent event) {
 
 					// restore original content of textboxes and rerun input validation
-					
+
 					nameTxt.setText(name);
 					nameTxt.fireEvent(new KeyUpEvent() {}); // validation
-					
+
 					iniTxt.setText(ini);
 					iniTxt.fireEvent(new KeyUpEvent() {});  // validation
-					
+
 					cprTxt.setText(cpr);
 					cprTxt.fireEvent(new KeyUpEvent() {}); // validation
-					
+
 					passTxt.setText(pass);
 					passTxt.fireEvent(new KeyUpEvent() {}); // validation
-					
+
 					activeTxt.setText(pass);
 					activeTxt.fireEvent(new KeyUpEvent() {}); // validation
-					
+
 					levelTxt.setText(pass);
 					levelTxt.fireEvent(new KeyUpEvent() {}); // validation
-					
+
 					t.setText(eventRowIndex, 1, name);
 					t.setText(eventRowIndex, 2, ini);
 					t.setText(eventRowIndex, 3, cpr);
 					t.setText(eventRowIndex, 4, pass);
 					t.setText(eventRowIndex, 5, active);
 					t.setText(eventRowIndex, 6, level);
-					
+
 					// restore edit link
 					t.setWidget(eventRowIndex, 7, edit);
 					t.clearCell(eventRowIndex, 8);
-					
+
 					previousCancel = null;
 				}
 
@@ -322,7 +344,7 @@ public class EditView extends Composite {
 				}
 
 			});
-			
+
 			cprTxt.addKeyUpHandler(new KeyUpHandler(){
 
 				@Override
@@ -344,7 +366,7 @@ public class EditView extends Composite {
 				}
 
 			});
-			
+
 			passTxt.addKeyUpHandler(new KeyUpHandler(){
 
 				@Override
@@ -366,7 +388,7 @@ public class EditView extends Composite {
 				}
 
 			});
-			
+
 			activeTxt.addKeyUpHandler(new KeyUpHandler(){
 
 				@Override
@@ -388,7 +410,7 @@ public class EditView extends Composite {
 				}
 
 			});
-			
+
 			levelTxt.addKeyUpHandler(new KeyUpHandler(){
 
 				@Override
