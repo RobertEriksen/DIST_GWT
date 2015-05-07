@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -49,81 +50,56 @@ public class AddView extends Composite {
 	public AddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
-		// total height of widget. Components are distributed evenly
-		addPanel.setHeight("300px");	
 		initWidget(this.addPanel);
+		
+		FlexTable addTable = new FlexTable();
 		
 		Label pageTitleLbl = new Label("Tilføj operatør");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		HorizontalPanel namePanel = new HorizontalPanel();
-		HorizontalPanel iniPanel = new HorizontalPanel();
-		HorizontalPanel cprPanel = new HorizontalPanel();
-		HorizontalPanel passPanel = new HorizontalPanel();
-		HorizontalPanel activePanel = new HorizontalPanel();
-		HorizontalPanel levelPanel = new HorizontalPanel();
-
 		nameLbl = new Label("Navn:");
-		nameLbl.setWidth("7em");
 		nameTxt = new TextBox();
-		nameTxt.setHeight("1em");
 		Label nameRulesLbl = new Label("(min. 2 og max. 20 karakterer)");
-		nameRulesLbl.addStyleName("rulesLabel");
-		namePanel.add(nameLbl);
-		namePanel.add(nameTxt);
-		namePanel.add(nameRulesLbl);
+		addTable.setWidget(0, 0, nameLbl);
+		addTable.setWidget(0, 1, nameTxt);
+		addTable.setWidget(0, 2, nameRulesLbl);
 
 		iniLbl = new Label("Initialer:");
-		iniLbl.setWidth("7em");
 		iniTxt = new TextBox();
-		iniTxt.setHeight("1em");
 		Label iniRulesLbl = new Label("(min. 2 og max. 3 karakterer)");
-		iniRulesLbl.addStyleName("rulesLabel");
-		iniPanel.add(iniLbl);
-		iniPanel.add(iniTxt);
-		iniPanel.add(iniRulesLbl);
+		addTable.setWidget(1, 0, iniLbl);
+		addTable.setWidget(1, 1, iniTxt);
+		addTable.setWidget(1, 2, iniRulesLbl);
 
 		cprLbl = new Label("CPR:");
-		cprLbl.setWidth("7em");
 		cprTxt = new TextBox();
-		cprTxt.setHeight("1em");
 		Label cprRulesLbl = new Label("(10 karakterer)");
-		cprRulesLbl.addStyleName("rulesLabel");
-		cprPanel.add(cprLbl);
-		cprPanel.add(cprTxt);
-		cprPanel.add(cprRulesLbl);
+		addTable.setWidget(2, 0, cprLbl);
+		addTable.setWidget(2, 1, cprTxt);
+		addTable.setWidget(2, 2, cprRulesLbl);
 
 		passLbl = new Label("Password:");
-		passLbl.setWidth("7em");
 		passTxt = new TextBox();
-		passTxt.setHeight("1em");
 		Label passRulesLbl = new Label("(min. 7 og max. 8 karakterer)");
-		passRulesLbl.addStyleName("rulesLabel");
-		passPanel.add(passLbl);
-		passPanel.add(passTxt);
-		passPanel.add(passRulesLbl);
+		addTable.setWidget(3, 0, passLbl);
+		addTable.setWidget(3, 1, passTxt);
+		addTable.setWidget(3, 2, passRulesLbl);
 		
 		activeLbl = new Label("Aktiv:");
-		activeLbl.setWidth("7em");
 		activeTxt = new TextBox();
-		activeTxt.setHeight("1em");
 		Label activeRulesLbl = new Label("(1 = aktiv, 0 = inaktiv)");
-		activeRulesLbl.addStyleName("rulesLabel");
-		activePanel.add(activeLbl);
-		activePanel.add(activeTxt);
-		activePanel.add(activeRulesLbl);
+		addTable.setWidget(4, 0, activeLbl);
+		addTable.setWidget(4, 1, activeTxt);
+		addTable.setWidget(4, 2, activeRulesLbl);
 		
-		levelLbl = new Label("Navn:");
-		levelLbl.setWidth("7em");
+		levelLbl = new Label("Niveau:");
 		levelTxt = new TextBox();
-		levelTxt.setHeight("1em");
 		Label levelRulesLbl = new Label("(1 = operatør, 2 = superbruger)");
-		levelRulesLbl.addStyleName("rulesLabel");
-		levelPanel.add(levelLbl);
-		levelPanel.add(levelTxt);
-		levelPanel.add(levelRulesLbl);
+		addTable.setWidget(5, 0, levelLbl);
+		addTable.setWidget(5, 1, levelTxt);
+		addTable.setWidget(5, 2, levelRulesLbl);
 		
 		nameTxt.setStyleName("gwt-TextBox-invalidEntry");
 		iniTxt.setStyleName("gwt-TextBox-invalidEntry");
@@ -135,6 +111,7 @@ public class AddView extends Composite {
 		// use unicode escape sequence \u00F8 for '�'
 		save = new Button("Tilf\u00F8j");
 		save.setEnabled(false);
+		addTable.setWidget(6, 1, save);
 
 		save.addClickHandler(new ClickHandler() {
 
@@ -266,13 +243,7 @@ public class AddView extends Composite {
 
 		});
 		
-		addPanel.add(namePanel);
-		addPanel.add(iniPanel);
-		addPanel.add(cprPanel);
-		addPanel.add(passPanel);
-		addPanel.add(activePanel);
-		addPanel.add(levelPanel);
-		addPanel.add(save);
+		addPanel.add(addTable);
 	}
 
 	private void checkFormValid() {

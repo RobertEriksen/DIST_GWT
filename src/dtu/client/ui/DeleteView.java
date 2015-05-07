@@ -30,9 +30,10 @@ public class DeleteView extends Composite {
 		this.clientImpl = clientImpl;
 		deletePanel = new VerticalPanel();
 		initWidget(this.deletePanel);
-		
+
 		Label pageTitleLbl = new Label("Slet operatør(er)");
 		pageTitleLbl.setStyleName("FlexTable-Header");
+		pageTitleLbl.addStyleName("spacing-vertical");
 		deletePanel.add(pageTitleLbl);
 
 		t = new FlexTable();
@@ -43,7 +44,7 @@ public class DeleteView extends Composite {
 		t.getFlexCellFormatter().setWidth(0, 4, "80px");
 		t.getFlexCellFormatter().setWidth(0, 5, "40px");
 		t.getFlexCellFormatter().setWidth(0, 6, "30px");
-		
+
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
 
@@ -68,16 +69,18 @@ public class DeleteView extends Composite {
 			public void onSuccess(List<OperatoerDTO> result) {
 				// populate table and add delete anchor to each row
 				for (int i=0; i < result.size(); i++) {
-					t.setText(i+1, 0, ""+result.get(i).getOprId());
-					t.setText(i+1, 1, result.get(i).getOprNavn());
-					t.setText(i+1, 2, result.get(i).getIni());
-					t.setText(i+1, 3, result.get(i).getCpr());
-					t.setText(i+1, 4, result.get(i).getPassword());
-					t.setText(i+1, 5, result.get(i).getActive());
-					t.setText(i+1, 6, result.get(i).getLevel());
-					Anchor delete = new Anchor("delete");
-					t.setWidget(i+1, 7, delete);
-					delete.addClickHandler(new DeleteHandler());
+					if (Integer.valueOf(result.get(i).getActive()) == 1) {
+						t.setText(i+1, 0, ""+result.get(i).getOprId());
+						t.setText(i+1, 1, result.get(i).getOprNavn());
+						t.setText(i+1, 2, result.get(i).getIni());
+						t.setText(i+1, 3, result.get(i).getCpr());
+						t.setText(i+1, 4, result.get(i).getPassword());
+						t.setText(i+1, 5, result.get(i).getActive());
+						t.setText(i+1, 6, result.get(i).getLevel());
+						Anchor delete = new Anchor("delete");
+						t.setWidget(i+1, 7, delete);
+						delete.addClickHandler(new DeleteHandler());
+					}
 				}
 			}
 		});
@@ -112,7 +115,7 @@ public class DeleteView extends Composite {
 						@Override
 						public void onSuccess(Void result) {
 							t.removeRow(eventRowIndex);
-//							eventRowIndex-=1;
+							//							eventRowIndex-=1;
 						}
 
 						@Override
