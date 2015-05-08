@@ -69,11 +69,39 @@ public class FieldVerifier {
 		return (cpr.length() == 10);
 	}
 	
-	public static boolean isValidPass(String pass) {
-		if (pass == null) return false;
-		if (pass.length() == 0) return false;
-		// min. 7 & max. 8 characters
-		return (pass.length() == 7 || pass.length() == 8);
+//	public static boolean isValidPass(String pass) {
+//		if (pass == null) return false;
+//		if (pass.length() == 0) return false;
+//		// min. 7 & max. 8 characters
+//		return (pass.length() == 7 || pass.length() == 8);
+//	}
+	
+	// Password validation according to DTU's password rules (Taken from our CDIO1 (Copyright CDIO group 16, CDIO1, 2015))
+	public static boolean isValidPass(String input) {
+		if (input == null) return false;
+		if (input.length() == 0) return false;
+		
+		char[] pw = input.toCharArray();
+		int upper = 0, lower = 0, numbers = 0, symbols = 0, categories = 0;
+		boolean valid = true;
+		
+		if (input.length() == 7 || input.length() == 8) {
+			for (char chr : pw) {
+				if (chr >= 65 && chr <= 90) upper++;// A-Z
+				else if (chr >= 97 && chr <= 122) lower++;// a-z
+				else if (chr >= 48 && chr <= 57) numbers++;// 0-9
+				else if (chr == 95 || chr == 46 || chr == 45 || chr == 44 || chr == 33 || chr == 63 || chr == 61 || chr == 43) symbols++; // .-,_+!?=
+				else valid = false;
+			}
+			
+			if (upper > 0) categories++;
+			if (lower > 0) categories++;
+			if (numbers > 0) categories++;
+			if (symbols > 0) categories++;
+		}	
+		if (categories >= 3 && valid) { // MINDST 3 AF KATEGORIERNE SKAL VÆRE REPRÆSENTERET
+			return true; // PASSWORD ER GYLDIGT
+		} else { return false; } // PASSWORD ER UGYLDIGT
 	}
 	
 	public static boolean isValidActive(String active) {
