@@ -82,7 +82,7 @@ public class AddView extends Composite {
 
 		passLbl = new Label("Password:");
 		passTxt = new TextBox();
-		Label passRulesLbl = new Label("(min. 7 og max. 8 karakterer)");
+		Label passRulesLbl = new Label("(7-8 karakterer og skal overholde DTU's regler for password.");
 		addTable.setWidget(3, 0, passLbl);
 		addTable.setWidget(3, 1, passTxt);
 		addTable.setWidget(3, 2, passRulesLbl);
