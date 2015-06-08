@@ -8,16 +8,16 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dtu.client.controller.MainView;
 
-public class MenuView extends Composite {
+public class UserAdminMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	// receive reference to MainView for call back
-	public MenuView(final MainView main) {
+	public UserAdminMenu(final MainView main) {
 		initWidget(this.hPanel);
-		
 		
 		Anchor showOperators = new Anchor("Vis operatører");
 		hPanel.add(showOperators);
+
 		// call back the controller
 		showOperators.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -43,11 +43,20 @@ public class MenuView extends Composite {
 		});
 		
 		Anchor delete = new Anchor("Slet operatør");
+		hPanel.add(delete);
 		delete.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.deleteOperators();
 			}
 		});
-		hPanel.add(delete);
+		
+		Anchor back = new Anchor("Tilbage");
+		hPanel.add(back);
+		back.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){	
+				main.clearContentView();
+				main.showAdministratorMenu();
+			}
+		});
 	}
 }

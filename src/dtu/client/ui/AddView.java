@@ -122,7 +122,7 @@ public class AddView extends Composite {
 				OperatoerDTO newOperatoer = new OperatoerDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 				// save on server
-				clientImpl.service.createOperator(newOperatoer, new AsyncCallback<Void>() {
+				clientImpl.service.createOperatoer(newOperatoer, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

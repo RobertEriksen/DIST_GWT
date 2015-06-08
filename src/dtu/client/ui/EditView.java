@@ -231,7 +231,7 @@ public class EditView extends Composite {
 					OperatoerDTO operatoerDTO = new OperatoerDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
 							cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
-					clientImpl.service.updateOperator(operatoerDTO, new AsyncCallback<Void>() {
+					clientImpl.service.updateOperatoer(operatoerDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

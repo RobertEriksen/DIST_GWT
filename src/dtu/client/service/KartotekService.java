@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import dtu.shared.OperatoerDTO;
+import dtu.shared.RaavareDTO;
 
 
 @RemoteServiceRelativePath("kartotekservice")
@@ -15,10 +16,15 @@ public interface KartotekService extends RemoteService {
 	// user defined exceptions from the server side to the client side
 	// otherwise only generic server exceptions will be send back
 	// in the onFailure call back method
-	void createOperator(OperatoerDTO op) throws Exception;
+	void createOperatoer(OperatoerDTO op) throws Exception;
 	void deleteOperator(int id) throws Exception;
-	void updateOperator(OperatoerDTO op) throws Exception;
-	boolean login(int id, String password) throws Exception;
+	void updateOperatoer(OperatoerDTO op) throws Exception;
 	List<OperatoerDTO> getOperators() throws Exception;
+	
+	int login(int id, String password) throws Exception;
 	int getSize() throws Exception;
+	
+	void createRaavare(RaavareDTO op) throws Exception;
+	void updateRaavare(RaavareDTO op) throws Exception;
+	List<RaavareDTO> getRaavarer() throws Exception;
 }

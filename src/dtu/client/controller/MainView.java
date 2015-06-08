@@ -4,8 +4,10 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
-import dtu.client.ui.MenuView;
+import dtu.client.ui.UserAdminMenu;
+import dtu.client.ui.raavareMenu;
 
 
 public class MainView  {
@@ -33,16 +35,38 @@ public class MainView  {
 		// show welcome panel
 		contentView.openWelcomeView(this);		
 	}
+	
+	public void clearContentView() {
+		contentView.clearView();
+	}
 
 	public void showMenuView() {
 		// wrap menuView
-		MenuView m = new MenuView(this);
+		RootPanel.get("nav").clear();
+		UserAdminMenu m = new UserAdminMenu(this);
+		RootPanel.get("nav").add(m);
+	}
+	
+	public void showAdministratorMenu() {
+		// wrap menuView
+		RootPanel.get("nav").clear();
+		AdministratorMenu m = new AdministratorMenu(this);
+		RootPanel.get("nav").add(m);
+	}
+	
+	public void showRaavareMenu(){
+		RootPanel.get("nav").clear();
+		raavareMenu m = new raavareMenu(this);
 		RootPanel.get("nav").add(m);
 	}
 
 	// Call back handlers
 	public void addOperator() {
 		contentView.openAddView();
+	}
+	
+	public void addraavareOperator() {
+		contentView.openAddRaavareView();
 	}
 
 	public void showOperators() {

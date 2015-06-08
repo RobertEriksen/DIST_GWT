@@ -16,9 +16,9 @@ import dtu.shared.OperatoerDTO;
 
 public class OperatoerDAO extends RemoteServiceServlet implements KartotekService {
 	
-	private static final String URL = "jdbc:mysql://localhost/kartotek";
+	private static final String URL = "jdbc:mysql://localhost/cdio_3";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "root";
+	private static final String PASSWORD = "Newnewold1";
 
 	private Connection connection = null; // manages connection
 
@@ -135,7 +135,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 	}
 	
 	@Override
-	public void createOperator(OperatoerDTO p) throws Exception {
+	public void createOperatoer(OperatoerDTO p) throws Exception {
 		try {
 			createOperatorStmt.setString(1, p.getOprNavn());
 			createOperatorStmt.setString(2, p.getIni());
@@ -151,7 +151,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 	}
 
 	@Override
-	public void updateOperator(OperatoerDTO p) throws Exception {
+	public void updateOperatoer(OperatoerDTO p) throws Exception {
 		try {
 			updateOperatorStmt.setString(1, p.getOprNavn());
 			updateOperatorStmt.setString(2, p.getIni());
@@ -177,7 +177,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 
 
 	@Override
-	public boolean login(int id, String password) throws Exception {
+	public int login(int id, String password) throws Exception {
 		ResultSet resultSet = null;
 		loginStmt.setInt(1, id);
 		loginStmt.setString(2, password);
@@ -185,7 +185,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 		{
 			resultSet = loginStmt.executeQuery(); 
 
-			if (resultSet.first()) return true;
+			if (resultSet.first()) return resultSet.getInt(7);
 			
 		} 
 		catch ( SQLException sqlException )
@@ -204,7 +204,7 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 				close();
 			} 
 		} 
-		return false;
+		return 0;
 	} 
 
 }

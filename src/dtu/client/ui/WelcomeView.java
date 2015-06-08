@@ -65,16 +65,46 @@ public class WelcomeView extends Composite {
 		loginButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				clientImpl.service.login(Integer.valueOf(operatoerIdTxt.getText()), passwordTxt.getText(), new AsyncCallback<Boolean>() {
+				clientImpl.service.login(Integer.valueOf(operatoerIdTxt.getText()), passwordTxt.getText(), new AsyncCallback<Integer>() {
 
 					@Override
-					public void onSuccess(Boolean result) {
-						if (result) {
+					public void onSuccess(Integer result) {
+						if (result==1) {
 							mainView.showMenuView();
 							
 							// clear view and show new label
 							w.clear();
-							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven.");
+							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + result);
+							loginLbl.addStyleName("spacing-vertical");
+							w.add(loginLbl);
+							
+						}
+						else if(result==2) {
+							mainView.showMenuView();
+							
+							// clear view and show new label
+							w.clear();
+							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + result);
+							loginLbl.addStyleName("spacing-vertical");
+							w.add(loginLbl);
+							
+						}
+						else if(result==3) {
+							mainView.showMenuView();
+							
+							// clear view and show new label
+							w.clear();
+							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + result);
+							loginLbl.addStyleName("spacing-vertical");
+							w.add(loginLbl);
+							
+						}
+						else if(result==4) {
+							mainView.showAdministratorMenu();
+							
+							// clear view and show new label
+							w.clear();
+							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + result);
 							loginLbl.addStyleName("spacing-vertical");
 							w.add(loginLbl);
 							

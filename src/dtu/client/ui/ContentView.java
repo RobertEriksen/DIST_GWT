@@ -1,5 +1,6 @@
 package dtu.client.ui;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -35,7 +36,16 @@ public class ContentView extends Composite {
 		contentPanel.clear();
 		AddView addView = new AddView(clientImpl);
 		contentPanel.add(addView);
-
+	}
+	
+	public void openAddRaavareView() {
+		contentPanel.clear();
+		raavare_AddView addView = new raavare_AddView(clientImpl);
+		contentPanel.add(addView);
+	}
+	
+	public void clearView() {
+		contentPanel.clear();
 	}
 
 	public void openBrowseView() {
