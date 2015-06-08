@@ -65,4 +65,10 @@ public class ContentView extends Composite {
 		EditView editView = new EditView(clientImpl);
 		contentPanel.add(editView);
 	}
+
+	public void openEditRaavareView() {
+		contentPanel.clear();
+		RaavareEditView editView = new RaavareEditView(clientImpl);
+		contentPanel.add(editView);
+	}
 }

@@ -76,6 +76,10 @@ public class MainView  {
 	public void editOperators() {
 		contentView.openEditView();
 	}
+	
+	public void editRaavare() {
+		contentView.openEditRaavareView();
+	}
 
 	public void deleteOperators() {
 		contentView.openDeleteView();

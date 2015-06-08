@@ -13,8 +13,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import dtu.client.service.KartotekService;
 import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.RaavareDTO;
 
-public class OperatoerDAO extends RemoteServiceServlet implements KartotekService {
+public class DAO extends RemoteServiceServlet implements KartotekService {
 	
 	private static final String URL = "jdbc:mysql://localhost/cdio_3";
 	private static final String USERNAME = "root";
@@ -22,14 +23,19 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 
 	private Connection connection = null; // manages connection
 
+	private PreparedStatement loginStmt = null;
+
 	private PreparedStatement createOperatorStmt = null;
 	private PreparedStatement updateOperatorStmt = null;
 	private PreparedStatement getOperatorsStmt = null;
 	private PreparedStatement getSizeStmt = null;
 	private PreparedStatement deleteOperatorStmt = null;
-	private PreparedStatement loginStmt = null;
+	
+	private PreparedStatement createRaavareStmt = null;
+	private PreparedStatement updateRaavareStmt = null;
+	private PreparedStatement getRaavareStmt = null;
 
-	public OperatoerDAO() throws DALException {
+	public DAO() throws DALException {
 		try 
 		{
 			connection = 
@@ -61,6 +67,22 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			
 			loginStmt = connection.prepareStatement( 
 					"SELECT * FROM operatoer WHERE id = ? AND pass = ?");
+			
+			
+			// RÅVARER!!!
+			// create query that add an raavare to kartotek
+			createRaavareStmt = 
+					connection.prepareStatement( "INSERT INTO raavare " + 
+							"(raavare_ID, raavare_navn, leverandoer) " + 
+							"VALUES ( ?, ?, ?)" );
+
+			// create query that updates an raavare
+			updateRaavareStmt = connection.prepareStatement( 
+					"UPDATE raavare SET Raavare_navn = ?, leverandoer = ? WHERE raavare_id = ?" );
+
+			// create query that get all raavarer in kartotek
+			getRaavareStmt = connection.prepareStatement( 
+					"SELECT * FROM raavare"); 
 
 
 		} 
@@ -205,6 +227,71 @@ public class OperatoerDAO extends RemoteServiceServlet implements KartotekServic
 			} 
 		} 
 		return 0;
+	}
+
+
+	@Override
+	public void createRaavare(RaavareDTO p) throws Exception {
+		try {
+			createRaavareStmt.setInt(1, p.getRvrId());
+			createRaavareStmt.setString(2, p.getRvrNavn());
+			createRaavareStmt.setString(3, p.getlvr());
+			
+			createRaavareStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException(" \"createRaavare\" fejlede");
+		} 
+	}
+
+
+	@Override
+	public void updateRaavare(RaavareDTO p) throws Exception {
+		try {
+			updateRaavareStmt.setString(1, p.getRvrNavn());
+			updateRaavareStmt.setString(2, p.getlvr());
+			updateRaavareStmt.setInt(3, p.getRvrId());
+			updateRaavareStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException(" \"updateRaavare\" fejlede: " + e.getMessage());
+		} 
+	}
+
+
+	@Override
+	public List<RaavareDTO> getRaavarer() throws Exception {
+		List<RaavareDTO> results = null;
+		ResultSet resultSet = null;
+
+		try 
+		{
+			resultSet = getRaavareStmt.executeQuery(); 
+			results = new ArrayList< RaavareDTO >();
+
+			while (resultSet.next())
+			{
+				results.add( new RaavareDTO(
+						resultSet.getInt("raavare_ID"),
+						resultSet.getString("raavare_navn"),
+						resultSet.getString("leverandoer")));
+			} 
+		} 
+		catch ( SQLException sqlException )
+		{
+			throw new DALException(" \"getRaavarer\" fejlede");
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return results;
 	} 
 
 }
