@@ -13,7 +13,9 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import dtu.client.service.KartotekService;
 import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
+import dtu.shared.ReceptDTO;
 
 public class DAO extends RemoteServiceServlet implements KartotekService {
 	
@@ -34,7 +36,14 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	private PreparedStatement createRaavareStmt = null;
 	private PreparedStatement updateRaavareStmt = null;
 	private PreparedStatement getRaavareStmt = null;
-
+	
+	// Recept
+	private PreparedStatement getReceptStmt = null;
+	private PreparedStatement createReceptStmt = null;
+	
+	private PreparedStatement getRaavareBatchStmt = null;
+	private PreparedStatement createRaavareBatchStmt = null;
+	
 	public DAO() throws DALException {
 		try 
 		{
@@ -83,8 +92,27 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			// create query that get all raavarer in kartotek
 			getRaavareStmt = connection.prepareStatement( 
 					"SELECT * FROM raavare"); 
-
-
+			
+			//Create recept Query to make table
+			createReceptStmt = connection.prepareStatement( "INSERT INTO recept " + 
+					"(recept_Id, raavare_id,recept_name, nonNetto, tolerance) " + 
+					"VALUES ( ?, ?, ?, ?, ?)" );
+			//Get recept Query
+			getReceptStmt = connection.prepareStatement( 
+					"SELECT * FROM recept"); 
+			
+			//RÅVAREBATCHES
+			//Create RåvareBatch query
+			
+			createRaavareBatchStmt = 
+					connection.prepareStatement( "INSERT INTO Raavarebatch " + 
+							"(Raavare_ID, RbId, maengde) " + 
+							"VALUES ( ?, ?, ?)" );
+			
+			getRaavareBatchStmt = connection.prepareStatement( 
+					"SELECT * FROM Raavarebatch"); 
+			
+			
 		} 
 		catch ( SQLException sqlException )
 		{
@@ -165,7 +193,6 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			createOperatorStmt.setString(4, p.getPassword());
 			createOperatorStmt.setString(5, p.getActive());
 			createOperatorStmt.setString(6, p.getLevel());
-
 			createOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException(" \"createOperator\" fejlede");
@@ -293,5 +320,113 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		} 
 		return results;
 	} 
+	
+	//CREATE RECEPT
+	
+	@Override
+	public void createRecept(ReceptDTO p) throws Exception {
+		try {
+			createReceptStmt.setInt(1, p.getRcpId());
+			createReceptStmt.setInt(2, p.getRvrId());
+			createReceptStmt.setString(3, p.getRcpNavn());
+			createReceptStmt.setDouble(4, p.getNomNetto());
+			createReceptStmt.setDouble(5, p.getTolerance());
+			createReceptStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException(" \"createRecept\" fejlede");
+		} 
+	}
+	
+	// Vis RECEPT
+	
+	@Override
+	public List<ReceptDTO> getRecept() throws DALException {
+		List<ReceptDTO> results = null;
+		ResultSet resultSet = null;
+		try 
+		{
+			resultSet = getReceptStmt.executeQuery(); 
+			results = new ArrayList< ReceptDTO >();
 
+			while (resultSet.next())
+			{
+				results.add( new ReceptDTO(
+						resultSet.getInt("Recept_id"),
+						resultSet.getInt("Raavare_id"),
+						resultSet.getString("Recept_name"),
+						resultSet.getDouble("NonNetto"),
+						resultSet.getDouble("Tolerance")
+						));
+			} 
+		} 
+		catch ( SQLException sqlException )
+		{
+			throw new DALException(" \"getRecepts\" fejlede");
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return results;
+	}
+	
+	//RÅVAREBATCH
+	//Create tuple
+	@Override
+	public void createRaavareBatch(RaavareBatchDTO p) throws Exception {
+		try {
+			createReceptStmt.setInt(1, p.getRbId());
+			createReceptStmt.setInt(2, p.getRaavareId());
+			createReceptStmt.setDouble(3, p.getMaengde());
+			createReceptStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException(" \"createRaavarebatch\" fejlede");
+		} 
+	}
+	
+	@Override
+	public List<RaavareBatchDTO> getRaavareBatch() throws DALException {
+		List<RaavareBatchDTO> results = null;
+		ResultSet resultSet = null;
+		try 
+		{
+			resultSet = getRaavareBatchStmt.executeQuery(); 
+			results = new ArrayList< RaavareBatchDTO >();
+
+			while (resultSet.next())
+			{
+				results.add(new RaavareBatchDTO(
+						resultSet.getInt("rbid"),
+						resultSet.getInt("Raavare_id"),
+						resultSet.getDouble("maengde")
+						));
+			} 
+		} 
+		catch ( SQLException sqlException )
+		{
+			throw new DALException(" \"getRaavareBatch\" fejlede");
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return results;
+	}
+	
 }

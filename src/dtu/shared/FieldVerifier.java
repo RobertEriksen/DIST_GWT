@@ -117,4 +117,17 @@ public class FieldVerifier {
 		// 1 = operatør, 2 = superbruger
 		return (Integer.valueOf(level) == 1 || Integer.valueOf(level) == 2);
 	}
+	
+	public static boolean isValidTolerance(String Decimal){
+		if(Double.valueOf(Decimal)>10) return false;
+		if(Double.valueOf(Decimal)<0.1) return false;
+		return true;
+	}
+	
+	public static boolean isValidNomNetto(String Netto){
+		if(Double.valueOf(Netto)>20) return false;
+		if(Double.valueOf(Netto)<0.05) return false;
+		return true;
+	}
+	
 }

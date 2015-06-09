@@ -5,8 +5,11 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
+import dtu.shared.ReceptDTO;
 
 
 @RemoteServiceRelativePath("kartotekservice")
@@ -30,4 +33,8 @@ public interface KartotekService extends RemoteService {
 	void createRaavare(RaavareDTO op) throws Exception;
 	void updateRaavare(RaavareDTO op) throws Exception;
 	List<RaavareDTO> getRaavarer() throws Exception;
+	void createRecept(ReceptDTO p) throws Exception;
+	List<ReceptDTO> getRecept() throws DALException;
+	void createRaavareBatch(RaavareBatchDTO p) throws Exception;
+	List<RaavareBatchDTO> getRaavareBatch() throws DALException;
 }

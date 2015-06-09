@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
+import dtu.shared.ReceptDTO;
 
 public interface KartotekServiceAsync {
 
@@ -29,4 +32,12 @@ public interface KartotekServiceAsync {
 	
 	void getRaavarer(AsyncCallback<List<RaavareDTO>> callback);
 	
+	// Måske fejl i recept
+	void createRecept(ReceptDTO p, AsyncCallback<Void> callback);
+
+	void getRecept(AsyncCallback<List<ReceptDTO>> callback);
+	
+	void createRaavareBatch(RaavareBatchDTO p, AsyncCallback<Void> callback) ;
+	
+	void getRaavareBatch(AsyncCallback<List<RaavareBatchDTO>> callback);
 }
