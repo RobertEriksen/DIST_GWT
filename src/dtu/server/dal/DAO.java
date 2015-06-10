@@ -19,9 +19,10 @@ import dtu.shared.ReceptDTO;
 
 public class DAO extends RemoteServiceServlet implements KartotekService {
 	
-	private static final String URL = "jdbc:mysql://localhost/cdio_3";
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "Newnewold1";
+	private static final String URL = "jdbc:mysql://62.79.16.16/grp16";
+//	private static final String URL = "jdbc:mysql://localhost/cdio_3";
+	private static final String USERNAME = "grp16";
+	private static final String PASSWORD = "ZHnPq74Y";
 
 	private Connection connection = null; // manages connection
 
@@ -53,12 +54,12 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			// create query that add an operator to kartotek
 			createOperatorStmt = 
 					connection.prepareStatement( "INSERT INTO operatoer " + 
-							"(navn, ini, cpr, pass, active, level) " + 
+							"(opr_navn, ini, cpr, pass, active, level) " + 
 							"VALUES ( ?, ?, ?, ?, ?, ?)" );
 
 			// create query that updates an operator
 			updateOperatorStmt = connection.prepareStatement( 
-					"UPDATE operatoer SET navn = ?, ini = ?, cpr = ?, pass = ?, active = ?, level = ? WHERE id = ?" );
+					"UPDATE operatoer SET opr_navn = ?, ini = ?, cpr = ?, pass = ?, active = ?, level = ? WHERE id = ?" );
 
 			// create query that get all operators in kartotek
 			getOperatorsStmt = connection.prepareStatement( 
@@ -145,7 +146,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			{
 				results.add( new OperatoerDTO(
 						resultSet.getInt("id"),
-						resultSet.getString("navn"),
+						resultSet.getString("opr_navn"),
 						resultSet.getString("ini"),
 						resultSet.getString("cpr"),
 						resultSet.getString("pass"),
