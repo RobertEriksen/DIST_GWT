@@ -15,13 +15,13 @@ public class RaavareBatchMenu extends Composite {
 	public RaavareBatchMenu(final MainView main) {
 		initWidget(this.hPanel);
 		
-		Anchor Opret_RaavareBatch = new Anchor("Opret RaavareBatch");
-		hPanel.add(Opret_RaavareBatch);
-		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.addreceptOperator();
-			}
-		});
+//		Anchor Opret_RaavareBatch = new Anchor("Opret RaavareBatch");
+//		hPanel.add(Opret_RaavareBatch);
+//		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
+//			public void onClick(ClickEvent event){				
+//				main.addreceptOperator();
+//			}
+//		});
 		
 		Anchor Vis_RaavareBatch = new Anchor("Vis RaavareBatch");
 		hPanel.add(Vis_RaavareBatch);

@@ -114,7 +114,7 @@ public class WelcomeView extends Composite {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Server fejl! " + caught.getMessage());
+						Window.alert("Server feeeeeeeeeejl! " + caught.getMessage());
 					}
 
 				});

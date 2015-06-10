@@ -45,16 +45,24 @@ public class AdministratorMenu extends Composite {
 			}
 		});
 		
-		
-		
-		
-		Anchor Raavarebatch_administration = new Anchor("Raavarebatch administration");
-		hPanel.add(Raavarebatch_administration);
-		Raavarebatch_administration.addClickHandler(new ClickHandler(){
+		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent administration");
+		hPanel.add(ReceptKomponent_administration);
+		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareBatchMenu();
+				main.showReceptKomponentMenu();
 			}
 		});
+		
+		
+		
+		
+//		Anchor Raavarebatch_administration = new Anchor("Raavarebatch administration");
+//		hPanel.add(Raavarebatch_administration);
+//		Raavarebatch_administration.addClickHandler(new ClickHandler(){
+//			public void onClick(ClickEvent event){				
+//				main.showRaavareBatchMenu();
+//			}
+//		});
 		
 		Anchor Produktbatch_administration = new Anchor("Produktbatch administration");
 		hPanel.add(Produktbatch_administration);

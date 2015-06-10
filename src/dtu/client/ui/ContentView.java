@@ -44,15 +44,21 @@ public class ContentView extends Composite {
 		contentPanel.add(addView);
 	}
 	
+	public void openAddReceptKomponentView() {
+		contentPanel.clear();
+		receptKomponent_AddView addView = new receptKomponent_AddView(clientImpl);
+		contentPanel.add(addView);
+	}
+	
 	public void openAddReceptView() {
 		contentPanel.clear();
-		recept_AddView addView = new recept_AddView(clientImpl);
+		Recept_AddView addView = new Recept_AddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
 	public void openAddRaavareBatchView() {
 		contentPanel.clear();
-		recept_AddView addView = new recept_AddView(clientImpl);
+		receptKomponent_AddView addView = new receptKomponent_AddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	

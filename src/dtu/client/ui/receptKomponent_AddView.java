@@ -19,8 +19,9 @@ import dtu.client.service.KartotekServiceClientImpl;
 import dtu.shared.FieldVerifier;
 import dtu.shared.OperatoerDTO;
 import dtu.shared.ReceptDTO;
+import dtu.shared.ReceptKomponentDTO;
 
-public class recept_AddView extends Composite {
+public class receptKomponent_AddView extends Composite {
 	VerticalPanel addPanel;
 
 	// controls
@@ -45,19 +46,19 @@ public class recept_AddView extends Composite {
 	boolean passValid = false;
 	boolean activeValid = false;
 
-	public recept_AddView(final KartotekServiceClientImpl clientImpl) {
+	public receptKomponent_AddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("tilfoej Recept");
+		Label pageTitleLbl = new Label("tilfoej ReceptKomponent");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		receptIdLbl = new Label("Recept ID:");
+		receptIdLbl = new Label("ReceptKomponent ID:");
 		receptIdTxt = new TextBox();
 		Label nameRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(0, 0, receptIdLbl);
@@ -70,13 +71,6 @@ public class recept_AddView extends Composite {
 		addTable.setWidget(1, 0, raavareidLbl);
 		addTable.setWidget(1, 1, raavareIdTxt);
 		addTable.setWidget(1, 2, iniRulesLbl);
-
-		receptnameLbl = new Label("Recept Navn:");
-		receptnameTxt = new TextBox();
-		Label cprRulesLbl = new Label("(mellem 2 og 20 tegn)");
-		addTable.setWidget(2, 0, receptnameLbl);
-		addTable.setWidget(2, 1, receptnameTxt);
-		addTable.setWidget(2, 2, cprRulesLbl);
 
 		nomNetto = new Label("NomNetto:");
 		nomNettoTxt = new TextBox();
@@ -95,12 +89,10 @@ public class recept_AddView extends Composite {
 		
 		receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
 		raavareIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-		receptnameTxt.setStyleName("gwt-TextBox-invalidEntry");
 		nomNettoTxt.setStyleName("gwt-TextBox-invalidEntry");
 		toleranceTxt.setStyleName("gwt-TextBox-invalidEntry");
 
 		// use unicode escape sequence \u00F8 for '�'
-		save = new Button("Tilf\u00F8j");
 		save.setEnabled(false);
 		addTable.setWidget(5, 1, save);
 
@@ -110,15 +102,15 @@ public class recept_AddView extends Composite {
 			public void onClick(ClickEvent event) {
 
 				// create new OperatoerDTO
-				ReceptDTO newRecept = new ReceptDTO(Integer.valueOf(receptIdTxt.getText()), Integer.valueOf(raavareIdTxt.getText()), receptnameTxt.getText(), Double.valueOf(nomNettoTxt.getText()) , Double.valueOf(toleranceTxt.getText()));
 				
-
+				ReceptKomponentDTO newReceptKomponent = new ReceptKomponentDTO(Integer.valueOf(receptIdTxt.getText()), Integer.valueOf(raavareIdTxt.getText()), Double.valueOf(nomNettoTxt.getText()) , Double.valueOf(toleranceTxt.getText()));
+				
 				// save on server
-				clientImpl.service.createRecept(newRecept, new AsyncCallback<Void>() {
+				clientImpl.service.createReceptKomponent(newReceptKomponent, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("Operatoer gemt i kartotek.");
+						Window.alert("ReceptKomponent gemt i kartotek.");
 					}
 
 					@Override
@@ -139,11 +131,11 @@ public class recept_AddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(receptIdTxt.getText())) {
 					receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					nameValid = false;
+					cprValid = false;
 				}
 				else {
 					receptIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					nameValid = true;
+					cprValid = true;
 				}
 				checkFormValid();
 			}
@@ -161,23 +153,6 @@ public class recept_AddView extends Composite {
 				else {
 					raavareIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
 					iniValid = true;
-				}
-				checkFormValid();
-			}
-
-		});
-
-		receptnameTxt.addKeyUpHandler(new KeyUpHandler(){
-
-			@Override
-			public void onKeyUp(KeyUpEvent event) {
-				if (!FieldVerifier.isValidName(receptnameTxt.getText())) {
-					receptnameTxt.setStyleName("gwt-TextBox-invalidEntry");
-					cprValid = false;
-				}
-				else {
-					receptnameTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					cprValid = true;
 				}
 				checkFormValid();
 			}
@@ -223,7 +198,7 @@ public class recept_AddView extends Composite {
 	}
 
 	private void checkFormValid() {
-		if (nameValid&&iniValid&&cprValid&&passValid&&activeValid)
+		if (iniValid&&cprValid&&passValid&&activeValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);

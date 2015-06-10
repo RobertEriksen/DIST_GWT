@@ -7,6 +7,7 @@ import dtu.client.service.KartotekServiceClientImpl;
 import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
 import dtu.client.ui.RaavareBatchMenu;
+import dtu.client.ui.ReceptKomponentMenu;
 import dtu.client.ui.ReceptMenu;
 import dtu.client.ui.UserAdminMenu;
 import dtu.client.ui.raavareMenu;
@@ -62,9 +63,9 @@ public class MainView  {
 		RootPanel.get("nav").add(m);
 	}
 
-	public void showReceptMenu(){
+	public void showReceptKomponentMenu(){
 		RootPanel.get("nav").clear();
-		ReceptMenu m = new ReceptMenu(this);
+		ReceptKomponentMenu m = new ReceptKomponentMenu(this);
 		RootPanel.get("nav").add(m);
 	}
 	
@@ -84,12 +85,16 @@ public class MainView  {
 	}
 	
 // Recept
+	public void addreceptKomponentOperator() {
+		contentView.openAddReceptKomponentView();
+	}
+	
 	public void addreceptOperator() {
 		contentView.openAddReceptView();
 	}
 	
 	public void addRaavareBatchOperator() {
-		contentView.openAddReceptView();
+		contentView.openAddReceptKomponentView();
 	}
 	
 	public void showOperators() {
@@ -110,6 +115,12 @@ public class MainView  {
 	
 	public void showRecepts() {
 		contentView.openReceptBrowseView();
+	}
+
+	public void showReceptMenu() {
+		RootPanel.get("nav").clear();
+		ReceptMenu m = new ReceptMenu(this);
+		RootPanel.get("nav").add(m);		
 	}
 	
 	

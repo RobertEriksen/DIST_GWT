@@ -11,70 +11,35 @@ import java.io.Serializable;
 public class ReceptDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
-	int rcpId;
+	int recept_ID;
 
 	/** Operatør navn min. 2 max. 20 karakterer */
-	String rcpNavn;
-
-	/** Operatør cpr­nr 10 karakterer */
-	int rvrId;
-
-	/** Operatør password min. 7 max. 8 karakterer */
-	double nomNetto;
+	String recept_Navn;
 	
-	/** Operatør aktiv (1) eller inaktiv (0) */
-	double tolerance;
-	
-	public ReceptDTO(){
-		
+	public ReceptDTO() {
 	}
 	
-	public ReceptDTO(int rcpId, int rvrId, String rcpNavn, double nomNetto, double tolerance) {
-		this.rcpNavn = rcpNavn;
-		this.rcpId = rcpId;
-		this.rvrId = rvrId;
-		this.nomNetto = nomNetto;
-		this.tolerance = tolerance;
+	public ReceptDTO(int recept_ID, String raavare_Navn) {
+		this.recept_ID= recept_ID;
+		this.recept_Navn = raavare_Navn;
+	}
+
+	public void setRecept_ID(int recept_ID) {
+		this.recept_ID = recept_ID;
+	}
+
+	public String getRecept_Navn() {
+		return recept_Navn;
+	}
+
+	public void setRecept_Navn(String recept_Navn) {
+		this.recept_Navn = recept_Navn;
 	}
 
 	public int getRcpId() {
-		return rcpId;
+		return recept_ID;
 	}
 
-	public void setRcpId(int rcpId) {
-		this.rcpId = rcpId;
-	}
 
-	public String getRcpNavn() {
-		return rcpNavn;
-	}
-
-	public void setRcpNavn(String rcpNavn) {
-		this.rcpNavn = rcpNavn;
-	}
-
-	public int getRvrId() {
-		return rvrId;
-	}
-
-	public void setRvrId(int rvrId) {
-		this.rvrId = rvrId;
-	}
-
-	public double getNomNetto() {
-		return nomNetto;
-	}
-
-	public void setNomNetto(double nomNetto) {
-		this.nomNetto = nomNetto;
-	}
-
-	public double getTolerance() {
-		return tolerance;
-	}
-
-	public void setTolerance(double tolerance) {
-		this.tolerance = tolerance;
-	}
-
+	
 }

@@ -9,6 +9,7 @@ import dtu.shared.OperatoerDTO;
 import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
 import dtu.shared.ReceptDTO;
+import dtu.shared.ReceptKomponentDTO;
 
 public interface KartotekServiceAsync {
 
@@ -33,11 +34,13 @@ public interface KartotekServiceAsync {
 	void getRaavarer(AsyncCallback<List<RaavareDTO>> callback);
 	
 	// Måske fejl i recept
-	void createRecept(ReceptDTO p, AsyncCallback<Void> callback);
+	void createReceptKomponent(ReceptKomponentDTO p, AsyncCallback<Void> callback);
 
-	void getRecept(AsyncCallback<List<ReceptDTO>> callback);
+	void getRecept(AsyncCallback<List<ReceptKomponentDTO>> callback);
 	
 	void createRaavareBatch(RaavareBatchDTO p, AsyncCallback<Void> callback) ;
 	
 	void getRaavareBatch(AsyncCallback<List<RaavareBatchDTO>> callback);
+
+	void createRecept(ReceptDTO newRecept, AsyncCallback<Void> asyncCallback);
 }

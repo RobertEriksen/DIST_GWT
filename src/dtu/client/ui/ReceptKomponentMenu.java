@@ -8,22 +8,30 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dtu.client.controller.MainView;
 
-public class ReceptMenu extends Composite {
+public class ReceptKomponentMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	
-	public ReceptMenu(final MainView main) {
+	public ReceptKomponentMenu(final MainView main) {
 		initWidget(this.hPanel);
 		
 		Anchor tilfoej_recept = new Anchor("Tilfoej Recept");
 		hPanel.add(tilfoej_recept);
 		tilfoej_recept.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addreceptOperator();
+				main.addreceptKomponentOperator();
 			}
 		});
 		
-		Anchor ret_raavare = new Anchor("Vis Recept");
+		Anchor tilfoej_receptkomponent = new Anchor("Tilfoej Receptkomponent");
+		hPanel.add(tilfoej_receptkomponent);
+		tilfoej_receptkomponent.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.addreceptKomponentOperator();
+			}
+		});
+		
+		Anchor ret_raavare = new Anchor("Vis ReceptKomponent");
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

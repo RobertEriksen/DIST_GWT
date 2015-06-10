@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dtu.client.service.KartotekServiceClientImpl;
 import dtu.shared.OperatoerDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.ReceptKomponentDTO;
 
 public class Recept_BrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
@@ -85,7 +85,7 @@ public class Recept_BrowseView extends Composite {
 	}
 	
 	private void getOperators() {
-		clientImpl.service.getRecept(new AsyncCallback<List<ReceptDTO>>() {
+		clientImpl.service.getRecept(new AsyncCallback<List<ReceptKomponentDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -93,7 +93,7 @@ public class Recept_BrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<ReceptDTO> result) {
+			public void onSuccess(List<ReceptKomponentDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 //					if (!showInactive) {
 //						if (Integer.valueOf(result.get(i).getActive()) == 1) {
@@ -109,9 +109,8 @@ public class Recept_BrowseView extends Composite {
 //					else {
 						t.setText(i+1, 0, ""+result.get(i).getRcpId());
 						t.setText(i+1, 1,""+ result.get(i).getRvrId());
-						t.setText(i+1, 2, result.get(i).getRcpNavn());
-						t.setText(i+1, 3,""+ result.get(i).getNomNetto());
-						t.setText(i+1, 4,""+ result.get(i).getTolerance());
+						t.setText(i+1, 2,""+ result.get(i).getNomNetto());
+						t.setText(i+1, 3,""+ result.get(i).getTolerance());
 //					}
 				}
 			}
