@@ -44,6 +44,7 @@ public class ContentView extends Composite {
 		contentPanel.add(addView);
 	}
 	
+	
 	public void openAddReceptKomponentView() {
 		contentPanel.clear();
 		receptKomponent_AddView addView = new receptKomponent_AddView(clientImpl);
@@ -58,7 +59,7 @@ public class ContentView extends Composite {
 	
 	public void openAddRaavareBatchView() {
 		contentPanel.clear();
-		receptKomponent_AddView addView = new receptKomponent_AddView(clientImpl);
+		RaavareBatch_AddView addView = new RaavareBatch_AddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
@@ -75,6 +76,12 @@ public class ContentView extends Composite {
 	public void openReceptBrowseView() {
 		contentPanel.clear();
 		Recept_BrowseView browseView = new Recept_BrowseView(clientImpl);
+		contentPanel.add(browseView);
+	}
+	
+	public void openReceptKomponentBrowseView() {
+		contentPanel.clear();
+		ReceptKomponent_BrowseView browseView = new ReceptKomponent_BrowseView(clientImpl);
 		contentPanel.add(browseView);
 	}
 

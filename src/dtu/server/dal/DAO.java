@@ -115,6 +115,8 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			getReceptStmt = connection.prepareStatement( 
 					"SELECT * FROM recept"); 
 			
+			// RECEPTKOMPONENT 
+			
 			//Create receptkomponent Query to make table
 			createReceptKomponentStmt = connection.prepareStatement( "INSERT INTO receptkomponent " + 
 					"(recept_Id, raavare_id, nom_Netto, tolerance) " + 
@@ -124,8 +126,8 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 					"SELECT * FROM receptkomponent"); 
 			
 			//RÅVAREBATCHES
-			//Create RåvareBatch query
 			
+			//Create RåvareBatch query
 			createRaavareBatchStmt = 
 					connection.prepareStatement( "INSERT INTO Raavarebatch " + 
 							"(Raavare_ID, Rb_Id, maengde) " + 
@@ -156,7 +158,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			deleteOperatorStmt.setInt(1, id);
 			deleteOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException(" \"deleteOperator\" fejlede");
+			throw new DALException(" \"deleteOperator\" fejlede" + e.getMessage());
 		} 
 	}
 
@@ -173,18 +175,18 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			while (resultSet.next())
 			{
 				results.add( new OperatoerDTO(
-						resultSet.getInt("id"),
+						resultSet.getInt("opr_id"),
 						resultSet.getString("opr_navn"),
 						resultSet.getString("ini"),
 						resultSet.getString("cpr"),
-						resultSet.getString("pass"),
+						resultSet.getString("password"),
 						resultSet.getInt("active"),
 						resultSet.getInt("level")));
 			} 
 		} 
-		catch ( SQLException sqlException )
+		catch ( SQLException e )
 		{
-			throw new DALException(" \"getOperators\" fejlede");
+			throw new DALException(" \"getOperators\" fejlede " + e.getMessage());
 		} 
 		finally
 		{
@@ -209,7 +211,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new DALException(" \"getSize\" fejlede");
+			throw new DALException(" \"getSize\" fejlede " + e.getMessage());
 		} 
 	}
 	
@@ -224,7 +226,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			createOperatorStmt.setString(6, p.getLevel());
 			createOperatorStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException(" \"createOperator\" fejlede");
+			throw new DALException(" \"createOperator\" fejlede " + e.getMessage());
 		} 
 	}
 
@@ -273,9 +275,9 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			if (resultSet.first()) return resultSet.getInt(7);
 			
 		} 
-		catch ( SQLException sqlException )
+		catch ( SQLException e )
 		{
-			throw new DALException(" \"Login\" fejlede " + sqlException.getMessage());
+			throw new DALException(" \"Login\" fejlede " + e.getMessage());
 		} 
 		finally
 		{
@@ -302,7 +304,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			
 			createRaavareStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException(" \"createRaavare\" fejlede");
+			throw new DALException(" \"createRaavare\" fejlede " + e.getMessage());
 		} 
 	}
 
@@ -338,9 +340,9 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 						resultSet.getString("leverandoer")));
 			} 
 		} 
-		catch ( SQLException sqlException )
+		catch ( SQLException e )
 		{
-			throw new DALException(" \"getRaavarer\" fejlede");
+			throw new DALException(" \"getRaavarer\" fejlede " + e.getMessage());
 		} 
 		finally
 		{
@@ -375,7 +377,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	// Vis RECEPT
 	
 	@Override
-	public List<ReceptKomponentDTO> getRecept() throws DALException {
+	public List<ReceptKomponentDTO> getReceptKomponenter() throws DALException {
 		List<ReceptKomponentDTO> results = null;
 		ResultSet resultSet = null;
 		try 
@@ -388,14 +390,14 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 				results.add( new ReceptKomponentDTO(
 						resultSet.getInt("Recept_id"),
 						resultSet.getInt("Raavare_id"),
-						resultSet.getDouble("NonNetto"),
+						resultSet.getDouble("Nom_Netto"),
 						resultSet.getDouble("Tolerance")
 						));
 			} 
 		} 
-		catch ( SQLException sqlException )
+		catch ( SQLException e )
 		{
-			throw new DALException(" \"getRecepts\" fejlede");
+			throw new DALException(" \"getRecepts\" fejlede " + e.getMessage());
 		} 
 		finally
 		{
@@ -417,12 +419,12 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	@Override
 	public void createRaavareBatch(RaavareBatchDTO p) throws Exception {
 		try {
-			createReceptKomponentStmt.setInt(1, p.getRbId());
-			createReceptKomponentStmt.setInt(2, p.getRaavareId());
+			createReceptKomponentStmt.setInt(1, p.getRaavareId());
+			createReceptKomponentStmt.setInt(2, p.getRbId());
 			createReceptKomponentStmt.setDouble(3, p.getMaengde());
 			createReceptKomponentStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException(" \"createRaavarebatch\" fejlede");
+			throw new DALException(" \"createRaavarebatch\" fejlede " + e.getMessage());
 		} 
 	}
 	
@@ -444,9 +446,9 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 						));
 			} 
 		} 
-		catch ( SQLException sqlException )
+		catch ( SQLException e )
 		{
-			throw new DALException(" \"getRaavareBatch\" fejlede");
+			throw new DALException(" \"getRaavareBatch\" fejlede " + e.getMessage());
 		} 
 		finally
 		{
@@ -472,6 +474,43 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		} catch (SQLException e) {
 			throw new DALException(" \"createRecept\" fejlede "+ e.getMessage());
 		} 
+	}
+
+
+	@Override
+	public List<ReceptDTO> getRecepter() throws DALException {
+		List<ReceptDTO> results = null;
+		ResultSet resultSet = null;
+		try 
+		{
+			resultSet = getReceptStmt.executeQuery(); 
+			results = new ArrayList< ReceptDTO >();
+
+			while (resultSet.next())
+			{
+				results.add( new ReceptDTO(
+						resultSet.getInt("Recept_id"),
+						resultSet.getString("Recept_navn")
+						));
+			} 
+		} 
+		catch ( SQLException e )
+		{
+			throw new DALException(" \"getRecepts\" fejlede " + e.getMessage());
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return results;
 	}
 	
 }

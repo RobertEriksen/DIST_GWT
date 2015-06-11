@@ -115,7 +115,7 @@ public class FieldVerifier {
 		if (level == null) return false;
 		if (level.length() != 1) return false;
 		// 1 = operatør, 2 = superbruger
-		return (Integer.valueOf(level) == 1 || Integer.valueOf(level) == 2);
+		return (Integer.valueOf(level) >= 1 && Integer.valueOf(level)<= 4);
 	}
 	
 	public static boolean isValidTolerance(String Decimal){
@@ -128,6 +128,11 @@ public class FieldVerifier {
 		if(Double.valueOf(Netto)>20) return false;
 		if(Double.valueOf(Netto)<0.05) return false;
 		return true;
+	}
+	
+	public static boolean IsValidMaengde(String netto){
+		if(!Double.valueOf(netto).isNaN()) return true;
+		return false;
 	}
 	
 }

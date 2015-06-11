@@ -35,9 +35,16 @@ public interface KartotekService extends RemoteService {
 	void createRaavare(RaavareDTO op) throws Exception;
 	void updateRaavare(RaavareDTO op) throws Exception;
 	List<RaavareDTO> getRaavarer() throws Exception;
+	
+	//Receptkomponent
 	void createReceptKomponent(ReceptKomponentDTO p) throws Exception;
-	List<ReceptKomponentDTO> getRecept() throws DALException;
+	List<ReceptKomponentDTO> getReceptKomponenter() throws DALException;
+	
+	//Recept
+	void createRecept(ReceptDTO p) throws Exception;
+	List<ReceptDTO> getRecepter() throws DALException; 
+	
+	//Raavarebatch
 	void createRaavareBatch(RaavareBatchDTO p) throws Exception;
 	List<RaavareBatchDTO> getRaavareBatch() throws DALException;
-	void createRecept(ReceptDTO p) throws Exception;
 }

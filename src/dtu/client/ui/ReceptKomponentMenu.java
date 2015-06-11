@@ -15,14 +15,6 @@ public class ReceptKomponentMenu extends Composite {
 	public ReceptKomponentMenu(final MainView main) {
 		initWidget(this.hPanel);
 		
-		Anchor tilfoej_recept = new Anchor("Tilfoej Recept");
-		hPanel.add(tilfoej_recept);
-		tilfoej_recept.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.addreceptKomponentOperator();
-			}
-		});
-		
 		Anchor tilfoej_receptkomponent = new Anchor("Tilfoej Receptkomponent");
 		hPanel.add(tilfoej_receptkomponent);
 		tilfoej_receptkomponent.addClickHandler(new ClickHandler(){
@@ -35,7 +27,7 @@ public class ReceptKomponentMenu extends Composite {
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRecepts();
+				main.showReceptKomponents();
 			}
 		});
 		

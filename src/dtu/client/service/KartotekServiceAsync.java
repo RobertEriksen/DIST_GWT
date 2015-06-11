@@ -33,14 +33,22 @@ public interface KartotekServiceAsync {
 	
 	void getRaavarer(AsyncCallback<List<RaavareDTO>> callback);
 	
-	// Måske fejl i recept
+	// Receptkomponent
 	void createReceptKomponent(ReceptKomponentDTO p, AsyncCallback<Void> callback);
 
-	void getRecept(AsyncCallback<List<ReceptKomponentDTO>> callback);
+	void getReceptKomponenter(AsyncCallback<List<ReceptKomponentDTO>> callback);
 	
+	
+	//Recept
+	void createRecept(ReceptDTO newRecept, AsyncCallback<Void> asyncCallback);
+	
+	void getRecepter(AsyncCallback<List<ReceptDTO>> callback);
+	
+	//Raavarebatch
 	void createRaavareBatch(RaavareBatchDTO p, AsyncCallback<Void> callback) ;
 	
 	void getRaavareBatch(AsyncCallback<List<RaavareBatchDTO>> callback);
 
-	void createRecept(ReceptDTO newRecept, AsyncCallback<Void> asyncCallback);
+	
+	
 }

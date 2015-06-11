@@ -18,14 +18,14 @@ import dtu.shared.OperatoerDTO;
 import dtu.shared.ReceptDTO;
 import dtu.shared.ReceptKomponentDTO;
 
-public class Recept_BrowseView extends Composite {
+public class ReceptKomponent_BrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public Recept_BrowseView(KartotekServiceClientImpl clientImpl) {
+	public ReceptKomponent_BrowseView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -43,50 +43,25 @@ public class Recept_BrowseView extends Composite {
 		t = new FlexTable();
 
 		t.getFlexCellFormatter().setWidth(0, 0, "8em");
-		t.getFlexCellFormatter().setWidth(0, 1, "40em");
-//		t.getFlexCellFormatter().setWidth(0, 2, "6em");
-//		t.getFlexCellFormatter().setWidth(0, 3, "20em");
-//		t.getFlexCellFormatter().setWidth(0, 4, "16em");
-//		t.getFlexCellFormatter().setWidth(0, 5, "3em");
-//		t.getFlexCellFormatter().setWidth(0, 6, "3em");
+		t.getFlexCellFormatter().setWidth(0, 1, "10em");
+		t.getFlexCellFormatter().setWidth(0, 2, "10em");
+		t.getFlexCellFormatter().setWidth(0, 3, "20em");
 
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
 
 		// set headers in flextable
 		t.setText(0, 0, "Recept ID");
-		t.setText(0, 1, "Recept Navn");
-//		t.setText(0, 2, "Recept Navn");
-//		t.setText(0, 3, "Nominelle Netto");
-//		t.setText(0, 4, "Tolerance");
-//		t.setText(0, 5, "Aktiv");
-//		t.setText(0, 6, "Niveau");
+		t.setText(0, 1, "Raavare ID");
+		t.setText(0, 2, "Nominelle Netto");
+		t.setText(0, 3, "Tolerance");
 
-		getRecepter();
-
+		getReceptKomponenter();
 		browsePanel.add(t);
-
-//		showInactiveOps.addClickHandler(new ClickHandler() {
-//
-//			@Override
-//			public void onClick(ClickEvent event) {
-//				for (int i = 1; i < t.getRowCount(); i++) t.removeRow(i); // clear FlexTable (except for first header row)
-//				if (!showInactive) {
-//					showInactiveOps.setText("Skjul inaktive operatører");
-//					showInactive = true;
-//					getOperators();
-//				}
-//				else {
-//					showInactiveOps.setText("Vis inaktive operatører");
-//					showInactive = false;
-//					getOperators();
-//				}
-//			}
-//		});
 	}
 	
-	private void getRecepter() {
-		clientImpl.service.getRecepter(new AsyncCallback<List<ReceptDTO>>() {
+	private void getReceptKomponenter() {
+		clientImpl.service.getReceptKomponenter(new AsyncCallback<List<ReceptKomponentDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -94,10 +69,12 @@ public class Recept_BrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<ReceptDTO> result) {
+			public void onSuccess(List<ReceptKomponentDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 					t.setText(i+1, 0, ""+result.get(i).getRcpId());
-					t.setText(i+1, 1,""+ result.get(i).getRecept_Navn());
+					t.setText(i+1, 1,""+ result.get(i).getRvrId());
+					t.setText(i+1, 2,""+ result.get(i).getNomNetto());
+					t.setText(i+1, 3,""+ result.get(i).getTolerance());
 
 				}
 			}

@@ -94,7 +94,7 @@ public class MainView  {
 	}
 	
 	public void addRaavareBatchOperator() {
-		contentView.openAddReceptKomponentView();
+		contentView.openAddRaavareBatchView();
 	}
 	
 	public void showOperators() {
@@ -115,6 +115,10 @@ public class MainView  {
 	
 	public void showRecepts() {
 		contentView.openReceptBrowseView();
+	}
+	
+	public void showReceptKomponents() {
+		contentView.openReceptKomponentBrowseView();
 	}
 
 	public void showReceptMenu() {
