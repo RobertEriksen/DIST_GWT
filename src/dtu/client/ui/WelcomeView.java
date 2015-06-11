@@ -70,7 +70,7 @@ public class WelcomeView extends Composite {
 					@Override
 					public void onSuccess(Integer result) {
 						if (result==1) {
-							mainView.showMenuView();
+							mainView.showUserMenu(result);
 							
 							// clear view and show new label
 							w.clear();
@@ -80,7 +80,7 @@ public class WelcomeView extends Composite {
 							
 						}
 						else if(result==2) {
-							mainView.showMenuView();
+							mainView.showForemanMenu(result);
 							
 							// clear view and show new label
 							w.clear();
@@ -90,7 +90,7 @@ public class WelcomeView extends Composite {
 							
 						}
 						else if(result==3) {
-							mainView.showMenuView();
+							mainView.showpharmacistMenu(result);
 							
 							// clear view and show new label
 							w.clear();
@@ -100,7 +100,7 @@ public class WelcomeView extends Composite {
 							
 						}
 						else if(result==4) {
-							mainView.showAdministratorMenu();
+							mainView.showAdministratorMenu(result);
 							
 							// clear view and show new label
 							w.clear();

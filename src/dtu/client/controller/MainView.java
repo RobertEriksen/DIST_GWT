@@ -6,6 +6,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import dtu.client.service.KartotekServiceClientImpl;
 import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
+import dtu.client.ui.ForemanMenu;
+import dtu.client.ui.PharmacistMenu;
 import dtu.client.ui.ProduktBatchMenu;
 import dtu.client.ui.RaavareBatchMenu;
 import dtu.client.ui.ReceptKomponentMenu;
@@ -44,41 +46,55 @@ public class MainView  {
 		contentView.clearView();
 	}
 
-	public void showMenuView() {
+	public void showUserMenu(int level) {
 		// wrap menuView
 		RootPanel.get("nav").clear();
-		UserAdminMenu m = new UserAdminMenu(this);
+		UserAdminMenu m = new UserAdminMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showAdministratorMenu() {
+	public void showForemanMenu(int level) {
 		// wrap menuView
 		RootPanel.get("nav").clear();
-		AdministratorMenu m = new AdministratorMenu(this);
+		ForemanMenu m = new ForemanMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showRaavareMenu(){
+	public void showpharmacistMenu(int level) {
+		// wrap menuView
 		RootPanel.get("nav").clear();
-		raavareMenu m = new raavareMenu(this);
+		PharmacistMenu m = new PharmacistMenu(this, level);
+		RootPanel.get("nav").add(m);
+	}
+	
+	public void showAdministratorMenu(int level) {
+		// wrap menuView
+		RootPanel.get("nav").clear();
+		AdministratorMenu m = new AdministratorMenu(this, level);
+		RootPanel.get("nav").add(m);
+	}
+	
+	public void showRaavareMenu(int level){
+		RootPanel.get("nav").clear();
+		raavareMenu m = new raavareMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 
-	public void showReceptKomponentMenu(){
+	public void showReceptKomponentMenu(int level){
 		RootPanel.get("nav").clear();
-		ReceptKomponentMenu m = new ReceptKomponentMenu(this);
+		ReceptKomponentMenu m = new ReceptKomponentMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showRaavareBatchMenu(){
+	public void showRaavareBatchMenu(int level){
 		RootPanel.get("nav").clear();
-		RaavareBatchMenu m = new RaavareBatchMenu(this);
+		RaavareBatchMenu m = new RaavareBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showProduktBatchMenu(){
+	public void showProduktBatchMenu(int level){
 		RootPanel.get("nav").clear();
-		ProduktBatchMenu m = new ProduktBatchMenu(this);
+		ProduktBatchMenu m = new ProduktBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
@@ -140,9 +156,9 @@ public class MainView  {
 		contentView.openReceptKomponentBrowseView();
 	}
 
-	public void showReceptMenu() {
+	public void showReceptMenu(int level) {
 		RootPanel.get("nav").clear();
-		ReceptMenu m = new ReceptMenu(this);
+		ReceptMenu m = new ReceptMenu(this, level);
 		RootPanel.get("nav").add(m);		
 	}
 	

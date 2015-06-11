@@ -12,7 +12,7 @@ public class UserAdminMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	// receive reference to MainView for call back
-	public UserAdminMenu(final MainView main) {
+	public UserAdminMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 		
 		Anchor showOperators = new Anchor("Vis operatører");
@@ -55,8 +55,17 @@ public class UserAdminMenu extends Composite {
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				main.showAdministratorMenu();
+				if(level==4){
+					main.showAdministratorMenu(level);
+				}
+				else if(level == 3){
+					main.showpharmacistMenu(level);
+				}
+				
+				else if(level == 2){
+					main.showForemanMenu(level);
 			}
-		});
-	}
+		}
+	});
+}
 }

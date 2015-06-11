@@ -12,7 +12,7 @@ public class raavareMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 	
 	
-	public raavareMenu(final MainView main) {
+	public raavareMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 		
 		Anchor tilfoej_raavare = new Anchor("tilfoej raavare");
@@ -36,9 +36,18 @@ public class raavareMenu extends Composite {
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				main.showAdministratorMenu();
+				if(level==4){
+					main.showAdministratorMenu(level);
+				}
+				else if(level == 3){
+					main.showpharmacistMenu(level);
+				}
+				
+				else if(level == 2){
+					main.showForemanMenu(level);
 			}
-		});
+		}
+	});
 	}
 }
 	

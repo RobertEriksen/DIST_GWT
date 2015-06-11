@@ -262,10 +262,10 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		ResultSet resultSet = null;
 		try 
 		{
-			loginStmt.setInt(1, 1);
-			loginStmt.setString(2, "HelloKitty");
-//			loginStmt.setInt(1, id);
-//			loginStmt.setString(2, password);
+//			loginStmt.setInt(1, 1);
+//			loginStmt.setString(2, "HelloKitty");
+			loginStmt.setInt(1, id);
+			loginStmt.setString(2, password);
 			try {
 				resultSet = loginStmt.executeQuery();
 			} catch (Exception e) {

@@ -10,19 +10,19 @@ import dtu.client.controller.MainView;
 
 public class RaavareBatchMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
-	
-	
-	public RaavareBatchMenu(final MainView main) {
+
+
+	public RaavareBatchMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
-		
+
 		Anchor Opret_RaavareBatch = new Anchor("Opret RaavareBatch");
 		hPanel.add(Opret_RaavareBatch);
 		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.addRaavareBatchOperator();
-				}
+			}
 		});
-		
+
 		Anchor Vis_RaavareBatch = new Anchor("Vis RaavareBatch");
 		hPanel.add(Vis_RaavareBatch);
 		Vis_RaavareBatch.addClickHandler(new ClickHandler(){
@@ -30,15 +30,24 @@ public class RaavareBatchMenu extends Composite {
 				main.showRaavareBatch();
 			}
 		});
-		
+
 		Anchor back = new Anchor("Tilbage");
 		hPanel.add(back);
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				main.showAdministratorMenu();
+				if(level==4){
+					main.showAdministratorMenu(level);
+				}
+				else if(level == 3){
+					main.showpharmacistMenu(level);
+				}
+
+				else if(level == 2){
+					main.showForemanMenu(level);
+				}
 			}
 		});
 	}
 }
-	
+

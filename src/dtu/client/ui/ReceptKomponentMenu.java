@@ -10,11 +10,11 @@ import dtu.client.controller.MainView;
 
 public class ReceptKomponentMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
-	
-	
-	public ReceptKomponentMenu(final MainView main) {
+
+
+	public ReceptKomponentMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
-		
+
 		Anchor tilfoej_receptkomponent = new Anchor("Tilfoej Receptkomponent");
 		hPanel.add(tilfoej_receptkomponent);
 		tilfoej_receptkomponent.addClickHandler(new ClickHandler(){
@@ -22,7 +22,7 @@ public class ReceptKomponentMenu extends Composite {
 				main.addreceptKomponentOperator();
 			}
 		});
-		
+
 		Anchor ret_raavare = new Anchor("Vis ReceptKomponent");
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
@@ -30,15 +30,24 @@ public class ReceptKomponentMenu extends Composite {
 				main.showReceptKomponents();
 			}
 		});
-		
+
 		Anchor back = new Anchor("Tilbage");
 		hPanel.add(back);
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				main.showAdministratorMenu();
+				if(level==4){
+					main.showAdministratorMenu(level);
+				}
+				else if(level == 3){
+					main.showpharmacistMenu(level);
+				}
+
+				else if(level == 2){
+					main.showForemanMenu(level);
+				}
 			}
 		});
 	}
 }
-	
+
