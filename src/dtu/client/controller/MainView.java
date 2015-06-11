@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import dtu.client.service.KartotekServiceClientImpl;
 import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
+import dtu.client.ui.ProduktBatchMenu;
 import dtu.client.ui.RaavareBatchMenu;
 import dtu.client.ui.ReceptKomponentMenu;
 import dtu.client.ui.ReceptMenu;
@@ -75,6 +76,12 @@ public class MainView  {
 		RootPanel.get("nav").add(m);
 	}
 	
+	public void showProduktBatchMenu(){
+		RootPanel.get("nav").clear();
+		ProduktBatchMenu m = new ProduktBatchMenu(this);
+		RootPanel.get("nav").add(m);
+	}
+	
 	// Call back handlers
 	public void addOperator() {
 		contentView.openAddView();
@@ -97,6 +104,10 @@ public class MainView  {
 		contentView.openAddRaavareBatchView();
 	}
 	
+	public void addProduktBatchOperator() {
+		contentView.openAddProduktBatchView();
+	}
+	
 	public void showOperators() {
 		contentView.openBrowseView();
 	}
@@ -115,6 +126,14 @@ public class MainView  {
 	
 	public void showRecepts() {
 		contentView.openReceptBrowseView();
+	}
+	
+	public void showRaavareBatch() {
+		contentView.openRaavareBatchBrowseView();
+	}
+	
+	public void showProduktBatch() {
+		contentView.openProduktBatchBrowseView();
 	}
 	
 	public void showReceptKomponents() {

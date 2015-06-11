@@ -13,6 +13,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import dtu.client.service.KartotekService;
 import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.ProduktBatchDTO;
 import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
 import dtu.shared.ReceptDTO;
@@ -419,10 +420,10 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	@Override
 	public void createRaavareBatch(RaavareBatchDTO p) throws Exception {
 		try {
-			createReceptKomponentStmt.setInt(1, p.getRaavareId());
-			createReceptKomponentStmt.setInt(2, p.getRbId());
-			createReceptKomponentStmt.setDouble(3, p.getMaengde());
-			createReceptKomponentStmt.executeUpdate();
+			createRaavareBatchStmt.setInt(1, p.getRaavareId());
+			createRaavareBatchStmt.setInt(2, p.getRbId());
+			createRaavareBatchStmt.setDouble(3, p.getMaengde());
+			createRaavareBatchStmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException(" \"createRaavarebatch\" fejlede " + e.getMessage());
 		} 
@@ -512,5 +513,54 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		} 
 		return results;
 	}
-	
+
+
+	@Override
+	public void createProduktBatch(ProduktBatchDTO p) throws Exception {
+		try {
+			createProduktBatchStmt.setInt(1, p.getPb_ID());
+			createProduktBatchStmt.setInt(2, p.getStatus());
+			createProduktBatchStmt.setInt(3, p.getRecept_id());
+			createProduktBatchStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException(" \"createProduktBatcht\" fejlede "+ e.getMessage());
+		} 	
+	}
+
+	@Override
+	public List<ProduktBatchDTO> getProduktBatch() throws DALException {
+		List<ProduktBatchDTO> results = null;
+		ResultSet resultSet = null;
+		try 
+		{
+			resultSet = getProduktBatchStmt.executeQuery(); 
+			results = new ArrayList< ProduktBatchDTO >();
+
+			while (resultSet.next())
+			{
+				results.add( new ProduktBatchDTO(
+						resultSet.getInt("Pb_Id"),
+						resultSet.getInt("Status"),
+						resultSet.getInt("Recept_Id")
+						));
+			} 
+		} 
+		catch ( SQLException e )
+		{
+			throw new DALException(" \"getProduktBatch\" fejlede " + e.getMessage());
+		} 
+		finally
+		{
+			try 
+			{
+				resultSet.close();
+			} 
+			catch ( SQLException sqlException )
+			{
+				sqlException.printStackTrace();         
+				close();
+			} 
+		} 
+		return results;
+	}
 }

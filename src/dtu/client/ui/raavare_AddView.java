@@ -65,7 +65,7 @@ public class raavare_AddView extends Composite {
 		addTable.setWidget(3, 1, nameTxt);
 		addTable.setWidget(3, 2, nameRulesLbl);
 		
-		lvrLbl = new Label("Leverandør:");
+		lvrLbl = new Label("Leverandoer:");
 		lvrTxt = new TextBox();
 		Label lvrRulesLbl = new Label("(minimum 2 og maksimum 20 tegn)");
 		addTable.setWidget(5, 0, lvrLbl);

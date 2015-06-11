@@ -135,4 +135,9 @@ public class FieldVerifier {
 		return false;
 	}
 	
+	public static boolean isValidStatus(String status){
+		if(Integer.valueOf(status)>=0 && Integer.valueOf(status)<=2) return true;
+		return false;
+	}
+	
 }

@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.ProduktBatchDTO;
 import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
 import dtu.shared.ReceptDTO;
@@ -47,4 +48,8 @@ public interface KartotekService extends RemoteService {
 	//Raavarebatch
 	void createRaavareBatch(RaavareBatchDTO p) throws Exception;
 	List<RaavareBatchDTO> getRaavareBatch() throws DALException;
+	
+	//ProduktBatch
+	void createProduktBatch(ProduktBatchDTO p) throws Exception;
+	List<ProduktBatchDTO> getProduktBatch() throws DALException;
 }

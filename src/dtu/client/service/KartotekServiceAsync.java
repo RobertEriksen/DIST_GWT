@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dtu.shared.DALException;
 import dtu.shared.OperatoerDTO;
+import dtu.shared.ProduktBatchDTO;
 import dtu.shared.RaavareBatchDTO;
 import dtu.shared.RaavareDTO;
 import dtu.shared.ReceptDTO;
@@ -38,7 +39,6 @@ public interface KartotekServiceAsync {
 
 	void getReceptKomponenter(AsyncCallback<List<ReceptKomponentDTO>> callback);
 	
-	
 	//Recept
 	void createRecept(ReceptDTO newRecept, AsyncCallback<Void> asyncCallback);
 	
@@ -49,6 +49,9 @@ public interface KartotekServiceAsync {
 	
 	void getRaavareBatch(AsyncCallback<List<RaavareBatchDTO>> callback);
 
-	
-	
+	//ProduktBatch
+	void createProduktBatch(ProduktBatchDTO p, AsyncCallback<Void> callback) ;
+
+	void getProduktBatch(AsyncCallback<List<ProduktBatchDTO>> callback);
+
 }

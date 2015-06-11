@@ -63,5 +63,10 @@ public class AdministratorMenu extends Composite {
 		
 		Anchor Produktbatch_administration = new Anchor("Produktbatch administration");
 		hPanel.add(Produktbatch_administration);
+		Produktbatch_administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showProduktBatchMenu();
+			}
+		});
 	}
 }
