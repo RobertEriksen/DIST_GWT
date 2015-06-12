@@ -27,7 +27,7 @@ public class WelcomeView extends Composite {
 		this.clientImpl = clientImpl;
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
-		Label welcomeLbl = new Label("Velkommen til kartoteket af CDIO gruppe 16. Du skal logge ind for at komme videre!");
+		Label welcomeLbl = new Label("Velkommen til kartoteket af CDIO gruppe 16");
 		welcomeLbl.addStyleName("spacing-vertical");
 		w.add(welcomeLbl);
 		
@@ -116,6 +116,74 @@ public class WelcomeView extends Composite {
 				});
 			}
 		});
+		
+		Label Superbruger = new Label("Superbruger");
+		Button SuperLogin = new Button("Log ind som superbruger");
+		SuperLogin.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				mainView.showAdministratorMenu(4);
+				
+				// clear view and show new label
+				w.clear();
+				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 4);
+				loginLbl.addStyleName("spacing-vertical");
+				w.add(loginLbl);
+			}
+			});
+	
+		
+		Label Pharmaceut = new Label("Pharmaceut");
+		Button Pharmaceutlogin = new Button("Log ind som Pharmaceut");
+		Pharmaceutlogin.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				mainView.showpharmacistMenu(3);
+				
+				// clear view and show new label
+				w.clear();
+				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 3);
+				loginLbl.addStyleName("spacing-vertical");
+				w.add(loginLbl);
+			}
+			});
+		
+		Label Værkføre = new Label("Værkføre");
+		Button Værkførelogin = new Button("Log ind som værkføre");
+		Værkførelogin.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				mainView.showForemanMenu(2);
+				
+				// clear view and show new label
+				w.clear();
+				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 2);
+				loginLbl.addStyleName("spacing-vertical");
+				w.add(loginLbl);
+			}
+			});
+		
+		Label Operatør = new Label("Operatør login");
+		Button Operatørlogin = new Button("Log ind som Operatør");
+		Operatørlogin.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				Window.alert("Du er operatør og har ikke adgang til programmet");
+			}
+			});
+		
+		loginTable.setWidget(3, 0, Superbruger);
+		loginTable.setWidget(3, 1, SuperLogin);
+		
+		
+		loginTable.setWidget(4, 0, Pharmaceut);
+		loginTable.setWidget(4, 1, Pharmaceutlogin);
+		
+		loginTable.setWidget(5, 0, Værkføre);
+		loginTable.setWidget(5, 1, Værkførelogin);
+		
+		loginTable.setWidget(6, 0, Operatør);
+		loginTable.setWidget(6, 1, Operatørlogin);
 		
 		w.add(loginTable);
 	}
