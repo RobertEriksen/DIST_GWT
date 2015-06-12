@@ -16,14 +16,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import dtu.client.service.KartotekServiceClientImpl;
 import dtu.shared.OperatoerDTO;
 
-public class BrowseView extends Composite {
+public class UserBrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 	Button showInactiveOps;
 	boolean showInactive = false;
 
-	public BrowseView(KartotekServiceClientImpl clientImpl) {
+	public UserBrowseView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);

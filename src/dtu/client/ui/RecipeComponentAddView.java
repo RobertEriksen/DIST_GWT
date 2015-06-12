@@ -21,7 +21,7 @@ import dtu.shared.OperatoerDTO;
 import dtu.shared.ReceptDTO;
 import dtu.shared.ReceptKomponentDTO;
 
-public class receptKomponent_AddView extends Composite {
+public class RecipeComponentAddView extends Composite {
 	VerticalPanel addPanel;
 
 	// controls
@@ -46,7 +46,7 @@ public class receptKomponent_AddView extends Composite {
 	boolean passValid = false;
 	boolean activeValid = false;
 
-	public receptKomponent_AddView(final KartotekServiceClientImpl clientImpl) {
+	public RecipeComponentAddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);

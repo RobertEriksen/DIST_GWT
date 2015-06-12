@@ -19,14 +19,14 @@ import dtu.shared.RaavareBatchDTO;
 import dtu.shared.ReceptDTO;
 import dtu.shared.ReceptKomponentDTO;
 
-public class RaavareBatch_BrowseView extends Composite {
+public class CommodityBatchBrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public RaavareBatch_BrowseView(KartotekServiceClientImpl clientImpl) {
+	public CommodityBatchBrowseView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);

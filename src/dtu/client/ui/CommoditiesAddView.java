@@ -20,7 +20,7 @@ import dtu.shared.FieldVerifier;
 import dtu.shared.RaavareDTO;
 import dtu.shared.RaavareDTO;
 
-public class raavare_AddView extends Composite {
+public class CommoditiesAddView extends Composite {
 	VerticalPanel addPanel;
 
 	// controls
@@ -39,7 +39,7 @@ public class raavare_AddView extends Composite {
 	boolean nameValid = false;
 	boolean lvrValid = false;
 
-	public raavare_AddView(final KartotekServiceClientImpl clientImpl) {
+	public CommoditiesAddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -87,7 +87,7 @@ public class raavare_AddView extends Composite {
 			public void onClick(ClickEvent event) {
 
 				// create new RaavareDTO
-				//lav korrekt konstuktør
+				//lav korrekt konstuktï¿½r
 				RaavareDTO newRaavare = new RaavareDTO(Integer.valueOf(idTxt.getText()), nameTxt.getText(), lvrTxt.getText());
 				// save on server
 				clientImpl.service.createRaavare(newRaavare, new AsyncCallback<Void>() {

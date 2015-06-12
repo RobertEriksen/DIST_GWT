@@ -22,7 +22,7 @@ import dtu.shared.FieldVerifier;
 import dtu.shared.OperatoerDTO;
 
 
-public class EditView extends Composite {
+public class UserEditView extends Composite {
 	VerticalPanel editPanel;
 	FlexTable t;
 
@@ -55,7 +55,7 @@ public class EditView extends Composite {
 	Button showInactiveOps;
 	boolean showInactive = false;
 
-	public EditView(KartotekServiceClientImpl clientImpl) {
+	public UserEditView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 
 		editPanel = new VerticalPanel();

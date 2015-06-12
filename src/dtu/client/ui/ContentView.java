@@ -34,38 +34,38 @@ public class ContentView extends Composite {
 
 	public void openAddView() {
 		contentPanel.clear();
-		AddView addView = new AddView(clientImpl);
-		contentPanel.add(addView);
+		UserAddView userAddView = new UserAddView(clientImpl);
+		contentPanel.add(userAddView);
 	}
 	
 	public void openAddRaavareView() {
 		contentPanel.clear();
-		raavare_AddView addView = new raavare_AddView(clientImpl);
+		CommoditiesAddView addView = new CommoditiesAddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
 	
 	public void openAddReceptKomponentView() {
 		contentPanel.clear();
-		receptKomponent_AddView addView = new receptKomponent_AddView(clientImpl);
+		RecipeComponentAddView addView = new RecipeComponentAddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
 	public void openAddReceptView() {
 		contentPanel.clear();
-		Recept_AddView addView = new Recept_AddView(clientImpl);
+		RecipeAddView addView = new RecipeAddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
 	public void openAddRaavareBatchView() {
 		contentPanel.clear();
-		RaavareBatch_AddView addView = new RaavareBatch_AddView(clientImpl);
+		CommoditiesBatchAddView addView = new CommoditiesBatchAddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
 	public void openAddProduktBatchView() {
 		contentPanel.clear();
-		ProduktBatch_AddView addView = new ProduktBatch_AddView(clientImpl);
+		ProductBatchAddView addView = new ProductBatchAddView(clientImpl);
 		contentPanel.add(addView);
 	}
 	
@@ -75,13 +75,13 @@ public class ContentView extends Composite {
 
 	public void openBrowseView() {
 		contentPanel.clear();
-		BrowseView browseView = new BrowseView(clientImpl);
-		contentPanel.add(browseView);
+		UserBrowseView userBrowseView = new UserBrowseView(clientImpl);
+		contentPanel.add(userBrowseView);
 	}
 	
 	public void openReceptBrowseView() {
 		contentPanel.clear();
-		Recept_BrowseView browseView = new Recept_BrowseView(clientImpl);
+		RecipeBrowseView browseView = new RecipeBrowseView(clientImpl);
 		contentPanel.add(browseView);
 	}
 	
@@ -93,37 +93,37 @@ public class ContentView extends Composite {
 	
 	public void openReceptKomponentBrowseView() {
 		contentPanel.clear();
-		ReceptKomponent_BrowseView browseView = new ReceptKomponent_BrowseView(clientImpl);
+		RecipeComponentBrowseView browseView = new RecipeComponentBrowseView(clientImpl);
 		contentPanel.add(browseView);
 	}
 
 	public void openDeleteView() {
 		contentPanel.clear();
-		DeleteView deleteView = new DeleteView(clientImpl);
-		contentPanel.add(deleteView);
+		UserDeleteView userDeleteView = new UserDeleteView(clientImpl);
+		contentPanel.add(userDeleteView);
 	}
 
 	public void openEditView() {
 		contentPanel.clear();
-		EditView editView = new EditView(clientImpl);
-		contentPanel.add(editView);
+		UserEditView userEditView = new UserEditView(clientImpl);
+		contentPanel.add(userEditView);
 	}
 
 	public void openEditRaavareView() {
 		contentPanel.clear();
-		RaavareEditView editView = new RaavareEditView(clientImpl);
+		CommodityEditView editView = new CommodityEditView(clientImpl);
 		contentPanel.add(editView);
 	}
 
 	public void openRaavareBatchBrowseView() {
 		contentPanel.clear();
-		RaavareBatch_BrowseView browseView = new RaavareBatch_BrowseView(clientImpl);
+		CommodityBatchBrowseView browseView = new CommodityBatchBrowseView(clientImpl);
 		contentPanel.add(browseView);
 	}
 	
 	public void openProduktBatchBrowseView() {
 		contentPanel.clear();
-		ProduktBatch_BrowseView browseView = new ProduktBatch_BrowseView(clientImpl);
+		ProductBatchBrowseView browseView = new ProductBatchBrowseView(clientImpl);
 		contentPanel.add(browseView);
 	}
 }

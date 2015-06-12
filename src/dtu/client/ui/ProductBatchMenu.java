@@ -8,26 +8,26 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dtu.client.controller.MainView;
 
-public class RaavareBatchMenu extends Composite {
+public class ProductBatchMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 
 
-	public RaavareBatchMenu(final MainView main, final int level) {
+	public ProductBatchMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 
-		Anchor Opret_RaavareBatch = new Anchor("Opret RåvareBatch");
-		hPanel.add(Opret_RaavareBatch);
-		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
+		Anchor Opret_ProduktBatch = new Anchor("Opret ProduktBatch");
+		hPanel.add(Opret_ProduktBatch);
+		Opret_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addRaavareBatchOperator();
+				main.addProduktBatchOperator();
 			}
 		});
 
-		Anchor Vis_RaavareBatch = new Anchor("Vis RåvareBatch");
-		hPanel.add(Vis_RaavareBatch);
-		Vis_RaavareBatch.addClickHandler(new ClickHandler(){
+		Anchor Vis_ProduktBatch = new Anchor("Vis ProduktBatch");
+		hPanel.add(Vis_ProduktBatch);
+		Vis_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareBatch();
+				main.showProduktBatch();
 			}
 		});
 

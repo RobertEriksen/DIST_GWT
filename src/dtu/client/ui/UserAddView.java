@@ -19,7 +19,7 @@ import dtu.client.service.KartotekServiceClientImpl;
 import dtu.shared.FieldVerifier;
 import dtu.shared.OperatoerDTO;
 
-public class AddView extends Composite {
+public class UserAddView extends Composite {
 	VerticalPanel addPanel;
 
 	// controls
@@ -47,7 +47,7 @@ public class AddView extends Composite {
 	boolean activeValid = false;
 	boolean levelValid = false;
 
-	public AddView(final KartotekServiceClientImpl clientImpl) {
+	public UserAddView(final KartotekServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);

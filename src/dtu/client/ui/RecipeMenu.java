@@ -8,29 +8,29 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dtu.client.controller.MainView;
 
-public class raavareMenu extends Composite {
+public class RecipeMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
-	
-	
-	public raavareMenu(final MainView main, final int level) {
+
+
+	public RecipeMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
-		
-		Anchor tilfoej_raavare = new Anchor("tilføj råvare");
-		hPanel.add(tilfoej_raavare);
-		tilfoej_raavare.addClickHandler(new ClickHandler(){
+
+		Anchor tilfoej_recept = new Anchor("Tilføj Recept");
+		hPanel.add(tilfoej_recept);
+		tilfoej_recept.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addraavareOperator();
+				main.addreceptOperator();
 			}
 		});
-		
-		Anchor ret_raavare = new Anchor("ret råvare / vis");
+
+		Anchor ret_raavare = new Anchor("Vis Recept");
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.editRaavare();
+				main.showRecepts();
 			}
 		});
-		
+
 		Anchor back = new Anchor("Tilbage");
 		hPanel.add(back);
 		back.addClickHandler(new ClickHandler(){
@@ -42,12 +42,12 @@ public class raavareMenu extends Composite {
 				else if(level == 3){
 					main.showpharmacistMenu(level);
 				}
-				
+
 				else if(level == 2){
 					main.showForemanMenu(level);
+				}
 			}
-		}
-	});
+		});
 	}
 }
-	
+

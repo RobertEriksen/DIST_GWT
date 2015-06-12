@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import dtu.client.service.KartotekServiceClientImpl;
 import dtu.shared.OperatoerDTO;
 
-public class DeleteView extends Composite {
+public class UserDeleteView extends Composite {
 	VerticalPanel deletePanel;
 	FlexTable t;
 
@@ -26,7 +26,7 @@ public class DeleteView extends Composite {
 
 	int eventRowIndex;
 
-	public DeleteView(KartotekServiceClientImpl clientImpl) {
+	public UserDeleteView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		deletePanel = new VerticalPanel();
 		initWidget(this.deletePanel);

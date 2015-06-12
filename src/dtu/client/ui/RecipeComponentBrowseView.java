@@ -18,14 +18,14 @@ import dtu.shared.OperatoerDTO;
 import dtu.shared.ReceptDTO;
 import dtu.shared.ReceptKomponentDTO;
 
-public class ReceptKomponent_BrowseView extends Composite {
+public class RecipeComponentBrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public ReceptKomponent_BrowseView(KartotekServiceClientImpl clientImpl) {
+	public RecipeComponentBrowseView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);

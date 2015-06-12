@@ -19,14 +19,14 @@ import dtu.shared.ProduktBatchDTO;
 import dtu.shared.ReceptDTO;
 import dtu.shared.ReceptKomponentDTO;
 
-public class ProduktBatch_BrowseView extends Composite {
+public class ProductBatchBrowseView extends Composite {
 	KartotekServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public ProduktBatch_BrowseView(KartotekServiceClientImpl clientImpl) {
+	public ProductBatchBrowseView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);

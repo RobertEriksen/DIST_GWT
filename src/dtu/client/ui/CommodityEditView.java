@@ -23,7 +23,7 @@ import dtu.shared.OperatoerDTO;
 import dtu.shared.RaavareDTO;
 
 
-public class RaavareEditView extends Composite {
+public class CommodityEditView extends Composite {
 	VerticalPanel editPanel;
 	FlexTable t;
 
@@ -48,7 +48,7 @@ public class RaavareEditView extends Composite {
 	Anchor previousCancel = null;
 
 
-	public RaavareEditView(KartotekServiceClientImpl clientImpl) {
+	public CommodityEditView(KartotekServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);

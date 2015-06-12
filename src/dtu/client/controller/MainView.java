@@ -8,12 +8,12 @@ import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
 import dtu.client.ui.ForemanMenu;
 import dtu.client.ui.PharmacistMenu;
-import dtu.client.ui.ProduktBatchMenu;
-import dtu.client.ui.RaavareBatchMenu;
-import dtu.client.ui.ReceptKomponentMenu;
-import dtu.client.ui.ReceptMenu;
+import dtu.client.ui.ProductBatchMenu;
+import dtu.client.ui.CommoditiesBatchMenu;
+import dtu.client.ui.RecipeComponentMenu;
+import dtu.client.ui.RecipeMenu;
 import dtu.client.ui.UserAdminMenu;
-import dtu.client.ui.raavareMenu;
+import dtu.client.ui.CommoditiesMenu;
 
 
 public class MainView  {
@@ -76,25 +76,25 @@ public class MainView  {
 	
 	public void showRaavareMenu(int level){
 		RootPanel.get("nav").clear();
-		raavareMenu m = new raavareMenu(this, level);
+		CommoditiesMenu m = new CommoditiesMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 
 	public void showReceptKomponentMenu(int level){
 		RootPanel.get("nav").clear();
-		ReceptKomponentMenu m = new ReceptKomponentMenu(this, level);
+		RecipeComponentMenu m = new RecipeComponentMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
 	public void showRaavareBatchMenu(int level){
 		RootPanel.get("nav").clear();
-		RaavareBatchMenu m = new RaavareBatchMenu(this, level);
+		CommoditiesBatchMenu m = new CommoditiesBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
 	public void showProduktBatchMenu(int level){
 		RootPanel.get("nav").clear();
-		ProduktBatchMenu m = new ProduktBatchMenu(this, level);
+		ProductBatchMenu m = new ProductBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
@@ -158,7 +158,7 @@ public class MainView  {
 
 	public void showReceptMenu(int level) {
 		RootPanel.get("nav").clear();
-		ReceptMenu m = new ReceptMenu(this, level);
+		RecipeMenu m = new RecipeMenu(this, level);
 		RootPanel.get("nav").add(m);		
 	}
 	
