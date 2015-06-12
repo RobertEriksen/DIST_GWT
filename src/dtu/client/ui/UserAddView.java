@@ -122,7 +122,7 @@ public class UserAddView extends Composite {
 				UserDTO newOperatoer = new UserDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 				// save on server
-				clientImpl.service.createOperatoer(newOperatoer, new AsyncCallback<Void>() {
+				clientImpl.service.createUser(newOperatoer, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

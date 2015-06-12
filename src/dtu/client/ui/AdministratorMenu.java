@@ -23,8 +23,7 @@ public class AdministratorMenu extends Composite {
 				main.showUserMenu(level);
 			}
 		});
-
-
+		
 		Anchor Raavare_administration = new Anchor("Råvare");
 		hPanel.add(Raavare_administration);
 		// use unicode escape sequence \u00F8 for '�'

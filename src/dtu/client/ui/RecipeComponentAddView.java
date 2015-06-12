@@ -106,7 +106,7 @@ public class RecipeComponentAddView extends Composite {
 				ReceptKomponentDTO newReceptKomponent = new ReceptKomponentDTO(Integer.valueOf(receptIdTxt.getText()), Integer.valueOf(raavareIdTxt.getText()), Double.valueOf(nomNettoTxt.getText()) , Double.valueOf(toleranceTxt.getText()));
 				
 				// save on server
-				clientImpl.service.createReceptKomponent(newReceptKomponent, new AsyncCallback<Void>() {
+				clientImpl.service.createRecipeComponent(newReceptKomponent, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

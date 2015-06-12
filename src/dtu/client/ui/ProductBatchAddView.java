@@ -95,7 +95,7 @@ public class ProductBatchAddView extends Composite {
 				ProductBatchDTO newProduktBatch= new ProductBatchDTO(Integer.valueOf(produktBatchIdTxt.getText()), Integer.valueOf(statusTxt.getText()), Integer.valueOf(receptIdTxt.getText()));
 				
 				// save on server
-				clientImpl.service.createProduktBatch(newProduktBatch, new AsyncCallback<Void>() {
+				clientImpl.service.createProductBatch(newProduktBatch, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

@@ -58,7 +58,7 @@ public class UserDeleteView extends Composite {
 		t.setText(0, 6, "Niveau");
 
 
-		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
+		clientImpl.service.getUser(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -110,7 +110,7 @@ public class UserDeleteView extends Composite {
 				public void onClick(ClickEvent event) {
 
 					// delete object with id in back end					
-					clientImpl.service.deleteOperator(Integer.parseInt(t.getText(eventRowIndex, 0)), new AsyncCallback<Void>() {
+					clientImpl.service.deleteUser(Integer.parseInt(t.getText(eventRowIndex, 0)), new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

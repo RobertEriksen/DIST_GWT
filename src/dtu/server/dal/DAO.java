@@ -154,7 +154,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	
 	
 	@Override
-	public void deleteOperator(int id) throws DALException {
+	public void deleteUser(int id) throws DALException {
 		try {
 			deleteUserStmt.setInt(1, id);
 			deleteUserStmt.executeUpdate();
@@ -164,7 +164,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 
 	@Override
-	public List<UserDTO> getOperators() throws DALException {
+	public List<UserDTO> getUser() throws DALException {
 		List<UserDTO> results = null;
 		ResultSet resultSet = null;
 
@@ -217,7 +217,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 	
 	@Override
-	public void createOperatoer(UserDTO p) throws Exception {
+	public void createUser(UserDTO p) throws Exception {
 		try {
 			createUserStmt.setString(1, p.getOprNavn());
 			createUserStmt.setString(2, p.getIni());
@@ -232,7 +232,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 
 	@Override
-	public void updateOperatoer(UserDTO p) throws Exception {
+	public void updateUser(UserDTO p) throws Exception {
 		try {
 			updateUserStmt.setString(1, p.getOprNavn());
 			updateUserStmt.setString(2, p.getIni());
@@ -297,7 +297,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 
 	@Override
-	public void createRaavare(CommoditiesDTO p) throws Exception {
+	public void createCommodity(CommoditiesDTO p) throws Exception {
 		try {
 			createCommoditiesStmt.setInt(1, p.getRvrId());
 			createCommoditiesStmt.setString(2, p.getRvrNavn());
@@ -311,7 +311,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 
 	@Override
-	public void updateRaavare(CommoditiesDTO p) throws Exception {
+	public void updateCommodity(CommoditiesDTO p) throws Exception {
 		try {
 			updateCommoditiesStmt.setString(1, p.getRvrNavn());
 			updateCommoditiesStmt.setString(2, p.getlvr());
@@ -324,7 +324,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 
 	@Override
-	public List<CommoditiesDTO> getRaavarer() throws Exception {
+	public List<CommoditiesDTO> getCommodity() throws Exception {
 		List<CommoditiesDTO> results = null;
 		ResultSet resultSet = null;
 
@@ -363,7 +363,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	//CREATE RECEPT
 	
 	@Override
-	public void createReceptKomponent(ReceptKomponentDTO p) throws Exception {
+	public void createRecipeComponent(ReceptKomponentDTO p) throws Exception {
 		try {
 			createRecipeComponentStmt.setInt(1, p.getRcpId());
 			createRecipeComponentStmt.setInt(2, p.getRvrId());
@@ -378,7 +378,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	// Vis RECEPT
 	
 	@Override
-	public List<ReceptKomponentDTO> getReceptKomponenter() throws DALException {
+	public List<ReceptKomponentDTO> getRecipeComponent() throws DALException {
 		List<ReceptKomponentDTO> results = null;
 		ResultSet resultSet = null;
 		try 
@@ -418,7 +418,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	//R�VAREBATCH
 	//Create tuple
 	@Override
-	public void createRaavareBatch(CommoditiesBatchDTO p) throws Exception {
+	public void createCommodityBatch(CommoditiesBatchDTO p) throws Exception {
 		try {
 			createCommoditiesBatchStmt.setInt(1, p.getRaavareId());
 			createCommoditiesBatchStmt.setInt(2, p.getRbId());
@@ -430,7 +430,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 	
 	@Override
-	public List<CommoditiesBatchDTO> getRaavareBatch() throws DALException {
+	public List<CommoditiesBatchDTO> getCommodityBatch() throws DALException {
 		List<CommoditiesBatchDTO> results = null;
 		ResultSet resultSet = null;
 		try 
@@ -467,7 +467,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 
 	@Override
-	public void createRecept(RecipeDTO p) throws Exception {
+	public void createRecipe(RecipeDTO p) throws Exception {
 		try {
 			createRecipeStmt.setInt(1, p.getRcpId());
 			createRecipeStmt.setString(2, p.getRecept_Navn());
@@ -479,7 +479,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 
 	@Override
-	public List<RecipeDTO> getRecepter() throws DALException {
+	public List<RecipeDTO> getRecipe() throws DALException {
 		List<RecipeDTO> results = null;
 		ResultSet resultSet = null;
 		try 
@@ -516,7 +516,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 
 	@Override
-	public void createProduktBatch(ProductBatchDTO p) throws Exception {
+	public void createProductBatch(ProductBatchDTO p) throws Exception {
 		try {
 			createProductBatchStmt.setInt(1, p.getPb_ID());
 			createProductBatchStmt.setInt(2, p.getStatus());
@@ -528,7 +528,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 	}
 
 	@Override
-	public List<ProductBatchDTO> getProduktBatch() throws DALException {
+	public List<ProductBatchDTO> getProductBatch() throws DALException {
 		List<ProductBatchDTO> results = null;
 		ResultSet resultSet = null;
 		try 

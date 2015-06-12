@@ -80,7 +80,7 @@ public class RecipeAddView extends Composite {
 				RecipeDTO newRecept = new RecipeDTO(Integer.valueOf(receptIdTxt.getText()), receptnameTxt.getText());
 				
 				// save on server
-				clientImpl.service.createRecept(newRecept, new AsyncCallback<Void>() {
+				clientImpl.service.createRecipe(newRecept, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

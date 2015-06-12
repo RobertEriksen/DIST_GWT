@@ -86,7 +86,7 @@ public class RecipeBrowseView extends Composite {
 	}
 	
 	private void getRecepter() {
-		clientImpl.service.getRecepter(new AsyncCallback<List<RecipeDTO>>() {
+		clientImpl.service.getRecipe(new AsyncCallback<List<RecipeDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

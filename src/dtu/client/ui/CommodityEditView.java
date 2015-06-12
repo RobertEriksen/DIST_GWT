@@ -90,7 +90,7 @@ public class CommodityEditView extends Composite {
 	}
 
 	private void getRaavarer() {
-		clientImpl.service.getRaavarer(new AsyncCallback<List<CommoditiesDTO>>() {
+		clientImpl.service.getCommodity(new AsyncCallback<List<CommoditiesDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -151,7 +151,7 @@ public class CommodityEditView extends Composite {
 					CommoditiesDTO commoditiesDTO = new CommoditiesDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), lvrTxt.getText());
 
 
-					clientImpl.service.updateRaavare(commoditiesDTO, new AsyncCallback<Void>() {
+					clientImpl.service.updateCommodity(commoditiesDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

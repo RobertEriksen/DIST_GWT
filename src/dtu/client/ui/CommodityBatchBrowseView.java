@@ -62,7 +62,7 @@ public class CommodityBatchBrowseView extends Composite {
 	}
 	
 	private void getReceptKomponenter() {
-		clientImpl.service.getRaavareBatch(new AsyncCallback<List<CommoditiesBatchDTO>>() {
+		clientImpl.service.getCommodityBatch(new AsyncCallback<List<CommoditiesBatchDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

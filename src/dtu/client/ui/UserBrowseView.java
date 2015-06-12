@@ -84,7 +84,7 @@ public class UserBrowseView extends Composite {
 	}
 	
 	private void getOperators() {
-		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
+		clientImpl.service.getUser(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

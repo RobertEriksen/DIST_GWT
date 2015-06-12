@@ -96,7 +96,7 @@ public class CommoditiesBatchAddView extends Composite {
 				CommoditiesBatchDTO newRaavareBatch= new CommoditiesBatchDTO(Integer.valueOf(raavareBatchIdTxt.getText()), Integer.valueOf(raavareidTxt.getText()), Double.valueOf(maengdeTxt.getText()));
 				
 				// save on server
-				clientImpl.service.createRaavareBatch(newRaavareBatch, new AsyncCallback<Void>() {
+				clientImpl.service.createCommodityBatch(newRaavareBatch, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

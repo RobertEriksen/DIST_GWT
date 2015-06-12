@@ -87,7 +87,7 @@ public class ProductBatchBrowseView extends Composite {
 	}
 	
 	private void getProduktBatches() {
-		clientImpl.service.getProduktBatch(new AsyncCallback<List<ProductBatchDTO>>() {
+		clientImpl.service.getProductBatch(new AsyncCallback<List<ProductBatchDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

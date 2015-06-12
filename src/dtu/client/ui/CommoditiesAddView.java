@@ -90,7 +90,7 @@ public class CommoditiesAddView extends Composite {
 				//lav korrekt konstukt�r
 				CommoditiesDTO newRaavare = new CommoditiesDTO(Integer.valueOf(idTxt.getText()), nameTxt.getText(), lvrTxt.getText());
 				// save on server
-				clientImpl.service.createRaavare(newRaavare, new AsyncCallback<Void>() {
+				clientImpl.service.createCommodity(newRaavare, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {

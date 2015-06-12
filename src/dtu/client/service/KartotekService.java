@@ -24,32 +24,32 @@ public interface KartotekService extends RemoteService {
 	// in the onFailure call back method
 	
 	// Operat�rer
-	void createOperatoer(UserDTO op) throws Exception;
-	void deleteOperator(int id) throws Exception;
-	void updateOperatoer(UserDTO op) throws Exception;
-	List<UserDTO> getOperators() throws Exception;
+	void createUser(UserDTO op) throws Exception;
+	void deleteUser(int id) throws Exception;
+	void updateUser(UserDTO op) throws Exception;
+	List<UserDTO> getUser() throws Exception;
 	int getSize() throws Exception;
 	
 	int login(int id, String password) throws Exception;
 	
 	// R�varer
-	void createRaavare(CommoditiesDTO op) throws Exception;
-	void updateRaavare(CommoditiesDTO op) throws Exception;
-	List<CommoditiesDTO> getRaavarer() throws Exception;
+	void createCommodity(CommoditiesDTO op) throws Exception;
+	void updateCommodity(CommoditiesDTO op) throws Exception;
+	List<CommoditiesDTO> getCommodity() throws Exception;
 	
 	//Receptkomponent
-	void createReceptKomponent(ReceptKomponentDTO p) throws Exception;
-	List<ReceptKomponentDTO> getReceptKomponenter() throws DALException;
+	void createRecipeComponent(ReceptKomponentDTO p) throws Exception;
+	List<ReceptKomponentDTO> getRecipeComponent() throws DALException;
 	
 	//Recept
-	void createRecept(RecipeDTO p) throws Exception;
-	List<RecipeDTO> getRecepter() throws DALException; 
+	void createRecipe(RecipeDTO p) throws Exception;
+	List<RecipeDTO> getRecipe() throws DALException; 
 	
 	//Raavarebatch
-	void createRaavareBatch(CommoditiesBatchDTO p) throws Exception;
-	List<CommoditiesBatchDTO> getRaavareBatch() throws DALException;
+	void createCommodityBatch(CommoditiesBatchDTO p) throws Exception;
+	List<CommoditiesBatchDTO> getCommodityBatch() throws DALException;
 	
 	//ProduktBatch
-	void createProduktBatch(ProductBatchDTO p) throws Exception;
-	List<ProductBatchDTO> getProduktBatch() throws DALException;
+	void createProductBatch(ProductBatchDTO p) throws Exception;
+	List<ProductBatchDTO> getProductBatch() throws DALException;
 }

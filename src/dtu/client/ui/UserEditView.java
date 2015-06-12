@@ -138,7 +138,7 @@ public class UserEditView extends Composite {
 	}
 
 	private void getOperators() {
-		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
+		clientImpl.service.getUser(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -231,7 +231,7 @@ public class UserEditView extends Composite {
 					UserDTO userDTO = new UserDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
 							cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
-					clientImpl.service.updateOperatoer(userDTO, new AsyncCallback<Void>() {
+					clientImpl.service.updateUser(userDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

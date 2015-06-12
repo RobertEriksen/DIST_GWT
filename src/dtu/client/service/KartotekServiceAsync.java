@@ -17,41 +17,41 @@ public interface KartotekServiceAsync {
 	void login(int id, String password, AsyncCallback<Integer> callback);
 
 	// Operat�rer
-	void createOperatoer(UserDTO p, AsyncCallback<Void> callback);
+	void createUser(UserDTO p, AsyncCallback<Void> callback);
 
-	void updateOperatoer(UserDTO p, AsyncCallback<Void> callback);
+	void updateUser(UserDTO p, AsyncCallback<Void> callback);
 
-	void getOperators(AsyncCallback<List<UserDTO>> callback);
+	void getUser(AsyncCallback<List<UserDTO>> callback);
 
-	void deleteOperator(int id, AsyncCallback<Void> callback);
+	void deleteUser(int id, AsyncCallback<Void> callback);
 
 	void getSize(AsyncCallback<Integer> callback);
 	
 	// R�varer
-	void createRaavare(CommoditiesDTO p, AsyncCallback<Void> callback);
+	void createCommodity(CommoditiesDTO p, AsyncCallback<Void> callback);
 	
-	void updateRaavare(CommoditiesDTO p, AsyncCallback<Void> callback);
+	void updateCommodity(CommoditiesDTO p, AsyncCallback<Void> callback);
 	
-	void getRaavarer(AsyncCallback<List<CommoditiesDTO>> callback);
+	void getCommodity(AsyncCallback<List<CommoditiesDTO>> callback);
 	
 	// Receptkomponent
-	void createReceptKomponent(ReceptKomponentDTO p, AsyncCallback<Void> callback);
+	void createRecipeComponent(ReceptKomponentDTO p, AsyncCallback<Void> callback);
 
-	void getReceptKomponenter(AsyncCallback<List<ReceptKomponentDTO>> callback);
+	void getRecipeComponent(AsyncCallback<List<ReceptKomponentDTO>> callback);
 	
 	//Recept
-	void createRecept(RecipeDTO newRecept, AsyncCallback<Void> asyncCallback);
+	void createRecipe(RecipeDTO newRecept, AsyncCallback<Void> asyncCallback);
 	
-	void getRecepter(AsyncCallback<List<RecipeDTO>> callback);
+	void getRecipe(AsyncCallback<List<RecipeDTO>> callback);
 	
 	//Raavarebatch
-	void createRaavareBatch(CommoditiesBatchDTO p, AsyncCallback<Void> callback) ;
+	void createCommodityBatch(CommoditiesBatchDTO p, AsyncCallback<Void> callback) ;
 	
-	void getRaavareBatch(AsyncCallback<List<CommoditiesBatchDTO>> callback);
+	void getCommodityBatch(AsyncCallback<List<CommoditiesBatchDTO>> callback);
 
 	//ProduktBatch
-	void createProduktBatch(ProductBatchDTO p, AsyncCallback<Void> callback) ;
+	void createProductBatch(ProductBatchDTO p, AsyncCallback<Void> callback) ;
 
-	void getProduktBatch(AsyncCallback<List<ProductBatchDTO>> callback);
+	void getProductBatch(AsyncCallback<List<ProductBatchDTO>> callback);
 
 }

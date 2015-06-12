@@ -19,16 +19,16 @@ public class DAOTests {
 DAO dao = new DAO();
 		
 //		System.out.println("Vi definere en liste med alle superbrugere");
-		List<UserDTO> ListBefore = dao.getOperators();
+		List<UserDTO> ListBefore = dao.getUser();
 		for (int i = 0; i < ListBefore.size(); i++) {
 			ListeB = ListeB + ListBefore.get(i).getOprNavn();
 			ListeB += ", ";
 		}
 		
 		UserDTO op = new UserDTO("Jens Peter", "JP", "0987654444", "PassJP10", 1, 4);
-		dao.createOperatoer(op);
+		dao.createUser(op);
 		
-		List<UserDTO> ListAfter = dao.getOperators();
+		List<UserDTO> ListAfter = dao.getUser();
 		for (int i = 0; i < ListAfter.size(); i++) {
 			ListeA = ListeA + ListAfter.get(i).getOprNavn();
 			ListeA += ", ";
@@ -37,8 +37,8 @@ DAO dao = new DAO();
 		if(ListeA.equals(ListeB)){
 			fail();
 		}
-		dao.deleteOperator(op.getOprId());
-		if(!dao.getOperators().get(5).getActive().equals(op.getActive())){
+		dao.deleteUser(op.getOprId());
+		if(!dao.getUser().get(5).getActive().equals(op.getActive())){
 			fail();
 		};	
 	}
