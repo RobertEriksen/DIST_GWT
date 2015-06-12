@@ -15,11 +15,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.RaavareBatchDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.CommoditiesBatchDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class CommoditiesBatchAddView extends Composite {
@@ -42,7 +42,7 @@ public class CommoditiesBatchAddView extends Composite {
 	boolean raavareid = false;
 	boolean maengde = false;
 
-	public CommoditiesBatchAddView(final KartotekServiceClientImpl clientImpl) {
+	public CommoditiesBatchAddView(final DatabaseServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -93,7 +93,7 @@ public class CommoditiesBatchAddView extends Composite {
 
 				// create new OperatoerDTO
 				
-				RaavareBatchDTO newRaavareBatch= new RaavareBatchDTO(Integer.valueOf(raavareBatchIdTxt.getText()), Integer.valueOf(raavareidTxt.getText()), Double.valueOf(maengdeTxt.getText()));
+				CommoditiesBatchDTO newRaavareBatch= new CommoditiesBatchDTO(Integer.valueOf(raavareBatchIdTxt.getText()), Integer.valueOf(raavareidTxt.getText()), Double.valueOf(maengdeTxt.getText()));
 				
 				// save on server
 				clientImpl.service.createRaavareBatch(newRaavareBatch, new AsyncCallback<Void>() {

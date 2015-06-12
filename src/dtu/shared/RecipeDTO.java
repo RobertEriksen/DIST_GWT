@@ -8,7 +8,7 @@ import java.io.Serializable;
 
  */
 
-public class ReceptDTO implements Serializable {
+public class RecipeDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
 	int recept_ID;
@@ -16,10 +16,10 @@ public class ReceptDTO implements Serializable {
 	/** Operatør navn min. 2 max. 20 karakterer */
 	String recept_Navn;
 	
-	public ReceptDTO() {
+	public RecipeDTO() {
 	}
 	
-	public ReceptDTO(int recept_ID, String raavare_Navn) {
+	public RecipeDTO(int recept_ID, String raavare_Navn) {
 		this.recept_ID= recept_ID;
 		this.recept_Navn = raavare_Navn;
 	}

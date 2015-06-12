@@ -13,20 +13,20 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.RaavareBatchDTO;
-import dtu.shared.ReceptDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
+import dtu.shared.CommoditiesBatchDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class CommodityBatchBrowseView extends Composite {
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public CommodityBatchBrowseView(KartotekServiceClientImpl clientImpl) {
+	public CommodityBatchBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -62,7 +62,7 @@ public class CommodityBatchBrowseView extends Composite {
 	}
 	
 	private void getReceptKomponenter() {
-		clientImpl.service.getRaavareBatch(new AsyncCallback<List<RaavareBatchDTO>>() {
+		clientImpl.service.getRaavareBatch(new AsyncCallback<List<CommoditiesBatchDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -70,7 +70,7 @@ public class CommodityBatchBrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<RaavareBatchDTO> result) {
+			public void onSuccess(List<CommoditiesBatchDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 					t.setText(i+1, 0, ""+result.get(i).getRaavareId());
 					t.setText(i+1, 1,""+ result.get(i).getRbId());

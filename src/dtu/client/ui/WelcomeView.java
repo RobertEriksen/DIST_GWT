@@ -15,15 +15,15 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dtu.client.controller.MainView;
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 
 
 public class WelcomeView extends Composite {
-	KartotekServiceClientImpl clientImpl;
-	TextBox operatoerIdTxt;
+	DatabaseServiceClientImpl clientImpl;
+	TextBox userIdTxt;
 	TextBox passwordTxt;
 	
-	public WelcomeView(final KartotekServiceClientImpl clientImpl, final MainView mainView) {
+	public WelcomeView(final DatabaseServiceClientImpl clientImpl, final MainView mainView) {
 		this.clientImpl = clientImpl;
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
@@ -47,11 +47,11 @@ public class WelcomeView extends Composite {
 		
 		FlexTable loginTable = new FlexTable();
 
-		Label operatoerIdLbl = new Label("ID:");
-		operatoerIdTxt = new TextBox();
-		operatoerIdTxt.setWidth("3em");
-		loginTable.setWidget(0, 0, operatoerIdLbl);
-		loginTable.setWidget(0, 1, operatoerIdTxt);
+		Label userIdLbl = new Label("ID:");
+		userIdTxt = new TextBox();
+		userIdTxt.setWidth("3em");
+		loginTable.setWidget(0, 0, userIdLbl);
+		loginTable.setWidget(0, 1, userIdTxt);
 		
 		Label passwordLbl = new Label("Password:");
 		passwordTxt = new PasswordTextBox();
@@ -65,7 +65,7 @@ public class WelcomeView extends Composite {
 		loginButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				clientImpl.service.login(Integer.valueOf(operatoerIdTxt.getText()), passwordTxt.getText(), new AsyncCallback<Integer>() {
+				clientImpl.service.login(Integer.valueOf(userIdTxt.getText()), passwordTxt.getText(), new AsyncCallback<Integer>() {
 
 					@Override
 					public void onSuccess(Integer result) {

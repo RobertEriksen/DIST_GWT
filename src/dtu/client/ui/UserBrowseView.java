@@ -13,17 +13,17 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
 
 public class UserBrowseView extends Composite {
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 	Button showInactiveOps;
 	boolean showInactive = false;
 
-	public UserBrowseView(KartotekServiceClientImpl clientImpl) {
+	public UserBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -84,7 +84,7 @@ public class UserBrowseView extends Composite {
 	}
 	
 	private void getOperators() {
-		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
+		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -92,7 +92,7 @@ public class UserBrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<OperatoerDTO> result) {
+			public void onSuccess(List<UserDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 					if (!showInactive) {
 						if (Integer.valueOf(result.get(i).getActive()) == 1) {

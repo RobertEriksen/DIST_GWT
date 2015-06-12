@@ -17,9 +17,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
+import dtu.shared.UserDTO;
 
 
 public class UserEditView extends Composite {
@@ -44,10 +44,10 @@ public class UserEditView extends Composite {
 
 	int eventRowIndex;
 
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 
 	// operator list
-	List<OperatoerDTO> operatoerer;
+	List<UserDTO> operatoerer;
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
@@ -55,7 +55,7 @@ public class UserEditView extends Composite {
 	Button showInactiveOps;
 	boolean showInactive = false;
 
-	public UserEditView(KartotekServiceClientImpl clientImpl) {
+	public UserEditView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 
 		editPanel = new VerticalPanel();
@@ -138,7 +138,7 @@ public class UserEditView extends Composite {
 	}
 
 	private void getOperators() {
-		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
+		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -146,7 +146,7 @@ public class UserEditView extends Composite {
 			}
 			
 			@Override
-			public void onSuccess(List<OperatoerDTO> result) {
+			public void onSuccess(List<UserDTO> result) {
 				// populate table and add delete anchor to each row
 				for (int rowIndex=0; rowIndex < result.size(); rowIndex++) {
 					if (!showInactive) {
@@ -228,10 +228,10 @@ public class UserEditView extends Composite {
 				public void onClick(ClickEvent event) {
 
 					// fill DTO with id and new values 
-					OperatoerDTO operatoerDTO = new OperatoerDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
+					UserDTO userDTO = new UserDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), iniTxt.getText(),
 							cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
-					clientImpl.service.updateOperatoer(operatoerDTO, new AsyncCallback<Void>() {
+					clientImpl.service.updateOperatoer(userDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

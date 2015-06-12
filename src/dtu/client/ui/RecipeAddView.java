@@ -15,10 +15,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class RecipeAddView extends Composite {
@@ -37,7 +37,7 @@ public class RecipeAddView extends Composite {
 	boolean receptValid = false;
 	boolean nameValid = false;
 	
-	public RecipeAddView(final KartotekServiceClientImpl clientImpl) {
+	public RecipeAddView(final DatabaseServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -77,7 +77,7 @@ public class RecipeAddView extends Composite {
 
 				// create new OperatoerDTO
 				
-				ReceptDTO newRecept = new ReceptDTO(Integer.valueOf(receptIdTxt.getText()), receptnameTxt.getText());
+				RecipeDTO newRecept = new RecipeDTO(Integer.valueOf(receptIdTxt.getText()), receptnameTxt.getText());
 				
 				// save on server
 				clientImpl.service.createRecept(newRecept, new AsyncCallback<Void>() {

@@ -19,7 +19,7 @@ public class CommoditiesMenu extends Composite {
 		hPanel.add(tilfoej_raavare);
 		tilfoej_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addraavareOperator();
+				main.addCommodities();
 			}
 		});
 		
@@ -27,7 +27,7 @@ public class CommoditiesMenu extends Composite {
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.editRaavare();
+				main.editCommodities();
 			}
 		});
 		

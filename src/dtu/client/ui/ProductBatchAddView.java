@@ -15,12 +15,12 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ProduktBatchDTO;
-import dtu.shared.RaavareBatchDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.ProductBatchDTO;
+import dtu.shared.CommoditiesBatchDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class ProductBatchAddView extends Composite {
@@ -43,7 +43,7 @@ public class ProductBatchAddView extends Composite {
 	boolean status = false;
 	boolean receptId = false;
 
-	public ProductBatchAddView(final KartotekServiceClientImpl clientImpl) {
+	public ProductBatchAddView(final DatabaseServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -92,7 +92,7 @@ public class ProductBatchAddView extends Composite {
 
 				// create new OperatoerDTO
 				
-				ProduktBatchDTO newProduktBatch= new ProduktBatchDTO(Integer.valueOf(produktBatchIdTxt.getText()), Integer.valueOf(statusTxt.getText()), Integer.valueOf(receptIdTxt.getText()));
+				ProductBatchDTO newProduktBatch= new ProductBatchDTO(Integer.valueOf(produktBatchIdTxt.getText()), Integer.valueOf(statusTxt.getText()), Integer.valueOf(receptIdTxt.getText()));
 				
 				// save on server
 				clientImpl.service.createProduktBatch(newProduktBatch, new AsyncCallback<Void>() {

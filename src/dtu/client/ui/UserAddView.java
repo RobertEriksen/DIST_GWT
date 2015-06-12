@@ -15,9 +15,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
+import dtu.shared.UserDTO;
 
 public class UserAddView extends Composite {
 	VerticalPanel addPanel;
@@ -47,7 +47,7 @@ public class UserAddView extends Composite {
 	boolean activeValid = false;
 	boolean levelValid = false;
 
-	public UserAddView(final KartotekServiceClientImpl clientImpl) {
+	public UserAddView(final DatabaseServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -119,7 +119,7 @@ public class UserAddView extends Composite {
 			public void onClick(ClickEvent event) {
 
 				// create new OperatoerDTO
-				OperatoerDTO newOperatoer = new OperatoerDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
+				UserDTO newOperatoer = new UserDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 				// save on server
 				clientImpl.service.createOperatoer(newOperatoer, new AsyncCallback<Void>() {

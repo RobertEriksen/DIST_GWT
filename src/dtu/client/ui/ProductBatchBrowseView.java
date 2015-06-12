@@ -13,20 +13,20 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ProduktBatchDTO;
-import dtu.shared.ReceptDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
+import dtu.shared.ProductBatchDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class ProductBatchBrowseView extends Composite {
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public ProductBatchBrowseView(KartotekServiceClientImpl clientImpl) {
+	public ProductBatchBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -87,7 +87,7 @@ public class ProductBatchBrowseView extends Composite {
 	}
 	
 	private void getProduktBatches() {
-		clientImpl.service.getProduktBatch(new AsyncCallback<List<ProduktBatchDTO>>() {
+		clientImpl.service.getProduktBatch(new AsyncCallback<List<ProductBatchDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -95,7 +95,7 @@ public class ProductBatchBrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<ProduktBatchDTO> result) {
+			public void onSuccess(List<ProductBatchDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 					t.setText(i+1, 0, ""+result.get(i).getPb_ID());
 					t.setText(i+1, 1,""+ result.get(i).getStatus());

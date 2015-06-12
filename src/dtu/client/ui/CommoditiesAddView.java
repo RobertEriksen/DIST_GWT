@@ -15,10 +15,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.RaavareDTO;
-import dtu.shared.RaavareDTO;
+import dtu.shared.CommoditiesDTO;
+import dtu.shared.CommoditiesDTO;
 
 public class CommoditiesAddView extends Composite {
 	VerticalPanel addPanel;
@@ -39,7 +39,7 @@ public class CommoditiesAddView extends Composite {
 	boolean nameValid = false;
 	boolean lvrValid = false;
 
-	public CommoditiesAddView(final KartotekServiceClientImpl clientImpl) {
+	public CommoditiesAddView(final DatabaseServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
 		initWidget(this.addPanel);
@@ -88,7 +88,7 @@ public class CommoditiesAddView extends Composite {
 
 				// create new RaavareDTO
 				//lav korrekt konstukt�r
-				RaavareDTO newRaavare = new RaavareDTO(Integer.valueOf(idTxt.getText()), nameTxt.getText(), lvrTxt.getText());
+				CommoditiesDTO newRaavare = new CommoditiesDTO(Integer.valueOf(idTxt.getText()), nameTxt.getText(), lvrTxt.getText());
 				// save on server
 				clientImpl.service.createRaavare(newRaavare, new AsyncCallback<Void>() {
 

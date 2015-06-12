@@ -5,34 +5,34 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dtu.shared.DALException;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ProduktBatchDTO;
-import dtu.shared.RaavareBatchDTO;
-import dtu.shared.RaavareDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.ProductBatchDTO;
+import dtu.shared.CommoditiesBatchDTO;
+import dtu.shared.CommoditiesDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public interface KartotekServiceAsync {
 
 	void login(int id, String password, AsyncCallback<Integer> callback);
 
-	// Operatører
-	void createOperatoer(OperatoerDTO p, AsyncCallback<Void> callback);
+	// Operatï¿½rer
+	void createOperatoer(UserDTO p, AsyncCallback<Void> callback);
 
-	void updateOperatoer(OperatoerDTO p, AsyncCallback<Void> callback);
+	void updateOperatoer(UserDTO p, AsyncCallback<Void> callback);
 
-	void getOperators(AsyncCallback<List<OperatoerDTO>> callback);
+	void getOperators(AsyncCallback<List<UserDTO>> callback);
 
 	void deleteOperator(int id, AsyncCallback<Void> callback);
 
 	void getSize(AsyncCallback<Integer> callback);
 	
-	// Råvarer
-	void createRaavare(RaavareDTO p, AsyncCallback<Void> callback);
+	// Rï¿½varer
+	void createRaavare(CommoditiesDTO p, AsyncCallback<Void> callback);
 	
-	void updateRaavare(RaavareDTO p, AsyncCallback<Void> callback);
+	void updateRaavare(CommoditiesDTO p, AsyncCallback<Void> callback);
 	
-	void getRaavarer(AsyncCallback<List<RaavareDTO>> callback);
+	void getRaavarer(AsyncCallback<List<CommoditiesDTO>> callback);
 	
 	// Receptkomponent
 	void createReceptKomponent(ReceptKomponentDTO p, AsyncCallback<Void> callback);
@@ -40,18 +40,18 @@ public interface KartotekServiceAsync {
 	void getReceptKomponenter(AsyncCallback<List<ReceptKomponentDTO>> callback);
 	
 	//Recept
-	void createRecept(ReceptDTO newRecept, AsyncCallback<Void> asyncCallback);
+	void createRecept(RecipeDTO newRecept, AsyncCallback<Void> asyncCallback);
 	
-	void getRecepter(AsyncCallback<List<ReceptDTO>> callback);
+	void getRecepter(AsyncCallback<List<RecipeDTO>> callback);
 	
 	//Raavarebatch
-	void createRaavareBatch(RaavareBatchDTO p, AsyncCallback<Void> callback) ;
+	void createRaavareBatch(CommoditiesBatchDTO p, AsyncCallback<Void> callback) ;
 	
-	void getRaavareBatch(AsyncCallback<List<RaavareBatchDTO>> callback);
+	void getRaavareBatch(AsyncCallback<List<CommoditiesBatchDTO>> callback);
 
 	//ProduktBatch
-	void createProduktBatch(ProduktBatchDTO p, AsyncCallback<Void> callback) ;
+	void createProduktBatch(ProductBatchDTO p, AsyncCallback<Void> callback) ;
 
-	void getProduktBatch(AsyncCallback<List<ProduktBatchDTO>> callback);
+	void getProduktBatch(AsyncCallback<List<ProductBatchDTO>> callback);
 
 }

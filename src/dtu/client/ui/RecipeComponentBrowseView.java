@@ -13,19 +13,19 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ReceptDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class RecipeComponentBrowseView extends Composite {
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public RecipeComponentBrowseView(KartotekServiceClientImpl clientImpl) {
+	public RecipeComponentBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);

@@ -12,21 +12,21 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
 
 public class UserDeleteView extends Composite {
 	VerticalPanel deletePanel;
 	FlexTable t;
 
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
 
 	int eventRowIndex;
 
-	public UserDeleteView(KartotekServiceClientImpl clientImpl) {
+	public UserDeleteView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		deletePanel = new VerticalPanel();
 		initWidget(this.deletePanel);
@@ -58,7 +58,7 @@ public class UserDeleteView extends Composite {
 		t.setText(0, 6, "Niveau");
 
 
-		clientImpl.service.getOperators(new AsyncCallback<List<OperatoerDTO>>() {
+		clientImpl.service.getOperators(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -66,7 +66,7 @@ public class UserDeleteView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<OperatoerDTO> result) {
+			public void onSuccess(List<UserDTO> result) {
 				// populate table and add delete anchor to each row
 				for (int i=0; i < result.size(); i++) {
 					if (Integer.valueOf(result.get(i).getActive()) == 1) {

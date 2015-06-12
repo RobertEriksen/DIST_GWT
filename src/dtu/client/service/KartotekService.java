@@ -7,11 +7,11 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import dtu.shared.DALException;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ProduktBatchDTO;
-import dtu.shared.RaavareBatchDTO;
-import dtu.shared.RaavareDTO;
-import dtu.shared.ReceptDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.ProductBatchDTO;
+import dtu.shared.CommoditiesBatchDTO;
+import dtu.shared.CommoditiesDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 
@@ -23,33 +23,33 @@ public interface KartotekService extends RemoteService {
 	// otherwise only generic server exceptions will be send back
 	// in the onFailure call back method
 	
-	// Operatører
-	void createOperatoer(OperatoerDTO op) throws Exception;
+	// Operatï¿½rer
+	void createOperatoer(UserDTO op) throws Exception;
 	void deleteOperator(int id) throws Exception;
-	void updateOperatoer(OperatoerDTO op) throws Exception;
-	List<OperatoerDTO> getOperators() throws Exception;
+	void updateOperatoer(UserDTO op) throws Exception;
+	List<UserDTO> getOperators() throws Exception;
 	int getSize() throws Exception;
 	
 	int login(int id, String password) throws Exception;
 	
-	// Råvarer
-	void createRaavare(RaavareDTO op) throws Exception;
-	void updateRaavare(RaavareDTO op) throws Exception;
-	List<RaavareDTO> getRaavarer() throws Exception;
+	// Rï¿½varer
+	void createRaavare(CommoditiesDTO op) throws Exception;
+	void updateRaavare(CommoditiesDTO op) throws Exception;
+	List<CommoditiesDTO> getRaavarer() throws Exception;
 	
 	//Receptkomponent
 	void createReceptKomponent(ReceptKomponentDTO p) throws Exception;
 	List<ReceptKomponentDTO> getReceptKomponenter() throws DALException;
 	
 	//Recept
-	void createRecept(ReceptDTO p) throws Exception;
-	List<ReceptDTO> getRecepter() throws DALException; 
+	void createRecept(RecipeDTO p) throws Exception;
+	List<RecipeDTO> getRecepter() throws DALException; 
 	
 	//Raavarebatch
-	void createRaavareBatch(RaavareBatchDTO p) throws Exception;
-	List<RaavareBatchDTO> getRaavareBatch() throws DALException;
+	void createRaavareBatch(CommoditiesBatchDTO p) throws Exception;
+	List<CommoditiesBatchDTO> getRaavareBatch() throws DALException;
 	
 	//ProduktBatch
-	void createProduktBatch(ProduktBatchDTO p) throws Exception;
-	List<ProduktBatchDTO> getProduktBatch() throws DALException;
+	void createProduktBatch(ProductBatchDTO p) throws Exception;
+	List<ProductBatchDTO> getProduktBatch() throws DALException;
 }

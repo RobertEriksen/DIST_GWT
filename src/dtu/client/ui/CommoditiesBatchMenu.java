@@ -19,7 +19,7 @@ public class CommoditiesBatchMenu extends Composite {
 		hPanel.add(Opret_RaavareBatch);
 		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addRaavareBatchOperator();
+				main.addCommoditiesBatch();
 			}
 		});
 
@@ -27,7 +27,7 @@ public class CommoditiesBatchMenu extends Composite {
 		hPanel.add(Vis_RaavareBatch);
 		Vis_RaavareBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareBatch();
+				main.showCommoditiesBatch();
 			}
 		});
 

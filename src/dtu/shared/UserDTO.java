@@ -8,7 +8,7 @@ import java.io.Serializable;
 
  */
 
-public class OperatoerDTO implements Serializable {
+public class UserDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
 	int oprId;
@@ -31,10 +31,10 @@ public class OperatoerDTO implements Serializable {
 	/** Operatør niveau - 1 = operatør, 2 = superbruger */
 	int level;
 	
-	public OperatoerDTO() {
+	public UserDTO() {
 	}
 	
-	public OperatoerDTO(String oprNavn, String ini, String cpr, String password, int active, int level) {
+	public UserDTO(String oprNavn, String ini, String cpr, String password, int active, int level) {
 		this.oprNavn = oprNavn;
 		this.ini = ini;
 		this.cpr = cpr;
@@ -43,7 +43,7 @@ public class OperatoerDTO implements Serializable {
 		this.level = level;
 	}
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, int active, int level) {
+	public UserDTO(int oprId, String oprNavn, String ini, String cpr, String password, int active, int level) {
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
 		this.ini = ini;

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
  */
 
-public class RaavareBatchDTO implements Serializable {
+public class CommoditiesBatchDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
 	int rbId;
@@ -25,11 +25,11 @@ public class RaavareBatchDTO implements Serializable {
 	/** Operatør aktiv (1) eller inaktiv (0) */
 //	double tolerance;
 	
-	public RaavareBatchDTO(){
+	public CommoditiesBatchDTO(){
 		
 	}
 	
-	public RaavareBatchDTO(int rbId, int raavareId, double maengde) {
+	public CommoditiesBatchDTO(int rbId, int raavareId, double maengde) {
 		this.rbId = rbId;
 		this.raavareId = raavareId;
 		this.maengde = maengde;

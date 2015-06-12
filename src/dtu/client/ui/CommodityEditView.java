@@ -17,10 +17,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.shared.FieldVerifier;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.RaavareDTO;
+import dtu.shared.UserDTO;
+import dtu.shared.CommoditiesDTO;
 
 
 public class CommodityEditView extends Composite {
@@ -39,16 +39,16 @@ public class CommodityEditView extends Composite {
 
 	int eventRowIndex;
 
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 
 	// operator list
-	List<RaavareDTO> raavarer;
+	List<CommoditiesDTO> raavarer;
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
 
 
-	public CommodityEditView(KartotekServiceClientImpl clientImpl) {
+	public CommodityEditView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);
@@ -90,7 +90,7 @@ public class CommodityEditView extends Composite {
 	}
 
 	private void getRaavarer() {
-		clientImpl.service.getRaavarer(new AsyncCallback<List<RaavareDTO>>() {
+		clientImpl.service.getRaavarer(new AsyncCallback<List<CommoditiesDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -98,7 +98,7 @@ public class CommodityEditView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<RaavareDTO> result) {
+			public void onSuccess(List<CommoditiesDTO> result) {
 				// populate table and add delete anchor to each row
 				for (int rowIndex=0; rowIndex < result.size(); rowIndex++) {
 					t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getRvrId());
@@ -148,10 +148,10 @@ public class CommodityEditView extends Composite {
 				public void onClick(ClickEvent event) {
 
 					// fill DTO with id and new values 
-					RaavareDTO raavareDTO = new RaavareDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), lvrTxt.getText());
+					CommoditiesDTO commoditiesDTO = new CommoditiesDTO(Integer.parseInt(t.getText(eventRowIndex, 0)), nameTxt.getText(), lvrTxt.getText());
 
 
-					clientImpl.service.updateRaavare(raavareDTO, new AsyncCallback<Void>() {
+					clientImpl.service.updateRaavare(commoditiesDTO, new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

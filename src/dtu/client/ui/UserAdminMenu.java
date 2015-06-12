@@ -21,7 +21,7 @@ public class UserAdminMenu extends Composite {
 		// call back the controller
 		showOperators.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showOperators();
+				main.showUsers();
 			}
 		});
 	
@@ -30,7 +30,7 @@ public class UserAdminMenu extends Composite {
 		hPanel.add(add);
 		add.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addOperator();
+				main.addUser();
 			}
 		});
 		
@@ -38,7 +38,7 @@ public class UserAdminMenu extends Composite {
 		hPanel.add(edit);
 		edit.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.editOperators();
+				main.editUsers();
 			}
 		});
 		
@@ -46,7 +46,7 @@ public class UserAdminMenu extends Composite {
 		hPanel.add(delete);
 		delete.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.deleteOperators();
+				main.deleteUsers();
 			}
 		});
 		

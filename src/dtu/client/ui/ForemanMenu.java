@@ -54,7 +54,7 @@ public class ForemanMenu extends Composite {
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareBatchMenu(level);
+				main.showCommoditiesBatchMenu(level);
 			}
 		});
 
@@ -62,7 +62,7 @@ public class ForemanMenu extends Composite {
 		hPanel.add(Produktbatch_administration);
 		Produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showProduktBatchMenu(level);			}
+				main.showProductBatchMenu(level);			}
 		});
 
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
  */
 
-public class RaavareDTO implements Serializable {
+public class CommoditiesDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
 	int raavare_ID;
@@ -19,10 +19,10 @@ public class RaavareDTO implements Serializable {
 	/** Operatør initialer min. 2 max. 3 karakterer */
 	String leverandoer;
 	
-	public RaavareDTO() {
+	public CommoditiesDTO() {
 	}
 	
-	public RaavareDTO(int raavare_ID, String raavare_Navn, String leverandoer) {
+	public CommoditiesDTO(int raavare_ID, String raavare_Navn, String leverandoer) {
 		this.raavare_ID= raavare_ID;
 		this.raavare_Navn = raavare_Navn;
 		this.leverandoer = leverandoer;

@@ -19,7 +19,7 @@ public class ProductBatchMenu extends Composite {
 		hPanel.add(Opret_ProduktBatch);
 		Opret_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addProduktBatchOperator();
+				main.addProductBatch();
 			}
 		});
 
@@ -27,7 +27,7 @@ public class ProductBatchMenu extends Composite {
 		hPanel.add(Vis_ProduktBatch);
 		Vis_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showProduktBatch();
+				main.showProductBatch();
 			}
 		});
 

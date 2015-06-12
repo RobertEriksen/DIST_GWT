@@ -13,19 +13,19 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
-import dtu.shared.OperatoerDTO;
-import dtu.shared.ReceptDTO;
+import dtu.client.service.DatabaseServiceClientImpl;
+import dtu.shared.UserDTO;
+import dtu.shared.RecipeDTO;
 import dtu.shared.ReceptKomponentDTO;
 
 public class RecipeBrowseView extends Composite {
-	KartotekServiceClientImpl clientImpl;
+	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
 //	Button showInactiveOps;
 //	boolean showInactive = false;
 
-	public RecipeBrowseView(KartotekServiceClientImpl clientImpl) {
+	public RecipeBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -86,7 +86,7 @@ public class RecipeBrowseView extends Composite {
 	}
 	
 	private void getRecepter() {
-		clientImpl.service.getRecepter(new AsyncCallback<List<ReceptDTO>>() {
+		clientImpl.service.getRecepter(new AsyncCallback<List<RecipeDTO>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -94,7 +94,7 @@ public class RecipeBrowseView extends Composite {
 			}
 
 			@Override
-			public void onSuccess(List<ReceptDTO> result) {
+			public void onSuccess(List<RecipeDTO> result) {
 				for (int i=0; i < result.size(); i++) {
 					t.setText(i+1, 0, ""+result.get(i).getRcpId());
 					t.setText(i+1, 1,""+ result.get(i).getRecept_Navn());

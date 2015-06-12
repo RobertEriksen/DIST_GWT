@@ -19,7 +19,7 @@ public class RecipeMenu extends Composite {
 		hPanel.add(tilfoej_recept);
 		tilfoej_recept.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addreceptOperator();
+				main.addRecipe();
 			}
 		});
 
@@ -27,7 +27,7 @@ public class RecipeMenu extends Composite {
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRecepts();
+				main.showRecipes();
 			}
 		});
 

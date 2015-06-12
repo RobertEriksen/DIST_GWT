@@ -3,7 +3,7 @@ package dtu.client.controller;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import dtu.client.service.KartotekServiceClientImpl;
+import dtu.client.service.DatabaseServiceClientImpl;
 import dtu.client.ui.AdministratorMenu;
 import dtu.client.ui.ContentView;
 import dtu.client.ui.ForemanMenu;
@@ -23,14 +23,14 @@ public class MainView  {
 
 	// V.2
 	// reference to remote data layer
-	private KartotekServiceClientImpl clientImpl;
+	private DatabaseServiceClientImpl clientImpl;
 
 
 	public MainView() {
 
 		// V.2
 		// add server side implementation of data layer
-		clientImpl = new KartotekServiceClientImpl(GWT.getModuleBaseURL() + "kartotekservice");
+		clientImpl = new DatabaseServiceClientImpl(GWT.getModuleBaseURL() + "kartotekservice");
 
 		// wrap contentView
 		contentView = new ContentView(clientImpl);
@@ -74,89 +74,89 @@ public class MainView  {
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showRaavareMenu(int level){
+	public void showCommoditiesMenu(int level){
 		RootPanel.get("nav").clear();
 		CommoditiesMenu m = new CommoditiesMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 
-	public void showReceptKomponentMenu(int level){
+	public void showRecipeKomponentMenu(int level){
 		RootPanel.get("nav").clear();
 		RecipeComponentMenu m = new RecipeComponentMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showRaavareBatchMenu(int level){
+	public void showCommoditiesBatchMenu(int level){
 		RootPanel.get("nav").clear();
 		CommoditiesBatchMenu m = new CommoditiesBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
-	public void showProduktBatchMenu(int level){
+	public void showProductBatchMenu(int level){
 		RootPanel.get("nav").clear();
 		ProductBatchMenu m = new ProductBatchMenu(this, level);
 		RootPanel.get("nav").add(m);
 	}
 	
 	// Call back handlers
-	public void addOperator() {
-		contentView.openAddView();
+	public void addUser() {
+		contentView.openUserAddView();
 	}
 	
-	public void addraavareOperator() {
-		contentView.openAddRaavareView();
+	public void addCommodities() {
+		contentView.openAddCommoditiesView();
 	}
 	
 // Recept
-	public void addreceptKomponentOperator() {
-		contentView.openAddReceptKomponentView();
+	public void addRecipeComponent() {
+		contentView.openAddRecipeComponentsView();
 	}
 	
-	public void addreceptOperator() {
-		contentView.openAddReceptView();
+	public void addRecipe() {
+		contentView.openAddRecipeView();
 	}
 	
-	public void addRaavareBatchOperator() {
-		contentView.openAddRaavareBatchView();
+	public void addCommoditiesBatch() {
+		contentView.openAddCommoditiesBatchView();
 	}
 	
-	public void addProduktBatchOperator() {
-		contentView.openAddProduktBatchView();
+	public void addProductBatch() {
+		contentView.openAddProductBatchView();
 	}
 	
-	public void showOperators() {
-		contentView.openBrowseView();
+	public void showUsers() {
+		contentView.openBrowseUsersView();
 	}
 
-	public void editOperators() {
-		contentView.openEditView();
+	public void editUsers() {
+		contentView.openEditUsersView();
 	}
 	
-	public void editRaavare() {
-		contentView.openEditRaavareView();
+	public void editCommodities() {
+		contentView.openEditCommoditiesView();
 	}
 
-	public void deleteOperators() {
-		contentView.openDeleteView();
+	public void deleteUsers() {
+		contentView.openDeleteUsersView();
 	}
 	
-	public void showRecepts() {
-		contentView.openReceptBrowseView();
+	public void showRecipes() {
+		contentView.openRecipeBrowseView();
 	}
 	
-	public void showRaavareBatch() {
-		contentView.openRaavareBatchBrowseView();
+	public void showCommoditiesBatch() {
+		contentView.openCommoditiesBatchBrowseView();
 	}
 	
-	public void showProduktBatch() {
-		contentView.openProduktBatchBrowseView();
+	public void showProductBatch() {
+		contentView.openProductBatchBrowseView();
 	}
 	
-	public void showReceptKomponents() {
-		contentView.openReceptKomponentBrowseView();
+	public void showRecipeComponents() {
+		contentView.openRecipeComponentsBrowseView();
 	}
 
-	public void showReceptMenu(int level) {
+	public void showRecipeMenu(int level) {
 		RootPanel.get("nav").clear();
 		RecipeMenu m = new RecipeMenu(this, level);
 		RootPanel.get("nav").add(m);		

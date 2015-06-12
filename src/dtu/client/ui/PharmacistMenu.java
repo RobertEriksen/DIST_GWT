@@ -29,7 +29,7 @@ public class PharmacistMenu extends Composite {
 		hPanel.add(Raavare_administration);
 		Raavare_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareMenu(level);
+				main.showCommoditiesMenu(level);
 			}
 		});
 
@@ -37,7 +37,7 @@ public class PharmacistMenu extends Composite {
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showRaavareBatchMenu(level);
+				main.showCommoditiesBatchMenu(level);
 			}
 		});
 
@@ -45,7 +45,7 @@ public class PharmacistMenu extends Composite {
 		hPanel.add(Recept_administration);
 		Recept_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showReceptMenu(level);
+				main.showRecipeMenu(level);
 			}
 		});
 
@@ -53,7 +53,7 @@ public class PharmacistMenu extends Composite {
 		hPanel.add(ReceptKomponent_administration);
 		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showReceptKomponentMenu(level);
+				main.showRecipeKomponentMenu(level);
 			}
 		});
 
@@ -61,7 +61,7 @@ public class PharmacistMenu extends Composite {
 		hPanel.add(Produktbatch_administration);
 		Produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showProduktBatchMenu(level);
+				main.showProductBatchMenu(level);
 			}
 		});
 

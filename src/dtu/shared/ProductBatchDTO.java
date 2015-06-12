@@ -8,7 +8,7 @@ import java.io.Serializable;
 
  */
 
-public class ProduktBatchDTO implements Serializable {
+public class ProductBatchDTO implements Serializable {
 
 	/** Operatør id i området 1­99999999. Vælges af brugerne */
 	int pb_ID;
@@ -18,10 +18,10 @@ public class ProduktBatchDTO implements Serializable {
 	
 	int recept_id;
 	
-	public ProduktBatchDTO() {
+	public ProductBatchDTO() {
 	}
 	
-	public ProduktBatchDTO(int pb_ID, int status, int recept_id) {
+	public ProductBatchDTO(int pb_ID, int status, int recept_id) {
 		this.pb_ID= pb_ID;
 		this.recept_id = recept_id;
 		this.status = status;
