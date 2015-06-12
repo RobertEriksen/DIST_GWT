@@ -50,7 +50,7 @@ public class ForemanMenu extends Composite {
 		//			}
 		//		});
 
-		Anchor Raavarebatch_administration = new Anchor("Råvarebatch administration");
+		Anchor Raavarebatch_administration = new Anchor("Råvarebatch");
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -58,7 +58,7 @@ public class ForemanMenu extends Composite {
 			}
 		});
 
-		Anchor Produktbatch_administration = new Anchor("Produktbatch administration");
+		Anchor Produktbatch_administration = new Anchor("Produktbatch");
 		hPanel.add(Produktbatch_administration);
 		Produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

@@ -25,7 +25,7 @@ public class PharmacistMenu extends Composite {
 		//		});
 
 
-		Anchor Raavare_administration = new Anchor("Råvare administration");
+		Anchor Raavare_administration = new Anchor("Råvare");
 		hPanel.add(Raavare_administration);
 		Raavare_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -33,24 +33,7 @@ public class PharmacistMenu extends Composite {
 			}
 		});
 
-
-		Anchor Recept_administration = new Anchor("Recept administration");
-		hPanel.add(Recept_administration);
-		Recept_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showReceptMenu(level);
-			}
-		});
-
-		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent administration");
-		hPanel.add(ReceptKomponent_administration);
-		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showReceptKomponentMenu(level);
-			}
-		});
-
-		Anchor Raavarebatch_administration = new Anchor("Råvarebatch administration");
+		Anchor Raavarebatch_administration = new Anchor("Råvarebatch");
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -58,7 +41,23 @@ public class PharmacistMenu extends Composite {
 			}
 		});
 
-		Anchor Produktbatch_administration = new Anchor("Produktbatch administration");
+		Anchor Recept_administration = new Anchor("Recept");
+		hPanel.add(Recept_administration);
+		Recept_administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showReceptMenu(level);
+			}
+		});
+
+		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent");
+		hPanel.add(ReceptKomponent_administration);
+		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showReceptKomponentMenu(level);
+			}
+		});
+
+		Anchor Produktbatch_administration = new Anchor("Produktbatch");
 		hPanel.add(Produktbatch_administration);
 		Produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

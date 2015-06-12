@@ -16,7 +16,7 @@ public class AdministratorMenu extends Composite {
 	public AdministratorMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 
-		Anchor Bruger_Administration = new Anchor("Bruger Administration");
+		Anchor Bruger_Administration = new Anchor("Bruger");
 		hPanel.add(Bruger_Administration);
 		Bruger_Administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
@@ -25,7 +25,7 @@ public class AdministratorMenu extends Composite {
 		});
 
 
-		Anchor Raavare_administration = new Anchor("Råvare administration");
+		Anchor Raavare_administration = new Anchor("Råvare");
 		hPanel.add(Raavare_administration);
 		// use unicode escape sequence \u00F8 for '�'
 		//		Anchor add = new Anchor("Tilf\u00F8j operatør");
@@ -36,24 +36,7 @@ public class AdministratorMenu extends Composite {
 			}
 		});
 
-
-		Anchor Recept_administration = new Anchor("Recept administration");
-		hPanel.add(Recept_administration);
-		Recept_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showReceptMenu(level);
-			}
-		});
-
-		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent administration");
-		hPanel.add(ReceptKomponent_administration);
-		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showReceptKomponentMenu(level);
-			}
-		});
-
-		Anchor Raavarebatch_administration = new Anchor("Råvarebatch administration");
+		Anchor Raavarebatch_administration = new Anchor("Råvarebatch");
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -61,7 +44,24 @@ public class AdministratorMenu extends Composite {
 			}
 		});
 
-		Anchor Produktbatch_administration = new Anchor("Produktbatch administration");
+		Anchor Recept_administration = new Anchor("Recept");
+		hPanel.add(Recept_administration);
+		Recept_administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showReceptMenu(level);
+			}
+		});
+
+		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent");
+		hPanel.add(ReceptKomponent_administration);
+		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showReceptKomponentMenu(level);
+			}
+		});
+
+
+		Anchor Produktbatch_administration = new Anchor("Produktbatch");
 		hPanel.add(Produktbatch_administration);
 		Produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

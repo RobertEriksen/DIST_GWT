@@ -30,18 +30,18 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 
 	private PreparedStatement loginStmt = null;
 	
-	//Operatør
+	//Operatï¿½r
 	private PreparedStatement createOperatorStmt = null;
 	private PreparedStatement updateOperatorStmt = null;
 	private PreparedStatement getOperatorsStmt = null;
 	private PreparedStatement getSizeStmt = null;
 	private PreparedStatement deleteOperatorStmt = null;
 	
-	//RåvareBatch
+	//Rï¿½vareBatch
 	private PreparedStatement getRaavareBatchStmt = null;
 	private PreparedStatement createRaavareBatchStmt = null;
 	
-	//Råvare
+	//Rï¿½vare
 	private PreparedStatement createRaavareStmt = null;
 	private PreparedStatement updateRaavareStmt = null;
 	private PreparedStatement getRaavareStmt = null;
@@ -94,7 +94,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 					"SELECT * FROM operatoer WHERE opr_id = ? AND password = ?");
 			
 			
-			// RÅVARER!!!
+			// Rï¿½VARER!!!
 			// create query that add an raavare to kartotek
 			createRaavareStmt = 
 					connection.prepareStatement( "INSERT INTO raavare " + 
@@ -126,9 +126,9 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			getReceptKomponentStmt = connection.prepareStatement( 
 					"SELECT * FROM receptkomponent"); 
 			
-			//RÅVAREBATCHES
+			//Rï¿½VAREBATCHES
 			
-			//Create RåvareBatch query
+			//Create Rï¿½vareBatch query
 			createRaavareBatchStmt = 
 					connection.prepareStatement( "INSERT INTO Raavarebatch " + 
 							"(Raavare_ID, Rb_Id, maengde) " + 
@@ -148,7 +148,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		} 
 		catch ( SQLException sqlException )
 		{
-			throw new DALException("Kan ikke oprette forbindelse til database!");
+			throw new DALException("Kan ikke oprette forbindelse til database! " + sqlException.getMessage());
 		}
 	}
 	
@@ -415,7 +415,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 		return results;
 	}
 	
-	//RÅVAREBATCH
+	//Rï¿½VAREBATCH
 	//Create tuple
 	@Override
 	public void createRaavareBatch(RaavareBatchDTO p) throws Exception {

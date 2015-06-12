@@ -131,6 +131,7 @@ public class WelcomeView extends Composite {
 				w.add(loginLbl);
 			}
 			});
+		
 	
 		
 		Label Pharmaceut = new Label("Pharmaceut");
