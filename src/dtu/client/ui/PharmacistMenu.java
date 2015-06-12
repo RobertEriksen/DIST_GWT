@@ -25,7 +25,7 @@ public class PharmacistMenu extends Composite {
 		//		});
 
 
-		Anchor Raavare_administration = new Anchor("Raavare administration");
+		Anchor Raavare_administration = new Anchor("Råvare administration");
 		hPanel.add(Raavare_administration);
 		Raavare_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -50,7 +50,7 @@ public class PharmacistMenu extends Composite {
 			}
 		});
 
-		Anchor Raavarebatch_administration = new Anchor("Raavarebatch administration");
+		Anchor Raavarebatch_administration = new Anchor("Råvarebatch administration");
 		hPanel.add(Raavarebatch_administration);
 		Raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

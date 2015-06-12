@@ -15,7 +15,7 @@ public class raavareMenu extends Composite {
 	public raavareMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 		
-		Anchor tilfoej_raavare = new Anchor("tilfoej raavare");
+		Anchor tilfoej_raavare = new Anchor("tilføj råvare");
 		hPanel.add(tilfoej_raavare);
 		tilfoej_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -23,7 +23,7 @@ public class raavareMenu extends Composite {
 			}
 		});
 		
-		Anchor ret_raavare = new Anchor("ret raavare / vis");
+		Anchor ret_raavare = new Anchor("ret råvare / vis");
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

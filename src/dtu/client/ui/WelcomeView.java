@@ -27,7 +27,7 @@ public class WelcomeView extends Composite {
 		this.clientImpl = clientImpl;
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
-		Label welcomeLbl = new Label("Velkommen til operatør kartotek af CDIO gruppe 16. Du skal logge ind for at komme videre!");
+		Label welcomeLbl = new Label("Velkommen til kartoteket af CDIO gruppe 16. Du skal logge ind for at komme videre!");
 		welcomeLbl.addStyleName("spacing-vertical");
 		w.add(welcomeLbl);
 		
@@ -47,7 +47,7 @@ public class WelcomeView extends Composite {
 		
 		FlexTable loginTable = new FlexTable();
 
-		Label operatoerIdLbl = new Label("Operatør id:");
+		Label operatoerIdLbl = new Label("ID:");
 		operatoerIdTxt = new TextBox();
 		operatoerIdTxt.setWidth("3em");
 		loginTable.setWidget(0, 0, operatoerIdLbl);
@@ -70,13 +70,9 @@ public class WelcomeView extends Composite {
 					@Override
 					public void onSuccess(Integer result) {
 						if (result==1) {
-							mainView.showUserMenu(result);
 							
 							// clear view and show new label
-							w.clear();
-							Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + result);
-							loginLbl.addStyleName("spacing-vertical");
-							w.add(loginLbl);
+							Window.alert("Du er operatør og har ikke adgang til programmet");
 							
 						}
 						else if(result==2) {
