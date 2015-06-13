@@ -15,7 +15,7 @@ public class AdministratorMenu extends Composite {
 	// receive reference to MainView for call back
 	public AdministratorMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
-
+		
 		Anchor bruger_Administration = new Anchor("Bruger");
 		hPanel.add(bruger_Administration);
 		bruger_Administration.addClickHandler(new ClickHandler(){
