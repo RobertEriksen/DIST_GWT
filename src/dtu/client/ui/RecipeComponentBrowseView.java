@@ -22,8 +22,6 @@ public class RecipeComponentBrowseView extends Composite {
 	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
-//	Button showInactiveOps;
-//	boolean showInactive = false;
 
 	public RecipeComponentBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
@@ -31,21 +29,19 @@ public class RecipeComponentBrowseView extends Composite {
 		initWidget(this.browsePanel);
 
 		HorizontalPanel topPanel = new HorizontalPanel();
-//		showInactiveOps = new Button("Vis inaktive operatører");
-		Label pageTitleLbl = new Label("Vis Recepter");
+		Label pageTitleLbl = new Label("Vis recepter");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
-//		topPanel.add(showInactiveOps);
 		topPanel.addStyleName("spacing-vertical");
 		browsePanel.add(topPanel);
 
 		t = new FlexTable();
 
-		t.getFlexCellFormatter().setWidth(0, 0, "8em");
-		t.getFlexCellFormatter().setWidth(0, 1, "10em");
-		t.getFlexCellFormatter().setWidth(0, 2, "10em");
-		t.getFlexCellFormatter().setWidth(0, 3, "20em");
+		t.getFlexCellFormatter().setWidth(0, 0, "40px");
+		t.getFlexCellFormatter().setWidth(0, 1, "40px");
+		t.getFlexCellFormatter().setWidth(0, 2, "60px");
+		t.getFlexCellFormatter().setWidth(0, 3, "50px");
 
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
@@ -53,7 +49,7 @@ public class RecipeComponentBrowseView extends Composite {
 		// set headers in flextable
 		t.setText(0, 0, "Recept ID");
 		t.setText(0, 1, "Raavare ID");
-		t.setText(0, 2, "Nominelle Netto");
+		t.setText(0, 2, "Nom. Netto");
 		t.setText(0, 3, "Tolerance");
 
 		getReceptKomponenter();

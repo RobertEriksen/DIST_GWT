@@ -15,7 +15,7 @@ public class CommoditiesMenu extends Composite {
 	public CommoditiesMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 		
-		Anchor tilfoej_raavare = new Anchor("tilføj råvare");
+		Anchor tilfoej_raavare = new Anchor("Tilføj råvare");
 		hPanel.add(tilfoej_raavare);
 		tilfoej_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -23,7 +23,7 @@ public class CommoditiesMenu extends Composite {
 			}
 		});
 		
-		Anchor ret_raavare = new Anchor("ret råvare / vis");
+		Anchor ret_raavare = new Anchor("Ret/vis råvarer");
 		hPanel.add(ret_raavare);
 		ret_raavare.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

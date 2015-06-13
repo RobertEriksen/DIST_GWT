@@ -24,18 +24,17 @@ import dtu.shared.ReceptKomponentDTO;
 public class RecipeAddView extends Composite {
 	VerticalPanel addPanel;
 
-	// controls
 	Label receptIdLbl;	
 	Label receptnameLbl;
 	
 	TextBox receptIdTxt;
 	TextBox receptnameTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save = new Button("Tilf\u00F8j recept");
 
 	// valid fields
-	boolean receptValid = false;
-	boolean nameValid = false;
+	boolean recIDValid = false;
+	boolean recNameValid = false;
 	
 	public RecipeAddView(final DatabaseServiceClientImpl clientImpl) {
 
@@ -44,21 +43,21 @@ public class RecipeAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("tilfoej Recept");
+		Label pageTitleLbl = new Label("Tilfoej recept");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		receptIdLbl = new Label("Recept ID:");
+		receptIdLbl = new Label("ID:");
 		receptIdTxt = new TextBox();
 		Label nameRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(0, 0, receptIdLbl);
 		addTable.setWidget(0, 1, receptIdTxt);
 		addTable.setWidget(0, 2, nameRulesLbl);
 		
-		receptnameLbl = new Label("Recept Navn:");
+		receptnameLbl = new Label("Navn:");
 		receptnameTxt = new TextBox();
-		Label receptnameRulesLbl = new Label("(Mellem 2 og 20 karaktere)");
+		Label receptnameRulesLbl = new Label("(Mellem 2 og 20 karakterer)");
 		addTable.setWidget(1, 0, receptnameLbl);
 		addTable.setWidget(1, 1, receptnameTxt);
 		addTable.setWidget(1, 2, receptnameRulesLbl);
@@ -84,7 +83,7 @@ public class RecipeAddView extends Composite {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("ReceptKomponent gemt i kartotek.");
+						Window.alert("Recept gemt i database.");
 					}
 
 					@Override
@@ -105,11 +104,11 @@ public class RecipeAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(receptIdTxt.getText())) {
 					receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					receptValid = false;
+					recIDValid = false;
 				}
 				else {
 					receptIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					receptValid = true;
+					recIDValid = true;
 				}
 				checkFormValid();
 			}
@@ -122,11 +121,11 @@ public class RecipeAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidName(receptnameTxt.getText())) {
 					receptnameTxt.setStyleName("gwt-TextBox-invalidEntry");
-					nameValid = false;
+					recNameValid = false;
 				}
 				else {
 					receptnameTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					nameValid = true;
+					recNameValid = true;
 				}
 				checkFormValid();
 			}
@@ -136,7 +135,7 @@ public class RecipeAddView extends Composite {
 	}
 		
 	private void checkFormValid() {
-		if (receptValid&&nameValid)
+		if (recIDValid&&recNameValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);

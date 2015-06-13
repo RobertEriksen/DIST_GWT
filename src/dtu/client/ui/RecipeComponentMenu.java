@@ -15,19 +15,19 @@ public class RecipeComponentMenu extends Composite {
 	public RecipeComponentMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 
-		Anchor tilfoej_receptkomponent = new Anchor("Tilføj Receptkomponent");
+		Anchor vis_receptkomp = new Anchor("Vis receptomponenter");
+		hPanel.add(vis_receptkomp);
+		vis_receptkomp.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){				
+				main.showRecipeComponents();
+			}
+		});
+		
+		Anchor tilfoej_receptkomponent = new Anchor("Tilføj receptkomponent");
 		hPanel.add(tilfoej_receptkomponent);
 		tilfoej_receptkomponent.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.addRecipeComponent();
-			}
-		});
-
-		Anchor ret_raavare = new Anchor("Vis ReceptKomponent");
-		hPanel.add(ret_raavare);
-		ret_raavare.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showRecipeComponents();
 			}
 		});
 
@@ -36,14 +36,14 @@ public class RecipeComponentMenu extends Composite {
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				if(level==4){
+				if (level == 4){
 					main.showAdministratorMenu(level);
 				}
-				else if(level == 3){
+				else if (level == 3){
 					main.showpharmacistMenu(level);
 				}
 
-				else if(level == 2){
+				else if (level == 2){
 					main.showForemanMenu(level);
 				}
 			}

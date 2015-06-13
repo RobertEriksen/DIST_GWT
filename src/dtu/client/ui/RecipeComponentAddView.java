@@ -25,26 +25,23 @@ public class RecipeComponentAddView extends Composite {
 	VerticalPanel addPanel;
 
 	// controls
-	Label receptIdLbl;
+	Label recKompIdLbl;
 	Label raavareidLbl;
-	Label receptnameLbl;
 	Label nomNetto;
 	Label tolerance;
 	
-	TextBox receptIdTxt;
+	TextBox recKompIdTxt;
 	TextBox raavareIdTxt;
-	TextBox receptnameTxt;
 	TextBox nomNettoTxt;
 	TextBox toleranceTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save = new Button("Tilf\u00F8j receptkomponent");
 
 	// valid fields
-	boolean nameValid = false;
-	boolean iniValid = false;
-	boolean cprValid = false;
-	boolean passValid = false;
-	boolean activeValid = false;
+	boolean rk_idValid = false;
+	boolean raav_idValid = false;
+	boolean nettoValid = false;
+	boolean tolValid = false;
 
 	public RecipeComponentAddView(final DatabaseServiceClientImpl clientImpl) {
 
@@ -53,41 +50,41 @@ public class RecipeComponentAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("tilfoej ReceptKomponent");
+		Label pageTitleLbl = new Label("Tilfoej receptkomponent");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		receptIdLbl = new Label("ReceptKomponent ID:");
-		receptIdTxt = new TextBox();
+		recKompIdLbl = new Label("ID:");
+		recKompIdTxt = new TextBox();
 		Label nameRulesLbl = new Label("(Heltal kun)");
-		addTable.setWidget(0, 0, receptIdLbl);
-		addTable.setWidget(0, 1, receptIdTxt);
+		addTable.setWidget(0, 0, recKompIdLbl);
+		addTable.setWidget(0, 1, recKompIdTxt);
 		addTable.setWidget(0, 2, nameRulesLbl);
 
-		raavareidLbl = new Label("Raavare ID:");
+		raavareidLbl = new Label("ID:");
 		raavareIdTxt = new TextBox();
 		Label iniRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(1, 0, raavareidLbl);
 		addTable.setWidget(1, 1, raavareIdTxt);
 		addTable.setWidget(1, 2, iniRulesLbl);
 
-		nomNetto = new Label("NomNetto:");
+		nomNetto = new Label("Nom. netto:");
 		nomNettoTxt = new TextBox();
-		Label passRulesLbl = new Label("(Decimaltal mellem 0.1% - 10%");
+		Label passRulesLbl = new Label("(Decimaltal mellem 0.1% - 10.0%");
 		addTable.setWidget(3, 0, nomNetto);
 		addTable.setWidget(3, 1, nomNettoTxt);
 		addTable.setWidget(3, 2, passRulesLbl);
 		
 		tolerance = new Label("Tolerance:");
 		toleranceTxt = new TextBox();
-		Label activeRulesLbl = new Label("(Decimaltal mellem 0.1% - 10%)");
+		Label activeRulesLbl = new Label("(Decimaltal mellem 0.1% - 10.0%)");
 		addTable.setWidget(4, 0, tolerance);
 		addTable.setWidget(4, 1, toleranceTxt);
 		addTable.setWidget(4, 2, activeRulesLbl);
 		
 		
-		receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
+		recKompIdTxt.setStyleName("gwt-TextBox-invalidEntry");
 		raavareIdTxt.setStyleName("gwt-TextBox-invalidEntry");
 		nomNettoTxt.setStyleName("gwt-TextBox-invalidEntry");
 		toleranceTxt.setStyleName("gwt-TextBox-invalidEntry");
@@ -103,14 +100,14 @@ public class RecipeComponentAddView extends Composite {
 
 				// create new OperatoerDTO
 				
-				ReceptKomponentDTO newReceptKomponent = new ReceptKomponentDTO(Integer.valueOf(receptIdTxt.getText()), Integer.valueOf(raavareIdTxt.getText()), Double.valueOf(nomNettoTxt.getText()) , Double.valueOf(toleranceTxt.getText()));
+				ReceptKomponentDTO newReceptKomponent = new ReceptKomponentDTO(Integer.valueOf(recKompIdTxt.getText()), Integer.valueOf(raavareIdTxt.getText()), Double.valueOf(nomNettoTxt.getText()) , Double.valueOf(toleranceTxt.getText()));
 				
 				// save on server
 				clientImpl.service.createRecipeComponent(newReceptKomponent, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("ReceptKomponent gemt i kartotek.");
+						Window.alert("Receptkomponent gemt i database.");
 					}
 
 					@Override
@@ -125,17 +122,17 @@ public class RecipeComponentAddView extends Composite {
 
 		// register event handlers
 
-		receptIdTxt.addKeyUpHandler(new KeyUpHandler(){
+		recKompIdTxt.addKeyUpHandler(new KeyUpHandler(){
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				if (!FieldVerifier.isValidID(receptIdTxt.getText())) {
-					receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					cprValid = false;
+				if (!FieldVerifier.isValidID(recKompIdTxt.getText())) {
+					recKompIdTxt.setStyleName("gwt-TextBox-invalidEntry");
+					raav_idValid = false;
 				}
 				else {
-					receptIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					cprValid = true;
+					recKompIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
+					raav_idValid = true;
 				}
 				checkFormValid();
 			}
@@ -148,11 +145,11 @@ public class RecipeComponentAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(raavareIdTxt.getText())) {
 					raavareIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					iniValid = false;
+					rk_idValid = false;
 				}
 				else {
 					raavareIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					iniValid = true;
+					rk_idValid = true;
 				}
 				checkFormValid();
 			}
@@ -165,11 +162,11 @@ public class RecipeComponentAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidNomNetto(nomNettoTxt.getText())) {
 					nomNettoTxt.setStyleName("gwt-TextBox-invalidEntry");
-					passValid = false;
+					nettoValid = false;
 				}
 				else {
 					nomNettoTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					passValid = true;
+					nettoValid = true;
 				}
 				checkFormValid();
 			}
@@ -182,11 +179,11 @@ public class RecipeComponentAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidTolerance(toleranceTxt.getText())) {
 					toleranceTxt.setStyleName("gwt-TextBox-invalidEntry");
-					activeValid = false;
+					tolValid = false;
 				}
 				else {
 					toleranceTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					activeValid = true;
+					tolValid = true;
 				}
 				checkFormValid();
 			}
@@ -198,7 +195,7 @@ public class RecipeComponentAddView extends Composite {
 	}
 
 	private void checkFormValid() {
-		if (iniValid&&cprValid&&passValid&&activeValid)
+		if (rk_idValid&&raav_idValid&&nettoValid&&tolValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);

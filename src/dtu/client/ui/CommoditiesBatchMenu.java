@@ -15,17 +15,17 @@ public class CommoditiesBatchMenu extends Composite {
 	public CommoditiesBatchMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 
-		Anchor Opret_RaavareBatch = new Anchor("Opret RåvareBatch");
-		hPanel.add(Opret_RaavareBatch);
-		Opret_RaavareBatch.addClickHandler(new ClickHandler(){
+		Anchor opret_RaavareBatch = new Anchor("Opret råvarebatch");
+		hPanel.add(opret_RaavareBatch);
+		opret_RaavareBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.addCommoditiesBatch();
 			}
 		});
 
-		Anchor Vis_RaavareBatch = new Anchor("Vis RåvareBatch");
-		hPanel.add(Vis_RaavareBatch);
-		Vis_RaavareBatch.addClickHandler(new ClickHandler(){
+		Anchor vis_RaavareBatch = new Anchor("Vis råvarebatch");
+		hPanel.add(vis_RaavareBatch);
+		vis_RaavareBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showCommoditiesBatch();
 			}
@@ -36,14 +36,14 @@ public class CommoditiesBatchMenu extends Composite {
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				if(level==4){
+				if (level == 4){
 					main.showAdministratorMenu(level);
 				}
-				else if(level == 3){
+				else if (level == 3){
 					main.showpharmacistMenu(level);
 				}
 
-				else if(level == 2){
+				else if (level == 2){
 					main.showForemanMenu(level);
 				}
 			}

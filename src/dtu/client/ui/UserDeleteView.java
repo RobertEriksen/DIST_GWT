@@ -31,7 +31,7 @@ public class UserDeleteView extends Composite {
 		deletePanel = new VerticalPanel();
 		initWidget(this.deletePanel);
 
-		Label pageTitleLbl = new Label("Slet operatør(er)");
+		Label pageTitleLbl = new Label("Slet bruger");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		deletePanel.add(pageTitleLbl);

@@ -34,13 +34,12 @@ public class CommoditiesBatchAddView extends Composite {
 	TextBox raavareidTxt;
 	TextBox maengdeTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save = new Button("Tilf\u00F8j råvarebatch");
 
 	// valid fields
-	
-	boolean raavareBatchId = false;
-	boolean raavareid = false;
-	boolean maengde = false;
+	boolean raav_BatIDValid = false;
+	boolean raavIDValid = false;
+	boolean maengdeValid = false;
 
 	public CommoditiesBatchAddView(final DatabaseServiceClientImpl clientImpl) {
 
@@ -49,34 +48,31 @@ public class CommoditiesBatchAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("tilfoej RaavareBatch");
+		Label pageTitleLbl = new Label("Tilføj råvarebatch");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		raavareBatchIdLbl = new Label("RaavareBatch ID:");
+		raavareBatchIdLbl = new Label("Råvarebatch ID:");
 		raavareBatchIdTxt = new TextBox();
-		Label nameRulesLbl = new Label("(Heltal kun)");
+		Label rbIDRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(0, 0, raavareBatchIdLbl);
 		addTable.setWidget(0, 1, raavareBatchIdTxt);
-		addTable.setWidget(0, 2, nameRulesLbl);
+		addTable.setWidget(0, 2, rbIDRulesLbl);
 
-		raavareidLbl = new Label("Raavare ID:");
+		raavareidLbl = new Label("Råvare ID:");
 		raavareidTxt = new TextBox();
-		Label iniRulesLbl = new Label("(Heltal kun)");
+		Label rvIDRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(1, 0, raavareidLbl);
 		addTable.setWidget(1, 1, raavareidTxt);
-		addTable.setWidget(1, 2, iniRulesLbl);
+		addTable.setWidget(1, 2, rvIDRulesLbl);
 
-		maengdeLbl = new Label("Maengde:");
+		maengdeLbl = new Label("Mængde:");
 		maengdeTxt = new TextBox();
-		Label passRulesLbl = new Label("(Decimaltal");
+		Label maengdeRulesLbl = new Label("(Decimaltal)");
 		addTable.setWidget(2, 0, maengdeLbl);
 		addTable.setWidget(2, 1, maengdeTxt);
-		addTable.setWidget(2, 2, passRulesLbl);
-		
-		// Der er forkerte rules p� NOmNeto
-		
+		addTable.setWidget(2, 2, maengdeRulesLbl);
 		
 		raavareBatchIdTxt.setStyleName("gwt-TextBox-invalidEntry");
 		raavareidLbl.setStyleName("gwt-TextBox-invalidEntry");
@@ -91,16 +87,14 @@ public class CommoditiesBatchAddView extends Composite {
 			@Override
 			public void onClick(ClickEvent event) {
 
-				// create new OperatoerDTO
-				
-				CommoditiesBatchDTO newRaavareBatch= new CommoditiesBatchDTO(Integer.valueOf(raavareBatchIdTxt.getText()), Integer.valueOf(raavareidTxt.getText()), Double.valueOf(maengdeTxt.getText()));
+				CommoditiesBatchDTO newRaavareBatch = new CommoditiesBatchDTO(Integer.valueOf(raavareBatchIdTxt.getText()), Integer.valueOf(raavareidTxt.getText()), Double.valueOf(maengdeTxt.getText()));
 				
 				// save on server
 				clientImpl.service.createCommodityBatch(newRaavareBatch, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("ReceptKomponent gemt i kartotek.");
+						Window.alert("Råvarebatch gemt i database.");
 					}
 
 					@Override
@@ -112,20 +106,17 @@ public class CommoditiesBatchAddView extends Composite {
 			}
 		});
 
-
-		// register event handlers
-
 		raavareBatchIdTxt.addKeyUpHandler(new KeyUpHandler(){
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(raavareBatchIdTxt.getText())) {
 					raavareBatchIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					raavareBatchId = false;
+					raav_BatIDValid = false;
 				}
 				else {
 					raavareBatchIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					raavareBatchId = true;
+					raav_BatIDValid = true;
 				}
 				checkFormValid();
 			}
@@ -138,11 +129,11 @@ public class CommoditiesBatchAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(raavareidTxt.getText())) {
 					raavareidTxt.setStyleName("gwt-TextBox-invalidEntry");
-					raavareid = false;
+					raavIDValid = false;
 				}
 				else {
 					raavareidTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					raavareid = true;
+					raavIDValid = true;
 				}
 				checkFormValid();
 			}
@@ -155,25 +146,21 @@ public class CommoditiesBatchAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.IsValidMaengde(maengdeTxt.getText())) {
 					maengdeTxt.setStyleName("gwt-TextBox-invalidEntry");
-					maengde = false;
+					maengdeValid = false;
 				}
 				else {
 					maengdeTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					maengde = true;
+					maengdeValid = true;
 				}
 				checkFormValid();
 			}
 
 		});
-
-
-		
-		
 		addPanel.add(addTable);
 	}
 
 	private void checkFormValid() {
-		if (raavareid&&maengde&&raavareBatchId)
+		if (raavIDValid&&maengdeValid&&raav_BatIDValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);

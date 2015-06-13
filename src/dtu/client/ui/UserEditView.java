@@ -25,6 +25,7 @@ import dtu.shared.UserDTO;
 public class UserEditView extends Composite {
 	VerticalPanel editPanel;
 	FlexTable t;
+	int rowCount;
 
 	// editing text boxes
 	TextBox nameTxt;
@@ -46,8 +47,8 @@ public class UserEditView extends Composite {
 
 	DatabaseServiceClientImpl clientImpl;
 
-	// operator list
-	List<UserDTO> operatoerer;
+	// user list
+	List<UserDTO> brugere;
 
 	// previous cancel anchor
 	Anchor previousCancel = null;
@@ -62,8 +63,8 @@ public class UserEditView extends Composite {
 		initWidget(this.editPanel);
 
 		HorizontalPanel topPanel = new HorizontalPanel();
-		showInactiveOps = new Button("Vis inaktive operatører");
-		Label pageTitleLbl = new Label("Ret operatører");
+		showInactiveOps = new Button("Vis inaktive brugere");
+		Label pageTitleLbl = new Label("Ret brugere");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
@@ -95,7 +96,7 @@ public class UserEditView extends Composite {
 		t.setText(0, 5, "Aktiv");
 		t.setText(0, 6, "Niveau");
 
-		getOperators();
+		getUsers();
 
 
 		editPanel.add(t);
@@ -122,22 +123,23 @@ public class UserEditView extends Composite {
 				// if previous edit open - force cancel operation�
 				if (previousCancel != null)
 					previousCancel.fireEvent(new ClickEvent(){});
-				for (int i = 1; i < t.getRowCount(); i++) t.removeRow(i); // clear FlexTable (except for first header row)
+				rowCount = t.getRowCount();
+				for (int i = rowCount-1; i > 0; i--) t.removeRow(i); // clear FlexTable (except for first header row)
 				if (!showInactive) {
-					showInactiveOps.setText("Skjul inaktive operatører");
+					showInactiveOps.setText("Skjul inaktive brugere");
 					showInactive = true;
-					getOperators();
+					getUsers();
 				}
 				else {
-					showInactiveOps.setText("Vis inaktive operatører");
+					showInactiveOps.setText("Vis inaktive brugere");
 					showInactive = false;
-					getOperators();
+					getUsers();
 				}
 			}
 		});
 	}
 
-	private void getOperators() {
+	private void getUsers() {
 		clientImpl.service.getUser(new AsyncCallback<List<UserDTO>>() {
 
 			@Override
@@ -147,33 +149,35 @@ public class UserEditView extends Composite {
 			
 			@Override
 			public void onSuccess(List<UserDTO> result) {
-				// populate table and add delete anchor to each row
+				int j = 1;
 				for (int rowIndex=0; rowIndex < result.size(); rowIndex++) {
 					if (!showInactive) {
 						if (Integer.valueOf(result.get(rowIndex).getActive()) == 1) {
-							t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getOprId());
-							t.setText(rowIndex+1, 1, result.get(rowIndex).getOprNavn());
-							t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
-							t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
-							t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
-							t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
-							t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
+							t.setText(j, 0, ""+result.get(rowIndex).getOprId());
+							t.setText(j, 1, result.get(rowIndex).getOprNavn());
+							t.setText(j, 2, result.get(rowIndex).getIni());
+							t.setText(j, 3, result.get(rowIndex).getCpr());
+							t.setText(j, 4, result.get(rowIndex).getPassword());
+							t.setText(j, 5, result.get(rowIndex).getActive());
+							t.setText(j, 6, result.get(rowIndex).getLevel());
 							Anchor edit = new Anchor("edit");
-							t.setWidget(rowIndex+1, 7, edit);
+							t.setWidget(j, 7, edit);
 							edit.addClickHandler(new EditHandler());
+							j++;
 						}
 					}
 					else {
-						t.setText(rowIndex+1, 0, ""+result.get(rowIndex).getOprId());
-						t.setText(rowIndex+1, 1, result.get(rowIndex).getOprNavn());
-						t.setText(rowIndex+1, 2, result.get(rowIndex).getIni());
-						t.setText(rowIndex+1, 3, result.get(rowIndex).getCpr());
-						t.setText(rowIndex+1, 4, result.get(rowIndex).getPassword());
-						t.setText(rowIndex+1, 5, result.get(rowIndex).getActive());
-						t.setText(rowIndex+1, 6, result.get(rowIndex).getLevel());
+						t.setText(j, 0, ""+result.get(rowIndex).getOprId());
+						t.setText(j, 1, result.get(rowIndex).getOprNavn());
+						t.setText(j, 2, result.get(rowIndex).getIni());
+						t.setText(j, 3, result.get(rowIndex).getCpr());
+						t.setText(j, 4, result.get(rowIndex).getPassword());
+						t.setText(j, 5, result.get(rowIndex).getActive());
+						t.setText(j, 6, result.get(rowIndex).getLevel());
 						Anchor edit = new Anchor("edit");
-						t.setWidget(rowIndex+1, 7, edit);
+						t.setWidget(j, 7, edit);
 						edit.addClickHandler(new EditHandler());
+						j++;
 					}
 				}
 			}
@@ -315,7 +319,7 @@ public class UserEditView extends Composite {
 						nameValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else
@@ -337,7 +341,7 @@ public class UserEditView extends Composite {
 						iniValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else
@@ -359,7 +363,7 @@ public class UserEditView extends Composite {
 						cprValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else
@@ -381,7 +385,7 @@ public class UserEditView extends Composite {
 						passValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else
@@ -403,7 +407,7 @@ public class UserEditView extends Composite {
 						activeValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else
@@ -425,7 +429,7 @@ public class UserEditView extends Composite {
 						levelValid = true;
 					}
 
-					// enable/disable ok depending on form status 
+					// enable/disable ok depending on form statusValid 
 					if (nameValid&&iniValid&&cprValid&&passValid&&activeValid&&levelValid)
 						t.setWidget(eventRowIndex, 7, ok);
 					else

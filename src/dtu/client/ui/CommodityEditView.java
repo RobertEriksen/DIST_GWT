@@ -31,11 +31,8 @@ public class CommodityEditView extends Composite {
 	TextBox nameTxt;
 	TextBox lvrTxt;
 
-
-	// valid fields - initially a field is valid
 	boolean nameValid = true;
 	boolean lvrValid = true;
-
 
 	int eventRowIndex;
 
@@ -53,7 +50,7 @@ public class CommodityEditView extends Composite {
 		editPanel = new VerticalPanel();
 		initWidget(this.editPanel);
 		HorizontalPanel topPanel = new HorizontalPanel();
-		Label pageTitleLbl = new Label("Ret raavare");
+		Label pageTitleLbl = new Label("Ret råvarer");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
@@ -74,10 +71,9 @@ public class CommodityEditView extends Composite {
 		// set headers in flextable
 		t.setText(0, 0, "ID");
 		t.setText(0, 1, "Navn");
-		t.setText(0, 2, "Leverandoere");
+		t.setText(0, 2, "Leverandør");
 
 		getRaavarer();
-
 
 		editPanel.add(t);
 
@@ -86,7 +82,6 @@ public class CommodityEditView extends Composite {
 		nameTxt.setWidth("140px");
 		lvrTxt = new TextBox();
 		lvrTxt.setWidth("140px");
-
 	}
 
 	private void getRaavarer() {
@@ -213,7 +208,6 @@ public class CommodityEditView extends Composite {
 						nameValid = true;
 					}
 
-					// enable/disable ok depending on form status 
 					if (nameValid&&lvrValid)
 						t.setWidget(eventRowIndex, 3, ok);
 					else
@@ -235,7 +229,6 @@ public class CommodityEditView extends Composite {
 						lvrValid = true;
 					}
 
-					// enable/disable ok depending on form status 
 					if (nameValid&&lvrValid)
 						t.setWidget(eventRowIndex, 3, ok);
 					else
@@ -243,9 +236,6 @@ public class CommodityEditView extends Composite {
 				}
 
 			});
-
-
-
 
 			// showing ok and cancel widgets
 			t.setWidget(eventRowIndex, 3, ok);

@@ -14,20 +14,20 @@ public class ProductBatchMenu extends Composite {
 
 	public ProductBatchMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
-
-		Anchor Opret_ProduktBatch = new Anchor("Opret ProduktBatch");
-		hPanel.add(Opret_ProduktBatch);
-		Opret_ProduktBatch.addClickHandler(new ClickHandler(){
+		
+		Anchor vis_ProduktBatch = new Anchor("Vis produktbatch");
+		hPanel.add(vis_ProduktBatch);
+		vis_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.addProductBatch();
+				main.showProductBatch();
 			}
 		});
 
-		Anchor Vis_ProduktBatch = new Anchor("Vis ProduktBatch");
-		hPanel.add(Vis_ProduktBatch);
-		Vis_ProduktBatch.addClickHandler(new ClickHandler(){
+		Anchor opret_ProduktBatch = new Anchor("Opret produktbatch");
+		hPanel.add(opret_ProduktBatch);
+		opret_ProduktBatch.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-				main.showProductBatch();
+				main.addProductBatch();
 			}
 		});
 
@@ -36,14 +36,14 @@ public class ProductBatchMenu extends Composite {
 		back.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
 				main.clearContentView();
-				if(level==4){
+				if (level == 4){
 					main.showAdministratorMenu(level);
 				}
-				else if(level == 3){
+				else if (level == 3){
 					main.showpharmacistMenu(level);
 				}
 
-				else if(level == 2){
+				else if (level == 2){
 					main.showForemanMenu(level);
 				}
 			}

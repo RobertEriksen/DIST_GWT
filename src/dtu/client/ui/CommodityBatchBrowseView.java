@@ -23,8 +23,6 @@ public class CommodityBatchBrowseView extends Composite {
 	DatabaseServiceClientImpl clientImpl;
 	VerticalPanel browsePanel;
 	FlexTable t;
-//	Button showInactiveOps;
-//	boolean showInactive = false;
 
 	public CommodityBatchBrowseView(DatabaseServiceClientImpl clientImpl) {
 		this.clientImpl = clientImpl;
@@ -32,12 +30,10 @@ public class CommodityBatchBrowseView extends Composite {
 		initWidget(this.browsePanel);
 
 		HorizontalPanel topPanel = new HorizontalPanel();
-//		showInactiveOps = new Button("Vis inaktive operatører");
-		Label pageTitleLbl = new Label("Vis Raavarebatches");
+		Label pageTitleLbl = new Label("Vis raavarebatches");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.setWidth("450px");
 		topPanel.add(pageTitleLbl);
-//		topPanel.add(showInactiveOps);
 		topPanel.addStyleName("spacing-vertical");
 		browsePanel.add(topPanel);
 
@@ -46,22 +42,20 @@ public class CommodityBatchBrowseView extends Composite {
 		t.getFlexCellFormatter().setWidth(0, 0, "8em");
 		t.getFlexCellFormatter().setWidth(0, 1, "10em");
 		t.getFlexCellFormatter().setWidth(0, 2, "10em");
-//		t.getFlexCellFormatter().setWidth(0, 3, "20em");
 
 		t.addStyleName("FlexTable");
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
 
 		// set headers in flextable
-		t.setText(0, 0, "Raavare ID");
 		t.setText(0, 1, "Raavarebatch ID");
-		t.setText(0, 2, "maengde");
-//		t.setText(0, 3, "Tolerance");
+		t.setText(0, 0, "Raavare ID");
+		t.setText(0, 2, "Maengde");
 
-		getReceptKomponenter();
+		getRaavareBatches();
 		browsePanel.add(t);
 	}
 	
-	private void getReceptKomponenter() {
+	private void getRaavareBatches() {
 		clientImpl.service.getCommodityBatch(new AsyncCallback<List<CommoditiesBatchDTO>>() {
 
 			@Override
@@ -72,8 +66,8 @@ public class CommodityBatchBrowseView extends Composite {
 			@Override
 			public void onSuccess(List<CommoditiesBatchDTO> result) {
 				for (int i=0; i < result.size(); i++) {
-					t.setText(i+1, 0, ""+result.get(i).getRaavareId());
-					t.setText(i+1, 1,""+ result.get(i).getRbId());
+					t.setText(i+1, 0,""+ result.get(i).getRbId());
+					t.setText(i+1, 1, ""+result.get(i).getRaavareId());
 					t.setText(i+1, 2,""+ result.get(i).getMaengde());
 				}
 			}

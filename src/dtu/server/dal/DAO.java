@@ -131,7 +131,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			//Create R�vareBatch query
 			createCommoditiesBatchStmt = 
 					connection.prepareStatement( "INSERT INTO Raavarebatch " + 
-							"(Raavare_ID, Rb_Id, maengde) " + 
+							"(Raavare_ID, Rb_Id, maengdeValid) " + 
 							"VALUES ( ?, ?, ?)" );
 			
 			getCommoditiesBatchStmt = connection.prepareStatement( 
@@ -142,7 +142,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 			
 			createProductBatchStmt = 
 					connection.prepareStatement( "INSERT INTO ProduktBatch " + 
-							"(pb_id, status, recept_id) " + 
+							"(pb_id, statusValid, recept_id) " + 
 							"VALUES ( ?, ?, ?)" );
 			
 		} 
@@ -443,7 +443,7 @@ public class DAO extends RemoteServiceServlet implements KartotekService {
 				results.add(new CommoditiesBatchDTO(
 						resultSet.getInt("rb_id"),
 						resultSet.getInt("Raavare_id"),
-						resultSet.getDouble("maengde")
+						resultSet.getDouble("maengdeValid")
 						));
 			} 
 		} 

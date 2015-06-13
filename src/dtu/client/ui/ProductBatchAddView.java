@@ -35,13 +35,13 @@ public class ProductBatchAddView extends Composite {
 	TextBox statusTxt;
 	TextBox receptIdTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save = new Button("Tilf\u00F8j produktbatch");
 
 	// valid fields
 	
-	boolean produktBatchId = false;
-	boolean status = false;
-	boolean receptId = false;
+	boolean prodBatchValid = false;
+	boolean statusValid = false;
+	boolean receptIdValid = false;
 
 	public ProductBatchAddView(final DatabaseServiceClientImpl clientImpl) {
 
@@ -50,12 +50,12 @@ public class ProductBatchAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("tilfoej Produktbatch");
+		Label pageTitleLbl = new Label("Tilføj produktbatch");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		produktBatchIdLbl = new Label("ProduktBatch ID:");
+		produktBatchIdLbl = new Label("Produktbatch ID:");
 		produktBatchIdTxt = new TextBox();
 		Label nameRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(0, 0, produktBatchIdLbl);
@@ -69,13 +69,12 @@ public class ProductBatchAddView extends Composite {
 		addTable.setWidget(1, 1, statusTxt);
 		addTable.setWidget(1, 2, iniRulesLbl);
 
-		receptIdLbl = new Label("recept ID:");
+		receptIdLbl = new Label("Recept ID:");
 		receptIdTxt = new TextBox();
-		Label passRulesLbl = new Label("(Decimaltal");
+		Label passRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(2, 0, receptIdLbl);
 		addTable.setWidget(2, 1, receptIdTxt);
 		addTable.setWidget(2, 2, passRulesLbl);
-		
 		
 		produktBatchIdTxt.setStyleName("gwt-TextBox-invalidEntry");
 		statusTxt.setStyleName("gwt-TextBox-invalidEntry");
@@ -99,7 +98,7 @@ public class ProductBatchAddView extends Composite {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("ReceptKomponent gemt i kartotek.");
+						Window.alert("Produktbatch gemt i database.");
 					}
 
 					@Override
@@ -111,20 +110,17 @@ public class ProductBatchAddView extends Composite {
 			}
 		});
 
-
-		// register event handlers
-
 		produktBatchIdTxt.addKeyUpHandler(new KeyUpHandler(){
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidID(produktBatchIdTxt.getText())) {
 					produktBatchIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					produktBatchId = false;
+					prodBatchValid = false;
 				}
 				else {
 					produktBatchIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					produktBatchId = true;
+					prodBatchValid = true;
 				}
 				checkFormValid();
 			}
@@ -137,11 +133,11 @@ public class ProductBatchAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.isValidStatus(statusTxt.getText())) {
 					statusTxt.setStyleName("gwt-TextBox-invalidEntry");
-					status = false;
+					statusValid = false;
 				}
 				else {
 					statusTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					status = true;
+					statusValid = true;
 				}
 				checkFormValid();
 			}
@@ -154,11 +150,11 @@ public class ProductBatchAddView extends Composite {
 			public void onKeyUp(KeyUpEvent event) {
 				if (!FieldVerifier.IsValidMaengde(receptIdTxt.getText())) {
 					receptIdTxt.setStyleName("gwt-TextBox-invalidEntry");
-					receptId = false;
+					receptIdValid = false;
 				}
 				else {
 					receptIdTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					receptId = true;
+					receptIdValid = true;
 				}
 				checkFormValid();
 			}
@@ -172,7 +168,7 @@ public class ProductBatchAddView extends Composite {
 	}
 
 	private void checkFormValid() {
-		if (status&&receptId&&produktBatchId)
+		if (statusValid&&receptIdValid&&prodBatchValid)
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);

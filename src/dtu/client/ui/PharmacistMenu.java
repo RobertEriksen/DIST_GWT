@@ -16,71 +16,44 @@ public class PharmacistMenu extends Composite {
 	public PharmacistMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 
-		//		Anchor Bruger_Administration = new Anchor("Bruger Administration");
-		//		hPanel.add(Bruger_Administration);
-		//		Bruger_Administration.addClickHandler(new ClickHandler(){
-		//			public void onClick(ClickEvent event){	
-		//				main.showMenuView();
-		//			}
-		//		});
-
-
-		Anchor Raavare_administration = new Anchor("Råvare");
-		hPanel.add(Raavare_administration);
-		Raavare_administration.addClickHandler(new ClickHandler(){
+		Anchor raavare_administration = new Anchor("Råvare");
+		hPanel.add(raavare_administration);
+		raavare_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showCommoditiesMenu(level);
 			}
 		});
 
-		Anchor Raavarebatch_administration = new Anchor("Råvarebatch");
-		hPanel.add(Raavarebatch_administration);
-		Raavarebatch_administration.addClickHandler(new ClickHandler(){
+		Anchor raavarebatch_administration = new Anchor("Råvarebatch");
+		hPanel.add(raavarebatch_administration);
+		raavarebatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showCommoditiesBatchMenu(level);
 			}
 		});
 
-		Anchor Recept_administration = new Anchor("Recept");
-		hPanel.add(Recept_administration);
-		Recept_administration.addClickHandler(new ClickHandler(){
+		Anchor recept_administration = new Anchor("Recept");
+		hPanel.add(recept_administration);
+		recept_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showRecipeMenu(level);
 			}
 		});
 
-		Anchor ReceptKomponent_administration = new Anchor("Receptkomponent");
-		hPanel.add(ReceptKomponent_administration);
-		ReceptKomponent_administration.addClickHandler(new ClickHandler(){
+		Anchor receptKomponent_administration = new Anchor("Receptkomponent");
+		hPanel.add(receptKomponent_administration);
+		receptKomponent_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showRecipeKomponentMenu(level);
 			}
 		});
 
-		Anchor Produktbatch_administration = new Anchor("Produktbatch");
-		hPanel.add(Produktbatch_administration);
-		Produktbatch_administration.addClickHandler(new ClickHandler(){
+		Anchor produktbatch_administration = new Anchor("Produktbatch");
+		hPanel.add(produktbatch_administration);
+		produktbatch_administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showProductBatchMenu(level);
 			}
 		});
-
-//		Anchor back = new Anchor("Tilbage");
-//		hPanel.add(back);
-//		back.addClickHandler(new ClickHandler(){
-//			public void onClick(ClickEvent event){	
-//				main.clearContentView();
-//				if(level==4){
-//					main.showAdministratorMenu(level);
-//				}
-//				else if(level == 3){
-//					main.showpharmacistMenu(level);
-//				}
-//
-//				else if(level == 2){
-//					main.showForemanMenu(level);
-//				}
-//			}
-//		});
 	}
 }

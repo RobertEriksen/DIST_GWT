@@ -27,23 +27,13 @@ public class WelcomeView extends Composite {
 		this.clientImpl = clientImpl;
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
-		Label welcomeLbl = new Label("Velkommen til kartoteket af CDIO gruppe 16");
+		Label welcomeLbl = new Label("Velkommen til CDIO Webadministration, udviklet af CDIO gruppe 16.");
 		welcomeLbl.addStyleName("spacing-vertical");
 		w.add(welcomeLbl);
 		
-//		clientImpl.service.getSize(new AsyncCallback<Integer>() {
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert("Server fejl!" + caught.getMessage());
-//			}
-//
-//			@Override
-//			public void onSuccess(Integer result) {
-//				w.add(new Label("Antal operatører i kartoteket: " + result));
-//				
-//			}
-//		});
+		Label welcomeLbl2 = new Label("Du skal logge ind forneden for at komme videre.");
+		welcomeLbl2.addStyleName("spacing-vertical");
+		w.add(welcomeLbl2);
 		
 		FlexTable loginTable = new FlexTable();
 
@@ -126,7 +116,7 @@ public class WelcomeView extends Composite {
 				
 				// clear view and show new label
 				w.clear();
-				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 4);
+				Label loginLbl = new Label("Du er nu logget ind som superbruger og kan bruge navigationsmenuen foroven.");
 				loginLbl.addStyleName("spacing-vertical");
 				w.add(loginLbl);
 			}
@@ -143,14 +133,14 @@ public class WelcomeView extends Composite {
 				
 				// clear view and show new label
 				w.clear();
-				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 3);
+				Label loginLbl = new Label("Du er nu logget ind som farmaceut og kan bruge navigationsmenuen foroven.");
 				loginLbl.addStyleName("spacing-vertical");
 				w.add(loginLbl);
 			}
 			});
 		
-		Label Værkføre = new Label("Værkføre");
-		Button Værkførelogin = new Button("Log ind som værkføre");
+		Label Værkføre = new Label("Værkfører");
+		Button Værkførelogin = new Button("Log ind som værkfører");
 		Værkførelogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -158,7 +148,7 @@ public class WelcomeView extends Composite {
 				
 				// clear view and show new label
 				w.clear();
-				Label loginLbl = new Label("Du er nu logget ind og kan bruge navigationsmenuen foroven: " + 2);
+				Label loginLbl = new Label("Du er nu logget ind som værkfører og kan bruge navigationsmenuen foroven.");
 				loginLbl.addStyleName("spacing-vertical");
 				w.add(loginLbl);
 			}
@@ -169,7 +159,7 @@ public class WelcomeView extends Composite {
 		Operatørlogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				Window.alert("Du er operatør og har ikke adgang til programmet");
+				Window.alert("Du er operatør og har ikke adgang til webadministration.");
 			}
 			});
 		

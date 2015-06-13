@@ -15,18 +15,18 @@ public class UserAdminMenu extends Composite {
 	public UserAdminMenu(final MainView main, final int level) {
 		initWidget(this.hPanel);
 		
-		Anchor showOperators = new Anchor("Vis operatører");
-		hPanel.add(showOperators);
+		Anchor showUsers = new Anchor("Vis brugere");
+		hPanel.add(showUsers);
 
 		// call back the controller
-		showOperators.addClickHandler(new ClickHandler(){
+		showUsers.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
 				main.showUsers();
 			}
 		});
 	
 		// use unicode escape sequence \u00F8 for '�'
-		Anchor add = new Anchor("Tilf\u00F8j operatør");
+		Anchor add = new Anchor("Tilf\u00F8j brugere");
 		hPanel.add(add);
 		add.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -34,7 +34,7 @@ public class UserAdminMenu extends Composite {
 			}
 		});
 		
-		Anchor edit = new Anchor("Ret operatør");
+		Anchor edit = new Anchor("Ret brugere");
 		hPanel.add(edit);
 		edit.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
@@ -42,7 +42,7 @@ public class UserAdminMenu extends Composite {
 			}
 		});
 		
-		Anchor delete = new Anchor("Slet operatør");
+		Anchor delete = new Anchor("Slet brugere");
 		hPanel.add(delete);
 		delete.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				

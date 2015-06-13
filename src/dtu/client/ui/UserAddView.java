@@ -37,7 +37,7 @@ public class UserAddView extends Composite {
 	TextBox activeTxt;
 	TextBox levelTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save = new Button("Tilf\u00F8j bruger");
 
 	// valid fields
 	boolean nameValid = false;
@@ -54,7 +54,7 @@ public class UserAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("Tilføj operatør");
+		Label pageTitleLbl = new Label("Tilføj bruger");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
@@ -82,7 +82,7 @@ public class UserAddView extends Composite {
 
 		passLbl = new Label("Password:");
 		passTxt = new TextBox();
-		Label passRulesLbl = new Label("(7-8 karakterer og skal overholde DTU's regler for password.");
+		Label passRulesLbl = new Label("(7-8 karakterer og skal overholde DTU's regler for password.)");
 		addTable.setWidget(3, 0, passLbl);
 		addTable.setWidget(3, 1, passTxt);
 		addTable.setWidget(3, 2, passRulesLbl);
@@ -96,7 +96,7 @@ public class UserAddView extends Composite {
 		
 		levelLbl = new Label("Niveau:");
 		levelTxt = new TextBox();
-		Label levelRulesLbl = new Label("(1 = operatør, 2 = superbruger)");
+		Label levelRulesLbl = new Label("(1 = operatør, 2 = værkfører, 3 = farmaceut, 4 = superbruger)");
 		addTable.setWidget(5, 0, levelLbl);
 		addTable.setWidget(5, 1, levelTxt);
 		addTable.setWidget(5, 2, levelRulesLbl);
@@ -118,15 +118,14 @@ public class UserAddView extends Composite {
 			@Override
 			public void onClick(ClickEvent event) {
 
-				// create new OperatoerDTO
-				UserDTO newOperatoer = new UserDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
+				UserDTO newUser = new UserDTO(nameTxt.getText(), iniTxt.getText(), cprTxt.getText(), passTxt.getText(), Integer.valueOf(activeTxt.getText()), Integer.valueOf(levelTxt.getText()));
 
 				// save on server
-				clientImpl.service.createUser(newOperatoer, new AsyncCallback<Void>() {
+				clientImpl.service.createUser(newUser, new AsyncCallback<Void>() {
 
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("Operatoer gemt i kartotek.");
+						Window.alert("Bruger gemt i database.");
 					}
 
 					@Override
