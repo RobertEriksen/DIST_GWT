@@ -55,14 +55,14 @@ public class RecipeComponentAddView extends Composite {
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
 
-		recKompIdLbl = new Label("ID:");
+		recKompIdLbl = new Label("Recept ID:");
 		recKompIdTxt = new TextBox();
 		Label nameRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(0, 0, recKompIdLbl);
 		addTable.setWidget(0, 1, recKompIdTxt);
 		addTable.setWidget(0, 2, nameRulesLbl);
 
-		raavareidLbl = new Label("ID:");
+		raavareidLbl = new Label("Råvare ID:");
 		raavareIdTxt = new TextBox();
 		Label iniRulesLbl = new Label("(Heltal kun)");
 		addTable.setWidget(1, 0, raavareidLbl);
