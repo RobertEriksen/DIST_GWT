@@ -48,7 +48,7 @@ public class CommoditiesBatchAddView extends Composite {
 		
 		FlexTable addTable = new FlexTable();
 		
-		Label pageTitleLbl = new Label("Tilføj råvarebatch");
+		Label pageTitleLbl = new Label("Tilføj råvarebatch ");
 		pageTitleLbl.setStyleName("FlexTable-Header");
 		pageTitleLbl.addStyleName("spacing-vertical");
 		addPanel.add(pageTitleLbl);
@@ -62,7 +62,7 @@ public class CommoditiesBatchAddView extends Composite {
 
 		raavareidLbl = new Label("Råvare ID:");
 		raavareidTxt = new TextBox();
-		Label rvIDRulesLbl = new Label("(Heltal kun)");
+		Label rvIDRulesLbl = new Label("(Heltal kun, skal findes i forvejen)");
 		addTable.setWidget(1, 0, raavareidLbl);
 		addTable.setWidget(1, 1, raavareidTxt);
 		addTable.setWidget(1, 2, rvIDRulesLbl);

@@ -57,14 +57,14 @@ public class RecipeComponentAddView extends Composite {
 
 		recKompIdLbl = new Label("Recept ID:");
 		recKompIdTxt = new TextBox();
-		Label nameRulesLbl = new Label("(Heltal kun)");
+		Label nameRulesLbl = new Label("(Heltal kun, skal findes i forvejen)");
 		addTable.setWidget(0, 0, recKompIdLbl);
 		addTable.setWidget(0, 1, recKompIdTxt);
 		addTable.setWidget(0, 2, nameRulesLbl);
 
 		raavareidLbl = new Label("Råvare ID:");
 		raavareIdTxt = new TextBox();
-		Label iniRulesLbl = new Label("(Heltal kun)");
+		Label iniRulesLbl = new Label("(Heltal kun, skal findes i forvejen)");
 		addTable.setWidget(1, 0, raavareidLbl);
 		addTable.setWidget(1, 1, raavareIdTxt);
 		addTable.setWidget(1, 2, iniRulesLbl);

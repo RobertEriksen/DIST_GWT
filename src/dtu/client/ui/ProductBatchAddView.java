@@ -71,7 +71,7 @@ public class ProductBatchAddView extends Composite {
 
 		receptIdLbl = new Label("Recept ID:");
 		receptIdTxt = new TextBox();
-		Label passRulesLbl = new Label("(Heltal kun)");
+		Label passRulesLbl = new Label("(Heltal kun, skal findes i forvejen)");
 		addTable.setWidget(2, 0, receptIdLbl);
 		addTable.setWidget(2, 1, receptIdTxt);
 		addTable.setWidget(2, 2, passRulesLbl);
