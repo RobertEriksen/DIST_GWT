@@ -28,11 +28,11 @@ public class WelcomeView extends Composite {
 		final VerticalPanel w = new VerticalPanel();
 		initWidget(w);
 		Label welcomeLbl = new Label("Velkommen til CDIO Webadministration, udviklet af CDIO gruppe 16.");
-		welcomeLbl.addStyleName("spacing-vertical");
+		welcomeLbl.addStyleName("spacing-top");
 		w.add(welcomeLbl);
 		
 		Label welcomeLbl2 = new Label("Du skal logge ind forneden for at komme videre.");
-		welcomeLbl2.addStyleName("spacing-vertical");
+		welcomeLbl2.addStyleName("spacing-bottom");
 		w.add(welcomeLbl2);
 		
 		FlexTable loginTable = new FlexTable();
@@ -107,8 +107,11 @@ public class WelcomeView extends Composite {
 			}
 		});
 		
-		Label Superbruger = new Label("Superbruger");
+		Label demoLabel = new Label("----- Demo knapper til login forneden -----");
+		demoLabel.addStyleName("redText");
+		
 		Button SuperLogin = new Button("Log ind som superbruger");
+		SuperLogin.addStyleName("spacing-vertical");
 		SuperLogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -122,10 +125,8 @@ public class WelcomeView extends Composite {
 			}
 			});
 		
-	
-		
-		Label Pharmaceut = new Label("Pharmaceut");
-		Button Pharmaceutlogin = new Button("Log ind som Pharmaceut");
+		Button Pharmaceutlogin = new Button("Log ind som farmaceut");
+		Pharmaceutlogin.addStyleName("spacing-vertical");
 		Pharmaceutlogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -139,8 +140,8 @@ public class WelcomeView extends Composite {
 			}
 			});
 		
-		Label Værkføre = new Label("Værkfører");
 		Button Værkførelogin = new Button("Log ind som værkfører");
+		Værkførelogin.addStyleName("spacing-vertical");
 		Værkførelogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -154,8 +155,8 @@ public class WelcomeView extends Composite {
 			}
 			});
 		
-		Label Operatør = new Label("Operatør login");
 		Button Operatørlogin = new Button("Log ind som Operatør");
+		Operatørlogin.addStyleName("spacing-vertical");
 		Operatørlogin.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -163,18 +164,15 @@ public class WelcomeView extends Composite {
 			}
 			});
 		
-		loginTable.setWidget(3, 0, Superbruger);
-		loginTable.setWidget(3, 1, SuperLogin);
+		loginTable.setWidget(3, 1, demoLabel);
 		
+		loginTable.setWidget(4, 1, SuperLogin);
 		
-		loginTable.setWidget(4, 0, Pharmaceut);
-		loginTable.setWidget(4, 1, Pharmaceutlogin);
+		loginTable.setWidget(5, 1, Pharmaceutlogin);
 		
-		loginTable.setWidget(5, 0, Værkføre);
-		loginTable.setWidget(5, 1, Værkførelogin);
+		loginTable.setWidget(6, 1, Værkførelogin);
 		
-		loginTable.setWidget(6, 0, Operatør);
-		loginTable.setWidget(6, 1, Operatørlogin);
+		loginTable.setWidget(7, 1, Operatørlogin);
 		
 		w.add(loginTable);
 	}
