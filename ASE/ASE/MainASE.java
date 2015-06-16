@@ -21,7 +21,6 @@ public class MainASE {
 	static DataOutputStream outToServer;
 
 	static boolean realScale = true;
-	static DecimalFormat df = new DecimalFormat("0.000");
 
 	public static void main(String[] args) throws InterruptedException {
 		DAL dal = new DAL();
