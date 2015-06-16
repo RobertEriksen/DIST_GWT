@@ -56,7 +56,7 @@ public class MainASE {
 
 			// Skriver noget i sekundære display (nødvendigt for at vores simulator fungerer korrekt)
 			if (!realScale) {
-				outToServer.writeBytes("P111 \"Blank\"" + '\n');
+				outToServer.writeBytes("P111 \"  \"" + '\n');
 				inputServer.readLine();
 				inputServer.readLine();
 			}
@@ -141,7 +141,7 @@ public class MainASE {
 			// Hent alle råvarer i en recept
 			receptkomponenter = dal.getRaavarerInRecept(Integer.valueOf(recept_id));
 
-			int i = 0;
+			int i = 1;
 			for (ReceptKomponentDTO rk : receptkomponenter) {
 				// 7: Operatøren kontrollerer at vægten er ubelastet og trykker ’ok’
 
@@ -165,10 +165,6 @@ public class MainASE {
 				outToServer.writeBytes("T" + '\n');
 				System.out.println(inputServer.readLine());
 				if (!realScale) inputServer.readLine();
-
-				// DER ER ET PROBLEM HER, HVOR MAN IKKE KAN SIMULERE AT DER PLACERES EN BEHOLDER
-				// (MAN KAN IKKE SKRIVE "B 2.12" FORDI DER SKAL SVARES PÅ RM20).....
-				// LØSNING?? Vi kan lave B-kommandoen tilgængelig eksternt 	i vægt simulatoren
 
 				// 10: Vægten beder om første tara beholder. 11: Operatør placerer første tarabeholder og trykker ’ok’.
 
@@ -220,7 +216,7 @@ public class MainASE {
 
 				// Simulér masse placeret på vægt
 				if (!realScale) {
-					outToServer.writeBytes("B "+rk.getNomNetto() + '\n');
+					outToServer.writeBytes("B "+(rk.getNomNetto()+Double.valueOf(tarabeholder_vaegt))+ '\n');
 					System.out.println(inputServer.readLine());
 					inputServer.readLine();
 				}
@@ -285,7 +281,7 @@ public class MainASE {
 	}
 
 	private static void resetP111() throws IOException {
-		outToServer.writeBytes("P111 \" \"" + '\n');
+		outToServer.writeBytes("P111 \"  \"" + '\n');
 		inputServer.readLine();
 		if (!realScale) inputServer.readLine();
 	}
@@ -298,8 +294,6 @@ public class MainASE {
 	 * @return true if weight is within range and false if it is not.
 	 */
 	private static boolean checkWeight(String afvejet_vaegt, String raavare_amount, String raavare_tolerance) {
-		System.out.println(df.format(Double.valueOf(raavare_amount)-((Double.valueOf(raavare_amount)/100.0)*Double.valueOf(raavare_tolerance))));
-		System.out.println(df.format(Double.valueOf(raavare_amount)+((Double.valueOf(raavare_amount)/100.0)*Double.valueOf(raavare_tolerance))));
 		if ((Double.valueOf(afvejet_vaegt) <= Double.valueOf(raavare_amount)+((Double.valueOf(raavare_amount)/100.0)*Double.valueOf(raavare_tolerance))) &&
 		(Double.valueOf(afvejet_vaegt) >= Double.valueOf(raavare_amount)-((Double.valueOf(raavare_amount)/100.0)*Double.valueOf(raavare_tolerance)))) return true;
 		return false;
