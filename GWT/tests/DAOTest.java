@@ -37,9 +37,16 @@ DAO dao = new DAO();
 			fail();
 		}
 		dao.deleteUser(op.getOprId());
-		if(!dao.getUser().get(5).getActive().equals(op.getActive())){
+		if(!dao.getUser().get(0).getActive().equals(op.getActive())){
 			fail();
-		};	
+		};
+		
+		String name = "Jens Christian";
+		op.setOprNavn(name);
+		dao.updateUser(op);
+		if(!op.getOprNavn().equals(name)){
+			fail();
+		}
 	}
 
 }
