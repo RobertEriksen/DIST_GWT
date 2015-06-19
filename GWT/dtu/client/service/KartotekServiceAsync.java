@@ -16,7 +16,7 @@ public interface KartotekServiceAsync {
 
 	void login(int id, String password, AsyncCallback<Integer> callback);
 
-	// Operat�rer
+	// Brugere
 	void createUser(UserDTO p, AsyncCallback<Void> callback);
 
 	void updateUser(UserDTO p, AsyncCallback<Void> callback);

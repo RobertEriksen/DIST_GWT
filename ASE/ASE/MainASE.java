@@ -70,7 +70,6 @@ public class MainASE {
 					opr_name = dal.getOprNameFromID(opr_id);
 					// Skriv P111 hvis ID ikke findes (og vent 2 sekunder så bruger kan nå at læse)
 					if ("ID findes ikke!".equals(opr_name) || "SQL fejl".equals(opr_name)) {
-						System.out.println("ID FANDTES IKKE!");
 						outToServer.writeBytes("P111 \"ID findes ikke - Proev igen!\"" + '\n');
 						System.out.println(inputServer.readLine());
 						if (!realScale) inputServer.readLine();
