@@ -13,55 +13,24 @@ public class AdministratorMenu extends Composite {
 	private HorizontalPanel hPanel = new HorizontalPanel();
 
 	// receive reference to MainView for call back
-	public AdministratorMenu(final MainView main, final int level) {
+	public AdministratorMenu(final MainView main) {
 		initWidget(this.hPanel);
 		
 		Anchor bruger_Administration = new Anchor("Bruger");
 		hPanel.add(bruger_Administration);
 		bruger_Administration.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){	
-				main.showUserMenu(level);
+				main.showUserMenu();
 			}
 		});
 		
-		Anchor raavare_administration = new Anchor("Råvare");
-		hPanel.add(raavare_administration);
-		raavare_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showCommoditiesMenu(level);
+		Anchor lobby_Administration = new Anchor("Find Lobby");
+		hPanel.add(lobby_Administration);
+		lobby_Administration.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event){	
+				main.showLobbyMenu();
 			}
 		});
-
-		Anchor raavarebatch_administration = new Anchor("Råvarebatch");
-		hPanel.add(raavarebatch_administration);
-		raavarebatch_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showCommoditiesBatchMenu(level);
-			}
-		});
-
-		Anchor recept_administration = new Anchor("Recept");
-		hPanel.add(recept_administration);
-		recept_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showRecipeMenu(level);
-			}
-		});
-
-		Anchor receptKomponent_administration = new Anchor("Receptkomponent");
-		hPanel.add(receptKomponent_administration);
-		receptKomponent_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showRecipeKomponentMenu(level);
-			}
-		});
-
-		Anchor produktbatch_administration = new Anchor("Produktbatch");
-		hPanel.add(produktbatch_administration);
-		produktbatch_administration.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event){				
-				main.showProductBatchMenu(level);
-			}
-		});
+		
 	}
 }
